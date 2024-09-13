@@ -1,0 +1,7 @@
+const ANIMATED_COLOR = "#FF0000";
+const RESET_COLOR = "#808080";
+
+export {
+    ANIMATED_COLOR,
+    RESET_COLOR
+};

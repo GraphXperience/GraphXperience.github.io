@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraphXperience</title>
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/animation-console.css">
+  <link rel="stylesheet" href="./styles/animation-control.css">
+  <link rel="stylesheet" href="./styles/modal.css">
+  <link rel="stylesheet" href="./styles/dropdown.css">
+  <link rel="stylesheet" href="./styles/config-editor.css">
+  <link rel="stylesheet" href="./styles/panel.css">
+  <link rel="stylesheet" href="./styles/side-bar.css">
+  <link rel="stylesheet" href="./styles/info-window.css">
+  <link rel="stylesheet" href="./styles/tooltip.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alwan/dist/css/alwan.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+</head>
+
+<body>
+  <header>
+    <div id="algorithms">
+      <div id="hamburger">
+        <bar id="first-bar"></bar>
+        <bar id="second-bar"></bar>
+        <bar id="third-bar"></bar>
+      </div>
+    </div>
+    <div id="header-buttons">
+      <div id="graph-actions">
+        <button id="add-node-button" class="graph-button">Adicionar nó</button>
+        <button id="remove-node-button" class="graph-button">Remover nó</button>
+        <button id="remove-edge-button" class="graph-button">Remover aresta</button>
+        <button id="connect-nodes-button" class="graph-button">Conectar nós</button>
+        <button id="disconnect-nodes-button" class="graph-button">Desconectar nós</button>
+        <button id="clear-button" class="graph-button">Limpar</button>
+        <button id="load-graph-button" class="graph-button">Carregar Grafo</button>
+        <div id="save-graph-dropdown-container" class="save-graph-dropdown-container">
+          <button id="save-graph-button" class="graph-button">
+            Salvar Grafo
+          </button>
+          <div id="save-graph-dropdown">
+            <div id="save-graph-json" class="save-graph-dropdown-option"><p>JSON</p></div>
+            <div id="save-graph-jpeg" class="save-graph-dropdown-option"><p>JPEG</p></div>
+            <div id="save-graph-png" class="save-graph-dropdown-option"><p>PNG</p></div>
+          </div>
+        </div>
+      </div>
+      <div id="config-and-info">
+        <button id="open-config-editor-button" class="graph-button">
+          <img id="open-config-editor-button-img" src="./assets/configuration.svg">
+        </button>
+        <button id="global-info-button" class="graph-button">
+          <img src="./assets/info.svg" id="global-info-icon" class="info-icon">
+        </button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="side-bar">
+      <h1>Algoritmos</h1>
+      <ul id="algorithm-buttons-section" class="side-bar-section">
+        <li>
+          <button id="bfs-button" class="side-bar-button">Busca em Largura (BFS)</button>
+          <img src="./assets/info.svg" id="bfs-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="dfs-button" class="side-bar-button">Busca em Profundidade (DFS)</button>
+          <img src="./assets/info.svg" id="dfs-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="check-cycles-button" class="side-bar-button">Checar ciclos</button>
+          <img src="./assets/info.svg" id="check-cycles-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="get-connected-components-button" class="side-bar-button">Obter componentes conexas</button>
+          <img src="./assets/info.svg" id="get-connected-components-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="get-strongly-connected-components-button" class="side-bar-button">Obter componentes fortemente-conexas</button>
+          <img src="./assets/info.svg" id="get-strongly-connected-components-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="get-shortest-path-button" class="side-bar-button">Obter caminho mais curto entre dois nós</button>
+          <img src="./assets/info.svg" id="get-shortest-path-info-icon" class="info-icon">
+        </li>
+      </ul>
+      <h1>Grafos Padrões</h1>
+      <ul id="standard-graphs-section" class="side-bar-section">
+        <li>
+          <button id="regular-graph-button" class="side-bar-button">Grafo Regular</button>
+          <img src="./assets/info.svg" id="regular-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="complete-graph-button" class="side-bar-button">Grafo Completo</button>
+          <img src="./assets/info.svg" id="complete-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="star-graph-button" class="side-bar-button">Grafo Estrela</button>
+          <img src="./assets/info.svg" id="star-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="wheel-graph-button" class="side-bar-button">Grafo Roda</button>
+          <img src="./assets/info.svg" id="wheel-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="bipartite-graph-button" class="side-bar-button">Grafo Bipartido</button>
+          <img src="./assets/info.svg" id="bipartite-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="complete-bipartite-graph-button" class="side-bar-button">Grafo Bipartido Completo</button>
+          <img src="./assets/info.svg" id="complete-bipartite-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="binary-tree-graph-button" class="side-bar-button">Grafo Árvore Binária</button>
+          <img src="./assets/info.svg" id="binary-tree-graph-info-icon" class="info-icon">
+        </li>
+        <li>
+          <button id="petersen-graph-button" class="side-bar-button">Grafo de Petersen</button>
+          <img src="./assets/info.svg" id="petersen-graph-info-icon" class="info-icon">
+        </li>
+      </ul>
+      <h1>Algoritmos Personalizados</h1>
+      <ul id="custom-algorithms-section" class="side-bar-section">
+        <li>
+          <button id="add-custom-algorithm-button" class="side-bar-button">Adicionar Algoritmo</button>
+          <img src="./assets/info.svg" id="custom-algorithm-info-icon" class="info-icon">
+        </li>
+      </ul>
+    </div>
+    <div id="custom-algorithms-modal" class="modal">
+      <div id="custom-algorithms-modal-content" class="modal-content">
+        <span id="custom-algorithms-close-button" class="modal-close-button">&times;</span>
+        <h3>Detalhes do Algoritmo</h3>
+        <label for="custom-algorithms-name-input">Nome:</label>
+        <input type="text" id="custom-algorithms-name-input">
+        <label for="custom-algorithms-description-textarea">Descrição:</label>
+        <textarea id="custom-algorithms-description-textarea"></textarea>
+        <button id="custom-algorithms-ok-button" class="graph-button">OK</button>
+        <button id="custom-algorithms-cancel-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="standard-graph-specifications-modal" class="modal">
+      <div id="standard-graph-specifications-modal-content" class="modal-content">
+        <span id="standard-graph-specifications-close-button" class="modal-close-button">&times;</span>
+        <h3>Especificações do Grafo</h3>
+        <label for="standard-graph-specifications-nodes-input">Numero de Nós:</label>
+        <input type="number" id="standard-graph-specifications-nodes-input" min="1" max="30">
+        <label for="standard-graph-specifications-nodes-2-input">Numero de Nós da Segunda Partição:</label>
+        <input type="number" id="standard-graph-specifications-nodes-2-input" min="1" max="30">
+        <label for="standard-graph-specifications-degree-input">Grau dos Nós:</label>
+        <input type="number" id="standard-graph-specifications-degree-input" min="1" max="30">
+        <label for="standard-graph-specifications-height-input">Altura da Árvore:</label>
+        <input type="number" id="standard-graph-specifications-height-input" min="1" max="30">
+        <button id="standard-graph-specifications-ok-button" class="graph-button">OK</button>
+        <button id="standard-graph-specifications-cancel-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="tag-editor" class="modal editor">
+      <div id="tag-editor-content" class="modal-content">
+        <h3>Editar Tag</h3>
+        <input type="text" id="new-tag-input" placeholder="Ex: teste123">
+        <button id="ok-tag-button" class="graph-button">OK</button>
+        <button id="cancel-tag-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="color-editor" class="modal editor">
+      <div id="color-editor-content" class="modal-content">
+        <h3>Editar Cor</h3>
+        <div id="color-input"></div>
+        <button id="ok-color-button" class="graph-button">OK</button>
+        <button id="cancel-color-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="size-editor" class="modal editor">
+      <div id="size-editor-content" class="modal-content">
+        <h3>Editar Tamanho</h3>
+        <input type="number" id="new-size-input" min="1" max="10">
+        <button id="ok-size-button" class="graph-button">OK</button>
+        <button id="cancel-size-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="weight-editor" class="modal editor">
+      <div id="weight-editor-content" class="modal-content">
+        <h3>Editar Peso</h3>
+        <input type="number" id="new-weight-input" placeholder="Ex: 5">
+        <button id="ok-weight-button" class="graph-button">OK</button>
+        <button id="cancel-weight-button" class="graph-button">Cancelar</button>
+      </div>
+    </div>
+    <div id="config-editor" class="modal editor">
+      <div id="config-editor-content" class="modal-content">
+        <div class="config-editor-grid-item config-editor-color-picker">
+          <p id="config-editor-color-input-h3">Cor dos nós</h3>
+          <div id="config-editor-color-input"></div>
+        </div>
+
+        <div class="config-editor-grid-item config-editor-node-size">
+          <label for="config-editor-node-size-input">Tamanho do nó (1-10)</label>
+          <input type="number" id="config-editor-node-size-input" min="1" max="10">
+        </div>
+
+        <div class="config-editor-grid-item config-editor-edge-thickness">
+          <label for="config-editor-edge-thickness-input">Espessura da aresta (1-10)</label>
+          <input type="number" id="config-editor-edge-thickness-input" min="1" max="10">
+        </div>
+
+        <div class="config-editor-grid-item config-editor-direct">
+          <label for="config-editor-direct-input">Grafo direcionado?</label>
+          <input type="checkbox" id="config-editor-direct-input">
+        </div>
+
+        <div class="config-editor-grid-item config-editor-node-weighted">
+          <label for="config-editor-node-weighted-input">Peso nos nós?</label>
+          <input type="checkbox" id="config-editor-node-weighted-input">
+        </div>
+
+        <div class="config-editor-grid-item config-editor-edge-weighted">
+          <label for="config-editor-edge-weighted-input">Peso nas arestas?</label>
+          <input type="checkbox" id="config-editor-edge-weighted-input">
+        </div>
+
+        <div class="config-editor-grid-item config-editor-confirm-buttons">
+          <button id="config-editor-cancel-button" class="graph-button">Cancelar</button>
+          <button id="config-editor-ok-button" class="graph-button">OK</button>
+        </div>
+      </div>
+    </div>
+    <div id="algorithm-popup" class="modal">
+      <div id="algorithm-popup-content" class="modal-content">
+        <button id="algorithm-popup-close-button" class="modal-close-button">&times;</button>
+        <p id="algorithm-popup-content-p"></p>
+      </div>
+    </div>
+    <div id="info-window" class="modal">
+      <div id="info-window-content" class="modal-content">
+        <button id="info-window-close-button" class="modal-close-button">&times;</button>
+      </div>
+    </div>
+    <button id="draw-mode-button" class="draw-mode-button">
+      <img id="draw-mode-button-img" src="./assets/connected_graph.svg">
+    </button>
+    <div id="cy" class="cy">
+    </div>
+    <div id="animation-control" class="panel">
+      <button id="close-animation-button" class="animation-control-button">
+        <img id="close-button-img" class="animation-control-button-img" src="./assets/close.svg">
+      </button>
+      <button id="go-to-begin-animation-button" class="animation-control-button">
+        <img id="go-to-begin-button-img" class="animation-control-button-img" src="./assets/double-arrow-left.svg">
+      </button>
+      <button id="previous-animation-button" class="animation-control-button">
+        <img id="previous-button-img" class="animation-control-button-img" src="./assets/arrow-left.svg">
+      </button>
+      <button id="play-pause-animation-button" class="animation-control-button">
+        <img id="play-pause-button-img" class="animation-control-button-img play" src="./assets/play.svg">
+      </button>
+      <button id="next-animation-button" class="animation-control-button">
+        <img id="next-button-img" class="animation-control-button-img" src="./assets/arrow-right.svg">
+      </button>
+      <button id="go-to-end-animation-button" class="animation-control-button">
+        <img id="go-to-end-button-img" class="animation-control-button-img" src="./assets/double-arrow-right.svg">
+      </button>
+      <div class="range-slider-container">
+        <input type="range" min="0" max="9" value="3" class="slider" id="animation-control-slider">
+        <span id="animation-control-slider-speed-display" class="range-slider-speed-display">1.00x</span>
+      </div>
+    </div>
+    <div id="animation-console" class="animation-console">
+    </div>
+  </main>
+  <script src="./bundle.js"></script>
+</body>
+
+</html>

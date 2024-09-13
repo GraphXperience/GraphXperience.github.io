@@ -1,0 +1,49 @@
+#animation-control {
+    display: none;
+    position: fixed;
+    bottom: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#animation-control.active {
+    display: flex;
+}
+
+.animation-control-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    opacity: 0.8;
+    border: 0px;
+    cursor: pointer;
+}
+
+.animation-control-button:hover {
+    opacity: 1;
+}
+
+.animation-control-button:active {
+    opacity: 0.8;
+}
+
+.animation-control-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.animation-control-button-img {
+    background-color: transparent;
+    width: 30px;
+}
+
+.range-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.range-slider-speed-display {
+    color: #000000;
+}
