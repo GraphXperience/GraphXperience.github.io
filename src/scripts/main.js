@@ -5,10 +5,11 @@ import { ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KE
 import { openInfoWindow, closeInfoWindow } from './info-window';
 import { initializeCustomAlgorithms } from './custom-algorithms';
 import { promptCustomAlgorithmsSelection } from './custom-algorithms/custom-algorithms';
+import { setupPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { setupAnimationButtons } from './animation';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from './context';
 import { toggleDrawMode } from './cytoscape-extensions/edgehandles-setup';
-import { showGraphSpecificationsModal } from './handlers/standard-graphs-handler';
+import { openPredefinedGraphsModal } from './predefined-graphs/modal.js'
 import { run } from './algorithms';
 import { getGlobalConfigEditor } from './editors/global-config-editor';
 
@@ -23,6 +24,7 @@ handleSlideSpeedDisplayInput();
 
 setupAnimationButtons();
 initializeCustomAlgorithms();
+setupPredefinedGraphsModal();
 
 document.addEventListener('keydown', handleKeyDownEvent);
 document.addEventListener('mousemove', handleMouseMoveEvent);
@@ -60,14 +62,14 @@ document.getElementById('get-strongly-connected-components-info-icon').addEventL
 document.getElementById('get-shortest-path-info-icon').addEventListener('click', () => openInfoWindow('get-shortest-path'));
 document.getElementById('custom-algorithm-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
 
-document.getElementById('complete-graph-button').addEventListener('click', () => showGraphSpecificationsModal('complete'));
-document.getElementById('regular-graph-button').addEventListener('click', () => showGraphSpecificationsModal('regular'));
-document.getElementById('star-graph-button').addEventListener('click', () => showGraphSpecificationsModal('star'));
-document.getElementById('wheel-graph-button').addEventListener('click', () => showGraphSpecificationsModal('wheel'));
-document.getElementById('bipartite-graph-button').addEventListener('click', () => showGraphSpecificationsModal('bipartite'));
-document.getElementById('complete-bipartite-graph-button').addEventListener('click', () => showGraphSpecificationsModal('complete-bipartite'));
-document.getElementById('binary-tree-graph-button').addEventListener('click', () => showGraphSpecificationsModal('binary-tree'));
-document.getElementById('petersen-graph-button').addEventListener('click', () => showGraphSpecificationsModal('petersen'));
+document.getElementById('complete-graph-button').addEventListener('click', () => openPredefinedGraphsModal('complete'));
+document.getElementById('regular-graph-button').addEventListener('click', () => openPredefinedGraphsModal('regular'));
+document.getElementById('star-graph-button').addEventListener('click', () => openPredefinedGraphsModal('star'));
+document.getElementById('wheel-graph-button').addEventListener('click', () => openPredefinedGraphsModal('wheel'));
+document.getElementById('bipartite-graph-button').addEventListener('click', () => openPredefinedGraphsModal('bipartite'));
+document.getElementById('complete-bipartite-graph-button').addEventListener('click', () => openPredefinedGraphsModal('complete-bipartite'));
+document.getElementById('binary-tree-graph-button').addEventListener('click', () => openPredefinedGraphsModal('binary-tree'));
+document.getElementById('petersen-graph-button').addEventListener('click', () => openPredefinedGraphsModal('petersen'));
 
 document.getElementById('regular-graph-info-icon').addEventListener('click', () => openInfoWindow('regular-graph'));
 document.getElementById('complete-graph-info-icon').addEventListener('click', () => openInfoWindow('complete-graph'));
