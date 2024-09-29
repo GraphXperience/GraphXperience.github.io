@@ -141,7 +141,7 @@ function resetToOriginal() {
 async function goToStart() {
     while (ur.getUndoStack().length > 0) {
         ur.undo();
-        await sleep(1);
+        await sleep(50);
     }
 
     setCurrentIndex(0);
@@ -150,7 +150,7 @@ async function goToStart() {
 async function goToEnd() {
     while (ur.getRedoStack().length > 0) {
         ur.redo();
-        await sleep(1);
+        await sleep(50);
     }
 
     setCurrentIndex(ur.getUndoStack().length);
@@ -159,7 +159,7 @@ async function goToEnd() {
     while (getCurrentIndex() < endIndex) {
         const actions = getActions();
         nextAnimation(actions);
-        await sleep(1);
+        await sleep(50);
     }
 }
 
