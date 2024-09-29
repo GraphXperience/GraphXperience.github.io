@@ -31,7 +31,7 @@ class Context {
             endIndex: undefined,
             actions: undefined,
             originalElements: undefined,
-            paused: false,
+            paused: true,
             undoRedoStack: undefined
         };
     }
