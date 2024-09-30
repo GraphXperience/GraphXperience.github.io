@@ -1,7 +1,8 @@
 export class Node {
-    constructor(id, weight = 1) {
+    constructor({ id, weight = 1, tag = '' }) {
         this.id = id;
         this.weight = weight;
+        this.tag = tag;
         this.outgoingEdges = [];
         this.incomingEdges = [];
     }

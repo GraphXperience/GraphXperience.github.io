@@ -7,7 +7,7 @@ export class Graph {
         const edges = [];
 
         cy.nodes().forEach(cyNode => {
-            const node = new Node(cyNode.id(), cyNode.data('weight'));
+            const node = new Node({ id: cyNode.id(), weight: cyNode.data('weight'), tag: cyNode.data('tag') });
             nodes.push(node);
         });
 
@@ -15,7 +15,7 @@ export class Graph {
             const sourceNode = nodes.find(node => node.id === cyEdge.source().id());
             const targetNode = nodes.find(node => node.id === cyEdge.target().id());
 
-            const edge = new Edge(cyEdge.id(), sourceNode, targetNode, cyEdge.data('weight'));
+            const edge = new Edge({ id: cyEdge.id(), sourceNode: sourceNode, targetNode: targetNode, weight: cyEdge.data('weight'), tag: cyEdge.data('tag') });
 
             sourceNode.addOutgoingEdge(edge);
             targetNode.addIncomingEdge(edge);
