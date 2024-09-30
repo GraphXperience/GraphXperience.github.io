@@ -51,7 +51,7 @@ function setupCxtMenu(cy) {
         adaptativeNodeSpotlightRadius: false,
         minSpotlightRadius: 24,
         maxSpotlightRadius: 38,
-        openMenuEvents: 'cxttap taphold',
+        openMenuEvents: 'cxttap',
         itemColor: '#FFFFFF',
         itemTextShadowColor: 'transparent',
         zIndex: 9999,
