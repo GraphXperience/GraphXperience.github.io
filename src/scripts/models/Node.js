@@ -32,4 +32,8 @@ export class Node {
 
         return neighbors;
     }
+
+    getEdges() {
+        return [...this.incomingEdges, ...this.outgoingEdges];
+    }
 }
