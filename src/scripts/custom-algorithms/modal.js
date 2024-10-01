@@ -47,11 +47,11 @@ function setupCustomAlgorithmsModal() {
     confirmButton.addEventListener('click', confirmAlgorithm);
 }
 
-function openModal() {
+function openCustomAlgorithmsModal() {
     modal.style.display = 'block';
 }
 
 export {
     setupCustomAlgorithmsModal,
-    openModal,
+    openCustomAlgorithmsModal,
 };
