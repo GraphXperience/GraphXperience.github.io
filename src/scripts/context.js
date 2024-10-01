@@ -7,6 +7,7 @@ import dagre from 'cytoscape-dagre';
 import jquery from 'jquery';
 import { setupAlwan, setupClipboard, setupCxtMenu, setupEdgehandles, setupUndoRedo, setupPopper } from './cytoscape-extensions';
 import { buildStylesheet, getBatchFromJson, createGraphJson } from './extensions/cytoscape-extensions';
+import { setTag } from './extensions/element-extensions';
 import { getGlobalConfig, getGlobalStyle } from './extensions/local-storage-extensions';
 import { getTagEditor } from './editors/tag-editor';
 
@@ -60,7 +61,7 @@ class Context {
 
         const graphData = sessionStorage.getItem('graph');
         if (graphData) {
-            contextState.undoRedo.do('batch', getBatchFromJson(graphData));
+            this.loadGraphData(graphData);
         }
 
         this.registerEvents();
@@ -108,6 +109,14 @@ class Context {
 
         const tagEditor = getTagEditor(contextState.cytoscape);
         contextState.cytoscape.on('dblclick', 'node,edge', (evt) => tagEditor.open(evt.target));
+    }
+
+    loadGraphData(graphData) {
+        contextState.undoRedo.do('batch', getBatchFromJson(graphData));
+
+        contextState.cytoscape.elements()
+            .filter(ele => ele.data('tag'))
+            .forEach(ele => setTag(ele, ele.data('tag')));
     }
 
     persistGraphData(actionName) {
