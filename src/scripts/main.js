@@ -21,6 +21,7 @@ var ur = getUndoRedo();
 
 handleHamburgerButtonClick();
 handleSlideSpeedDisplayInput();
+handleSelectByRightClick();
 
 setupAnimationButtons();
 initializeCustomAlgorithms();
@@ -165,6 +166,13 @@ function handleSlideSpeedDisplayInput() {
         const speed = speeds[speedIndex];
         speedDisplay.textContent = `${speed.toFixed(2)}x`;
         cy.data('sliderSpeed', speed);
+    });
+}
+
+function handleSelectByRightClick() {
+    cy.on('cxttap', 'node, edge', event => {
+        event.target.select();        
+        event.originalEvent.preventDefault();
     });
 }
 
