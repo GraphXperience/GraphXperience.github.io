@@ -3,7 +3,7 @@ import { positionPetersenGraph } from '../layout-utils';
 
 function createPetersenGraph(cy, ur) {
     cy.elements().remove();
-    cy.trigger('isDirectedOff');
+    cy.trigger('changeIsDirected', false);
 
     let innerNodes = [];
     let outerNodes = [];

@@ -2,7 +2,7 @@ import { getRandomNumber } from '../utils';
 
 function createBipartiteGraph(cy, ur, nodeCount, nodeCount2) {
     cy.elements().remove();
-    cy.trigger('isDirectedOff');
+    cy.trigger('changeIsDirected', false);
 
     let nodes = [];
     let nodes2 = [];

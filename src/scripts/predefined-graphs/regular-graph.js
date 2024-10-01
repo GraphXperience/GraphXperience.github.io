@@ -2,7 +2,7 @@ import { getRandomNumber } from '../utils';
 
 function createRegularGraph(cy, ur, nodeCount, degree) {
     cy.elements().remove();
-    cy.trigger('isDirectedOff');
+    cy.trigger('changeIsDirected', false);
 
     let nodes = [];
     let edges = [];
