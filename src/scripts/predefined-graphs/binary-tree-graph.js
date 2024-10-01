@@ -3,7 +3,7 @@ import { centerGraphHorizontallyAndAlignRoot } from '../layout-utils';
 
 function createBinaryTreeGraph(cy, ur, nodeCount, height) {
     cy.elements().remove();
-    cy.trigger('isDirectedOff');
+    cy.trigger('changeIsDirected', false);
 
     let nodes = [];
     let edges = [];

@@ -3,7 +3,7 @@ import { getCentralAndOuterPositions } from '../layout-utils';
 
 function createStarGraph(cy, ur, nodeCount) {
     cy.elements().remove();
-    cy.trigger('isDirectedOff');
+    cy.trigger('changeIsDirected', false);
 
     let nodes = [];
     let edges = [];
