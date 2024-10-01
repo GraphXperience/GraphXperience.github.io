@@ -3,7 +3,7 @@ import { getCytoscape } from '../context.js';
 import { startAnimation } from '../animation/animation.js';
 import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
-import { openModal } from './modal.js';
+import { openCustomAlgorithmsModal } from './modal.js';
 import { Graph } from '../models/Graph';
 import { Node } from '../models/Node';
 
@@ -92,7 +92,7 @@ function promptCustomAlgorithmsSelection() {
             }
 
             setCurrentFileContent(fileContent);
-            openModal();
+            openCustomAlgorithmsModal();
         });
 
         reader.readAsText(file);

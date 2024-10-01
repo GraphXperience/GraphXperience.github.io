@@ -22,10 +22,6 @@ async function startAnimation(actions) {
     showAnimationPanel();
 
     cy.data('animation', true);
-
-    await play(actions);
-
-    endAnimation();
 }
 
 function prepare(actions) {
@@ -48,10 +44,10 @@ function prepare(actions) {
         size: ele.style('width'),
         tag: ele.data('tag'),
     })));
-    setPaused(false);
+    setPaused(true);
     setUndoRedoStack({ undo: ur.getUndoStack(), redo: ur.getRedoStack() });
 
-    showPauseIcon();
+    showPlayIcon();
 
     ur.reset();
     cy.elements().forEach(element => setColor(element, RESET_COLOR));
@@ -143,7 +139,7 @@ function resetToOriginal() {
 async function goToStart() {
     while (ur.getUndoStack().length > 0) {
         ur.undo();
-        await sleep(1);
+        await sleep(50);
     }
 
     setCurrentIndex(0);
@@ -152,7 +148,7 @@ async function goToStart() {
 async function goToEnd() {
     while (ur.getRedoStack().length > 0) {
         ur.redo();
-        await sleep(1);
+        await sleep(50);
     }
 
     setCurrentIndex(ur.getUndoStack().length);
@@ -161,7 +157,7 @@ async function goToEnd() {
     while (getCurrentIndex() < endIndex) {
         const actions = getActions();
         nextAnimation(actions);
-        await sleep(1);
+        await sleep(50);
     }
 }
 
