@@ -22,10 +22,6 @@ async function startAnimation(actions) {
     showAnimationPanel();
 
     cy.data('animation', true);
-
-    await play(actions);
-
-    endAnimation();
 }
 
 function prepare(actions) {
@@ -47,10 +43,10 @@ function prepare(actions) {
         weight: ele.data('weight'),
         size: ele.style('width')
     })));
-    setPaused(false);
+    setPaused(true);
     setUndoRedoStack({ undo: ur.getUndoStack(), redo: ur.getRedoStack() });
 
-    showPauseIcon();
+    showPlayIcon();
 
     ur.reset();
     cy.elements().forEach(element => setColor(element, RESET_COLOR));
