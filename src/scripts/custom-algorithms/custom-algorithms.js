@@ -4,12 +4,14 @@ import { startAnimation } from '../animation/animation.js';
 import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
 import { openCustomAlgorithmsModal } from './modal.js';
-import { Graph } from '../models/Graph.js';
+import { Graph } from '../models/Graph';
+import { Node } from '../models/Node';
 
 let cy = getCytoscape();
 
 function runCustomAlgorithm(customAlgorithm) {
     const graph = new Graph(cy);
+    const selectedNodes = cy.nodes(':selected').map(nd => new Node({ id: nd.id(), weight: nd.data('weight'), tag: nd.data('tag')}));
     const blob = new Blob([customAlgorithm.fileContent], { type: 'application/javascript' });
 
     let fileReader = new FileReader();
@@ -27,7 +29,7 @@ function runCustomAlgorithm(customAlgorithm) {
                 const dynamicFunction = window[functionName];
 
                 if (typeof dynamicFunction === 'function') {
-                    const actions = dynamicFunction(graph);
+                    const actions = dynamicFunction(graph, selectedNodes);
                     await startAnimation(actions);
                 } else {
                     openPopup(`Erro ao carregar o arquivo: a função '${functionName}' não foi encontrada ou não é uma função válida.`);

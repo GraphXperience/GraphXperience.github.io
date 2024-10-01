@@ -1,7 +1,7 @@
 const CUSTOM_ALGORITHM_VALIDATIONS = {
     functionHeader: {
-        pattern: new RegExp(/function\s+customAlgorithm\s*\(\s*graph\s*(?:,\s*\w+\s*)*\)/),
-        errorMessage: "- Deve haver uma 'function' com nome 'customAlgorithm' e parâmetro 'graph' obrigatório."
+        pattern: new RegExp(/function\s+customAlgorithm\s*\(.*\)/),
+        errorMessage: "- Deve haver uma 'function' com nome 'customAlgorithm'."
     }
 };
 

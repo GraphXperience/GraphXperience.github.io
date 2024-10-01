@@ -1,6 +1,6 @@
 import { RESET_COLOR } from '../../constants/colors';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
-import { setColor } from '../extensions/element-extensions';
+import { setColor, setTag } from '../extensions/element-extensions';
 import { sleep } from '../utils';
 import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack } from './context';
 import { showAnimationPanel, closeAnimationPanel, showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationButtons } from './panel';
@@ -41,7 +41,8 @@ function prepare(actions) {
         id: ele.id(),
         color: ele.isNode() ? ele.style('background-color') : ele.style('line-color'),
         weight: ele.data('weight'),
-        size: ele.style('width')
+        size: ele.style('width'),
+        tag: ele.data('tag'),
     })));
     setPaused(true);
     setUndoRedoStack({ undo: ur.getUndoStack(), redo: ur.getRedoStack() });
@@ -127,6 +128,7 @@ function resetToOriginal() {
         setColor(element, originalElement.color);
         element.data('weight', originalElement.weight);
         element.style('width', originalElement.size);
+        setTag(element, originalElement.tag?.toString());
 
         if (element.isNode()) {
             element.style('height', originalElement.size);
