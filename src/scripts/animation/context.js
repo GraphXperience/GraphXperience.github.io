@@ -30,6 +30,7 @@ class Context {
             currentIndex: undefined,
             endIndex: undefined,
             actions: undefined,
+            originalConfig: undefined,
             originalElements: undefined,
             paused: true,
             undoRedoStack: undefined
@@ -42,6 +43,7 @@ const context = Object.freeze(new Context());
 export function getCurrentIndex() { return context.getValue('currentIndex'); }
 export function getEndIndex() { return context.getValue('endIndex'); }
 export function getActions() { return context.getValue('actions'); }
+export function getOriginalConfig() { return context.getValue('originalConfig'); }
 export function getOriginalElements() { return context.getValue('originalElements'); }
 export function getPaused() { return context.getValue('paused'); }
 export function getUndoRedoStack() { return context.getValue('undoRedoStack'); }
@@ -49,6 +51,7 @@ export const resetAnimation = context.reset;
 export function setCurrentIndex(value) { return context.setValue('currentIndex', value); }
 export function setEndIndex(value) { return context.setValue('endIndex', value); }
 export function setActions(value) { return context.setValue('actions', value); }
+export function setOriginalConfig(value) { return context.setValue('originalConfig', value); }
 export function setOriginalElements(value) { return context.setValue('originalElements', value); }
 export function setPaused(value) { return context.setValue('paused', value); }
 export function setUndoRedoStack(value) { return context.setValue('undoRedoStack', value); }
