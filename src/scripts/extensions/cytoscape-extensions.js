@@ -28,6 +28,10 @@ function buildStylesheet(globalConfig, globalStyle) {
         'opacity': FULL_VISIBLE_OPACITY
     };
 
+    const readonly = {
+        'events': 'no'
+    };
+
     if (globalConfig !== null) {
         edgeStyle['target-arrow-shape'] = globalConfig.isDirected ? 'triangle' : 'none';
         nodeStyle['label'] = globalConfig.isNodeWeighted ? 'data(weight)' : '';
@@ -52,6 +56,7 @@ function buildStylesheet(globalConfig, globalStyle) {
         .selector('node').style(nodeStyle)
         .selector('edge').style(edgeStyle)
         .selector(':selected').style(selected)
+        .selector('[?readonly]').style(readonly)
         .selector('core').style({ 'active-bg-size': 0 });
 }
 

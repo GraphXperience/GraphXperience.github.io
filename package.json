@@ -2,7 +2,7 @@
   "scripts": {
     "build": "npx webpack",
     "build:prod": "npx webpack --mode production",
-    "start": "npx webpack --watch"
+    "start": "npx webpack --mode development --watch"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
