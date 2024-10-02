@@ -10,7 +10,7 @@ import {
     goToStart,
     goToEnd
 } from "./animation";
-import { showPlayIcon, showPauseIcon } from "./panel";
+import { showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationButtons } from "./panel";
 
 var cy = getCytoscape();
 
@@ -43,7 +43,9 @@ function onCloseClick(event) {
 }
 
 async function onGoToBeginClick(event) {
+    blockAnimationButtons(true);
     await goToStart();
+    unblockAnimationButtons(true);
 }
 
 async function onPreviousClick(event) {
@@ -68,7 +70,9 @@ function onNextClick(event) {
 }
 
 async function onGoToEndClick(event) {
+    blockAnimationButtons(true);
     await goToEnd();
+    unblockAnimationButtons(true);
 }
 
 function onSliderInput(event) {
