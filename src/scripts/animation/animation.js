@@ -1,9 +1,9 @@
 import { RESET_COLOR } from '../../constants/colors';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
-import { setColor, setTag, setWeight } from '../extensions/element-extensions';
+import { setColor, setTag } from '../extensions/element-extensions';
 import { sleep } from '../utils';
-import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
-import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons } from './panel';
+import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack } from './context';
+import { showAnimationPanel, closeAnimationPanel, showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationButtons } from './panel';
 import { validate } from './validate';
 
 var cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
@@ -25,10 +25,6 @@ async function startAnimation(actions) {
 }
 
 function prepare(actions) {
-    const originalConfig = {
-        isNodeWeighted: cy.data('isNodeWeighted'),
-        isEdgeWeighted: cy.data('isEdgeWeighted')
-    };
     if (actions.some(action => action.weight && cy.$id(action.elementId).isNode())) {
         cy.trigger('changeIsNodeWeighted', true);
     }
@@ -41,7 +37,6 @@ function prepare(actions) {
     setCurrentIndex(0);
     setEndIndex(actions.length);
     setActions(actions);
-    setOriginalConfig(originalConfig);
     setOriginalElements(cy.elements().map(ele => ({
         id: ele.id(),
         color: ele.isNode() ? ele.style('background-color') : ele.style('line-color'),
@@ -125,16 +120,13 @@ function enableButtons() {
 }
 
 function resetToOriginal() {
-    const originalConfig = getOriginalConfig();
-    cy.trigger('changeIsNodeWeighted', originalConfig.isNodeWeighted);
-    cy.trigger('changeIsEdgeWeighted', originalConfig.isEdgeWeighted);
-
     const originalElements = getOriginalElements();
+
     for (const originalElement of originalElements) {
         const element = cy.$id(originalElement.id);
 
         setColor(element, originalElement.color);
-        setWeight(element, originalElement.weight);
+        element.data('weight', originalElement.weight);
         element.style('width', originalElement.size);
         setTag(element, originalElement.tag?.toString());
 
