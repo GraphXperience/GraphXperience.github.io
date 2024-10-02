@@ -14,21 +14,31 @@ function closeAnimationPanel() {
     }
 }
 
+const closeButton = document.getElementById('close-animation-button');
 const goToBeginButton = document.getElementById('go-to-begin-animation-button');
 const previousButton = document.getElementById('previous-animation-button');
+const playPauseButton = document.getElementById('play-pause-animation-button');
 const nextButton = document.getElementById('next-animation-button');
 const goToEndButton = document.getElementById('go-to-end-animation-button');
 
-function blockAnimationButtons() {
+function blockAnimationButtons(includePlayPause = false) {
+    closeButton.disabled = true;
     goToBeginButton.disabled = true;
     previousButton.disabled = true;
+    if (includePlayPause) {
+        playPauseButton.disabled = true;
+    }
     nextButton.disabled = true;
     goToEndButton.disabled = true;
 }
 
-function unblockAnimationButtons() {
+function unblockAnimationButtons(includePlayPause = false) {
+    closeButton.disabled = false;
     goToBeginButton.disabled = false;
     previousButton.disabled = false;
+    if (includePlayPause) {
+        playPauseButton.disabled = false;
+    }
     nextButton.disabled = false;
     goToEndButton.disabled = false;
 }
