@@ -56,7 +56,7 @@ function setupCxtMenu(cy) {
         itemTextShadowColor: 'transparent',
         zIndex: 9999,
         atMouse: false,
-        outsideMenuCancel: false
+        outsideMenuCancel: 10
     };
 
     cy.cxtmenu(defaults);
