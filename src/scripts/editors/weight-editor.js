@@ -30,7 +30,7 @@ class WeightEditor {
 
                 if (element.isNode() && !this.cy.data('isNodeWeighted')) {
                     this.cy.trigger('changeIsNodeWeighted', true);
-                } else if (!this.cy.data('isEdgeWeighted')) {
+                } else if (element.isEdge() && !this.cy.data('isEdgeWeighted')) {
                     this.cy.trigger('changeIsEdgeWeighted', true);
                 }
             });
@@ -46,6 +46,7 @@ class WeightEditor {
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Peso ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;
+            newWeightInput.value = this.elementsToEdit[0].data('weight');
         } else {
             title = `Editar Peso dos ${this.elementsToEdit.size()} Elementos`;
         }
