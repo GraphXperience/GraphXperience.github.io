@@ -56,6 +56,14 @@ class GlobalConfigEditor {
             this.cy.trigger('changeIsDirected', directInput.checked);
             this.cy.trigger('changeIsNodeWeighted', nodeWeightedInput.checked);
             this.cy.trigger('changeIsEdgeWeighted', edgeWeightedInput.checked);
+
+            if (!nodeWeightedInput.checked) {
+                this.cy.nodes().forEach(ele => ele.data('weight', 1));
+            }
+            if (!edgeWeightedInput.checked) {
+                this.cy.edges().forEach(ele => ele.data('weight', 1));
+            }
+            
             this.cy.trigger('save');
 
             configEditor.style.display = 'none';
