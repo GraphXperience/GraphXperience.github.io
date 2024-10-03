@@ -56,6 +56,7 @@ function prepare(actions) {
 
     ur.reset();
     cy.elements().forEach(element => setColor(element, RESET_COLOR));
+    cy.elements().forEach(element => element.data('readonly', true));
 }
 
 function disableButtons() {
@@ -112,16 +113,7 @@ function closeAnimation() {
     ur.reset(undo, redo);
 
     cy.data('animation', false);
-}
-
-function enableButtons() {
-    [
-        ...document.getElementsByClassName('graph-button'),
-        ...document.getElementsByClassName('side-bar-button'),
-        document.getElementById('draw-mode-button')
-    ].forEach(element => element.disabled = false);
-
-    document.getElementById('hamburger').classList.toggle('disabled');
+    cy.elements().forEach(element => element.data('readonly', false));
 }
 
 function resetToOriginal() {
@@ -142,6 +134,16 @@ function resetToOriginal() {
             element.style('height', originalElement.size);
         }
     }
+}
+
+function enableButtons() {
+    [
+        ...document.getElementsByClassName('graph-button'),
+        ...document.getElementsByClassName('side-bar-button'),
+        document.getElementById('draw-mode-button')
+    ].forEach(element => element.disabled = false);
+
+    document.getElementById('hamburger').classList.toggle('disabled');
 }
 
 async function goToStart() {
