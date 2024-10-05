@@ -43,6 +43,11 @@ function unblockAnimationButtons(includePlayPause = false) {
     goToEndButton.disabled = false;
 }
 
+const animationCounter = document.getElementById('animation-counter');
+function setAnimationCounter(step, total) {
+    animationCounter.innerText = `${step} / ${total}`;
+}
+
 function showPlayIcon() {
     const playPauseButtonImg = document.getElementById('play-pause-button-img');
 
@@ -64,6 +69,7 @@ export {
     closeAnimationPanel,
     blockAnimationButtons,
     unblockAnimationButtons,
+    setAnimationCounter,
     showPlayIcon,
     showPauseIcon
 };
