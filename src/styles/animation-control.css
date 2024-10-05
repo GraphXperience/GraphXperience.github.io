@@ -8,6 +8,8 @@
 
 #animation-control.active {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .animation-control-button {
@@ -46,4 +48,9 @@
 
 .range-slider-speed-display {
     color: #000000;
+}
+
+#animation-counter {
+    margin-left: 10px;
+    margin-right: 10px;
 }

@@ -3,7 +3,7 @@ import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
 import { setColor, setTag, setWeight } from '../extensions/element-extensions';
 import { sleep } from '../utils';
 import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
-import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons } from './panel';
+import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons, setAnimationCounter } from './panel';
 import { validate } from './validate';
 
 var cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
@@ -53,6 +53,7 @@ function prepare(actions) {
     setUndoRedoStack({ undo: ur.getUndoStack(), redo: ur.getRedoStack() });
 
     showPlayIcon();
+    setAnimationCounter(1, actions.length);
 
     ur.reset();
     cy.elements().forEach(element => setColor(element, RESET_COLOR));
@@ -147,21 +148,31 @@ function enableButtons() {
 }
 
 async function goToStart() {
-    while (ur.getUndoStack().length > 0) {
+    const current = getCurrentIndex();
+    const end = getEndIndex();
+    const getUndoStackLength = ur.getUndoStack().length;
+    for (let i = 0; i < getUndoStackLength; i++) {
         ur.undo();
+        setAnimationCounter(current - i, end);
         await sleep(50);
     }
 
     setCurrentIndex(0);
+    setAnimationCounter(0, end);
 }
 
 async function goToEnd() {
-    while (ur.getRedoStack().length > 0) {
+    const current = getCurrentIndex();
+    const end = getEndIndex();
+    const getRedoStackLength = ur.getRedoStack().length;
+    for (let i = 0; i < getRedoStackLength; i++) {
         ur.redo();
+        setAnimationCounter(current + i, end);
         await sleep(50);
     }
 
     setCurrentIndex(ur.getUndoStack().length);
+    setAnimationCounter(getCurrentIndex(), getEndIndex());
 
     const endIndex = getEndIndex();
     while (getCurrentIndex() < endIndex) {
@@ -191,6 +202,7 @@ function nextAnimation(actions = getActions()) {
 
     if (ur.getRedoStack().length > 0) {
         ur.redo();
+        setAnimationCounter(currentIndex + 1, endIndex);
         setCurrentIndex(currentIndex + 1);
         return;
     }
@@ -199,6 +211,7 @@ function nextAnimation(actions = getActions()) {
         setPaused(true);
         return;
     }
+    setAnimationCounter(currentIndex + 1, endIndex);
 
     const action = actions[currentIndex];
     ur.do(action.type, {
@@ -223,6 +236,7 @@ async function previousAnimation(currentIndex = getCurrentIndex()) {
 
     ur.undo();
     setCurrentIndex(currentIndex - 1);
+    setAnimationCounter(currentIndex - 1, getEndIndex());
 }
 
 export {
