@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+#save-graph-button {
+    height: 100%;
+    cursor: default;
+}
+
 #save-graph-dropdown {
     display: none;
     background-color: var(--main-color);
