@@ -5,12 +5,14 @@ let previous;
 function getShortestPath(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
         openPopup('Não há nós selecionados');
-        return;
+        return [];
     }
-    if (selectedNodes.length > 2) {
+
+    if (selectedNodes.length !== 2) {
         openPopup('Selecione dois nós: o nó fonte e o nó destino');
-        return;
+        return [];
     }
+
     const actions = [];
 
     const isDirected = graph.isDirected;
@@ -39,7 +41,7 @@ function getShortestPath(graph, selectedNodes) {
         actions.push({ elementId: node.id, type: 'animate' });
 
         if (nodeId === targetNode.id) {
-            actions.push({ elementId: nodeId, type: 'animate', color: 'green' });
+            actions.push({ elementId: nodeId, type: 'animate', color: '#008000' });
             break;
         }
 
@@ -66,7 +68,7 @@ function getShortestPath(graph, selectedNodes) {
     }
 
     const shortestPath = reconstructPath(targetNode);
-    shortestPath.forEach(nodeId => { actions.push({ elementId: nodeId, type: 'animate', color: 'green' }); });
+    shortestPath.forEach(nodeId => { actions.push({ elementId: nodeId, type: 'animate', color: '#008000' }); });
 
     return actions;
 }
