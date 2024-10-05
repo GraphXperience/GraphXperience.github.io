@@ -1,5 +1,6 @@
 import { ANIMATED_COLOR } from '../../constants/colors';
 import { setTag } from '../extensions/element-extensions';
+import { getRandomNumber } from '../utils';
 
 function setupUndoRedo(cy) {
     var options = {
@@ -80,11 +81,12 @@ function revertPrint({ element }) {
 
 function handleEdgeHandlesCompletion(cy, ur) {
     cy.on('ehcomplete', (event, sourceNode, targetNode, addedEdge) => {
-        cy.remove(addedEdge);
+        cy.edges().slice(-2).remove();
+        cy.nodes().slice(-1).remove();
 
         const edgeObj = {
             group: 'edges',
-            data: { id: addedEdge.id(), source: sourceNode.id(), target: targetNode.id(), weight: 1 },
+            data: { id: getRandomNumber(), source: sourceNode.id(), target: targetNode.id(), weight: 1 },
         };
 
         ur.do('add', edgeObj);
