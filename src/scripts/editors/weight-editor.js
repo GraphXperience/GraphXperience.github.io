@@ -1,4 +1,5 @@
 import { setWeight } from '../extensions/element-extensions';
+import { getGlobalConfig, setGlobalConfig } from '../extensions/local-storage-extensions';
 import { validateMinMax } from '../utils';
 
 const weightEditor = document.getElementById('weight-editor');
@@ -30,8 +31,12 @@ class WeightEditor {
 
                 if (element.isNode() && !this.cy.data('isNodeWeighted')) {
                     this.cy.trigger('changeIsNodeWeighted', true);
+                    const globalConfig = getGlobalConfig();
+                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: true, isEdgeWeighted: globalConfig.isEdgeWeighted });
                 } else if (element.isEdge() && !this.cy.data('isEdgeWeighted')) {
                     this.cy.trigger('changeIsEdgeWeighted', true);
+                    const globalConfig = getGlobalConfig();
+                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: globalConfig.isNodeWeighted, isEdgeWeighted: true });
                 }
             });
 
