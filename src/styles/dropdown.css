@@ -10,6 +10,7 @@
 
 #save-graph-button {
     height: 100%;
+    cursor: default;
 }
 
 #save-graph-dropdown {
