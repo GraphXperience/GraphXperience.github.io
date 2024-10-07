@@ -22,7 +22,7 @@ const algorithms = {
 
 async function run(algorithm) {
     const graph = new Graph(cy);
-    const selectedNodes = cy.nodes(':selected').map(nd => new Node({ id: nd.id(), weight: nd.data('weight'), tag: nd.data('tag') }));
+    const selectedNodes = graph.nodes.filter(node => cy.nodes(':selected').map(selectedNode => selectedNode.id()).includes(node.id));
 
     const actions = algorithms[algorithm](graph, selectedNodes);
 
