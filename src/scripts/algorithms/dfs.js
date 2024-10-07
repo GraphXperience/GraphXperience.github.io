@@ -36,7 +36,7 @@ function dfs(graph, selectedNodes) {
         neighbors.forEach((neighbor) => {
             if (!visitedNodeIds.has(neighbor.id)) {
                 stack.push(neighbor);
-                actions.push({ elementId: neighbor.id, type: 'animate', color: 'yellow' });
+                actions.push({ elementId: neighbor.id, type: 'animate', color: '#FFFF00' });
             }
         });
     }

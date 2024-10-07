@@ -28,11 +28,11 @@ function checkCycles(graph, _) {
     return actions;
 }
 
-let color = 'red';
+let color = '#FF0000';
 let stopGreenAt;
 function detectCyclesDirected(node) {
     if (stack.includes(node.id)) {
-        color = 'green';
+        color = '#008000';
         stopGreenAt = node.id;
         return true;
     }
@@ -48,7 +48,7 @@ function detectCyclesDirected(node) {
         if (detectCyclesDirected(neighbor)) {
             actions.push({ elementId: node.id, type: 'animate', color });
             if (stopGreenAt === node.id)
-                color = 'red';
+                color = '#FF0000';
 
             return true;
         }
@@ -56,7 +56,7 @@ function detectCyclesDirected(node) {
 
     stack.pop();
 
-    actions.push({ elementId: node.id, type: 'animate', color: 'gray' });
+    actions.push({ elementId: node.id, type: 'animate', color: '#808080' });
     return false;
 }
 
@@ -67,16 +67,16 @@ function detectCyclesUndirected(node, parent = null) {
     for (const neighbor of node.getNeighbors(false)) {
         if (!visited.has(neighbor.id)) {
             if (detectCyclesUndirected(neighbor, node)) {
-                actions.push({ elementId: node.id, type: 'animate', color: 'green' });
+                actions.push({ elementId: node.id, type: 'animate', color: '#008000' });
                 return true;
             }
         } else if (parent.id != neighbor.id) {
-            actions.push({ elementId: node.id, type: 'animate', color: 'green' });
+            actions.push({ elementId: node.id, type: 'animate', color: '#008000' });
             return true;
         }
     }
 
-    actions.push({ elementId: node.id, type: 'animate', color: 'gray' });
+    actions.push({ elementId: node.id, type: 'animate', color: '#808080' });
     return false;
 }
 

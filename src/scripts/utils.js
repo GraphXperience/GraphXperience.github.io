@@ -56,7 +56,9 @@ function getRandomColor() {
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
 
-    return `rgb(${r}, ${g}, ${b})`;
+    const rgbStr = `rgb(${r}, ${g}, ${b})`;
+
+    return rgbStrToHex(rgbStr);
 }
 
 export {
