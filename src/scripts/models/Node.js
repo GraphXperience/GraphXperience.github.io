@@ -1,10 +1,11 @@
 export class Node {
-    constructor({ id, weight = 1, tag = '' }) {
+    constructor({ id, weight = 1, tag = '', isDirected }) {
         this.id = id;
         this.weight = weight;
         this.tag = tag;
         this.outgoingEdges = [];
         this.incomingEdges = [];
+        this.isDirected = isDirected;
     }
 
     addOutgoingEdge(edge) {
@@ -15,7 +16,7 @@ export class Node {
         this.incomingEdges.push(edge);
     }
 
-    getNeighbors(isDirected) {
+    getNeighbors() {
         const neighbors = [];
 
         const addNeighbor = (node) => {
@@ -26,7 +27,7 @@ export class Node {
 
         this.outgoingEdges.forEach(edge => addNeighbor(edge.targetNode));
 
-        if (!isDirected) {
+        if (!this.isDirected) {
             this.incomingEdges.forEach(edge => addNeighbor(edge.sourceNode));
         }
 
