@@ -5,9 +5,10 @@ export class Graph {
     constructor(cy) {
         const nodes = [];
         const edges = [];
+        this.isDirected = cy.data('isDirected');
 
         cy.nodes().forEach(cyNode => {
-            const node = new Node({ id: cyNode.id(), weight: cyNode.data('weight'), tag: cyNode.data('tag') });
+            const node = new Node({ id: cyNode.id(), weight: cyNode.data('weight'), tag: cyNode.data('tag'), isDirected: this.isDirected });
             nodes.push(node);
         });
 
@@ -25,6 +26,5 @@ export class Graph {
 
         this.nodes = nodes;
         this.edges = edges;
-        this.isDirected = cy.data('isDirected');
     }
 }
