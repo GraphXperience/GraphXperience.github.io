@@ -5,13 +5,13 @@ import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
 import { openCustomAlgorithmsModal } from './modal.js';
 import { Graph } from '../models/Graph';
-import { Node } from '../models/Node';
 
 let cy = getCytoscape();
 
 function runCustomAlgorithm(customAlgorithm) {
     const graph = new Graph(cy);
-    const selectedNodes = graph.nodes.filter(node => cy.nodes(':selected').map(selectedNode => selectedNode.id()).includes(node.id));
+    const selectedNodeIds = cy.nodes(':selected').map(selectedNode => selectedNode.id());
+    const selectedNodes = graph.nodes.filter(node => selectedNodeIds.includes(node.id));
     const blob = new Blob([customAlgorithm.fileContent], { type: 'application/javascript' });
 
     let fileReader = new FileReader();

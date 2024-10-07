@@ -1,7 +1,6 @@
 import { getCytoscape } from "../context";
 import { startAnimation } from '../animation';
 import { Graph } from "../models/Graph";
-import { Node } from "../models/Node";
 import { bfs } from "./bfs";
 import { dfs } from "./dfs";
 import { checkCycles } from "./checkCycles";
@@ -22,7 +21,8 @@ const algorithms = {
 
 async function run(algorithm) {
     const graph = new Graph(cy);
-    const selectedNodes = graph.nodes.filter(node => cy.nodes(':selected').map(selectedNode => selectedNode.id()).includes(node.id));
+    const selectedNodeIds = cy.nodes(':selected').map(selectedNode => selectedNode.id());
+    const selectedNodes = graph.nodes.filter(node => selectedNodeIds.includes(node.id));
 
     const actions = algorithms[algorithm](graph, selectedNodes);
 
