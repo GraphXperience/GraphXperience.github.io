@@ -58,6 +58,7 @@ class WeightEditor {
 
         weightEditor.querySelector('h3').innerText = title;
         weightEditor.style.display = 'block';
+        newWeightInput.focus();
     }
 }
 
