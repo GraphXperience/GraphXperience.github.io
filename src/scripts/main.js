@@ -1,7 +1,7 @@
 import { loadGraphJson, saveGraphJson, saveGraphJpeg, saveGraphPng } from './file';
 import { clear, connectNodes, createNode, disconnectEdges, removeElements } from './graph';
 import { closePopup } from './popup';
-import { ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
+import { ENTER_KEY_CODE, ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
 import { openInfoWindow, closeInfoWindow } from './info-window';
 import { initializeCustomAlgorithms } from './custom-algorithms';
 import { promptCustomAlgorithmsSelection } from './custom-algorithms/custom-algorithms';
@@ -88,6 +88,9 @@ function handleKeyDownEvent(event) {
     }
 
     switch (event.keyCode) {
+        case ENTER_KEY_CODE:
+            handleEnterKeyDown();
+            break;
         case ESC_KEY_CODE:
             handleEscKeyDown();
             break;
@@ -182,5 +185,17 @@ function handleEscKeyDown() {
 
     for (const editor of document.getElementsByClassName('editor')) {
         editor.style.display = 'none';
+    }
+}
+
+function handleEnterKeyDown() {
+    for (const editor of document.getElementsByClassName('editor')) {
+        if (editor.style.display === 'block') {
+            const okButton = editor.querySelector('.modal-content [id^="ok-"]');
+    
+            if (okButton) {
+                okButton.click();
+            }
+        }
     }
 }
