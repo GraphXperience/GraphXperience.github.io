@@ -1,5 +1,7 @@
 import { RESET_COLOR } from "../../constants/colors";
-import { setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
+import { resetCytoscape } from "../context";
+import { resetLocalStorage, setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
+import { clear } from "../graph";
 import { rgbStrToHex, validateMinMax } from "../utils";
 
 const configEditor = document.getElementById('config-editor');
@@ -10,6 +12,7 @@ const edgeThicknessInput = document.getElementById('config-editor-edge-thickness
 const directInput = document.getElementById('config-editor-direct-input');
 const nodeWeightedInput = document.getElementById('config-editor-node-weighted-input');
 const edgeWeightedInput = document.getElementById('config-editor-edge-weighted-input');
+const resetButton = document.getElementById('config-editor-reset-button');
 const cancelButton = document.getElementById('config-editor-cancel-button');
 const okButton = document.getElementById('config-editor-ok-button');
 
@@ -19,6 +22,14 @@ class GlobalConfigEditor {
 
         sizeInput.addEventListener('change', (evt) => validateMinMax(evt, 1, 10));
         edgeThicknessInput.addEventListener('change', (evt) => validateMinMax(evt, 1, 10));
+
+        resetButton.addEventListener('click', () => {
+            resetLocalStorage();
+            clear();
+            resetCytoscape();
+
+            configEditor.style.display = 'none';
+        });
 
         cancelButton.addEventListener('click', () => { configEditor.style.display = 'none'; });
 
@@ -63,7 +74,7 @@ class GlobalConfigEditor {
             if (!edgeWeightedInput.checked) {
                 this.cy.edges().forEach(ele => ele.data('weight', 1));
             }
-            
+
             this.cy.trigger('save');
 
             configEditor.style.display = 'none';
