@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./styles/panel.css">
   <link rel="stylesheet" href="./styles/side-bar.css">
   <link rel="stylesheet" href="./styles/info-window.css">
-  <link rel="stylesheet" href="./styles/tooltip.css">
+  <link rel="stylesheet" href="./styles/tooltip.css" title="tooltip">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alwan/dist/css/alwan.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,9 +202,19 @@
     </div>
     <div id="config-editor" class="modal editor">
       <div id="config-editor-content" class="modal-content">
-        <div class="config-editor-grid-item config-editor-color-picker">
-          <p id="config-editor-color-input-h3">Cor dos nós</h3>
-          <div id="config-editor-color-input"></div>
+        <div class="config-editor-grid-item">
+          <p>Cor dos nós</p>
+          <div id="config-editor-node-color-input"></div>
+        </div>
+
+        <div class="config-editor-grid-item">
+          <p>Cor das arestas</p>
+          <div id="config-editor-edge-color-input"></div>
+        </div>
+
+        <div class="config-editor-grid-item">
+          <p>Cor das tags</p>
+          <div id="config-editor-tag-color-input"></div>
         </div>
 
         <div class="config-editor-grid-item config-editor-node-size">
