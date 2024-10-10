@@ -10,6 +10,7 @@ import { buildStylesheet, getBatchFromJson, createGraphJson } from './extensions
 import { setTag } from './extensions/element-extensions';
 import { getGlobalConfig, getGlobalStyle } from './extensions/local-storage-extensions';
 import { getTagEditor } from './editors/tag-editor';
+import { setTagColor } from './utils';
 
 let instance = undefined;
 let contextState = {
@@ -31,18 +32,21 @@ class Context {
         undoRedo(cytoscape);
         clipboard(cytoscape, jquery);
 
-        setupAlwan();
         setupPopper();
 
         const globalConfig = getGlobalConfig();
         const globalStyle = getGlobalStyle();
+        
+        if (globalStyle?.tag) {
+            setTagColor(globalStyle.tag);
+        }
 
         contextState.cytoscape = cytoscape({
             container: document.getElementById('cy'),
             zoomingEnabled: false,
             panningEnabled: false,
             boxSelectionEnabled: true,
-            style: buildStylesheet(globalConfig, globalStyle),
+            style: buildStylesheet(globalConfig, globalStyle.cy),
             data: {
                 animation: false,
                 elementToEdit: undefined,
@@ -54,6 +58,7 @@ class Context {
             }
         });
 
+        setupAlwan(contextState.cytoscape);
         setupCxtMenu(contextState.cytoscape);
         contextState.edgehandles = setupEdgehandles(contextState.cytoscape);
         contextState.undoRedo = setupUndoRedo(contextState.cytoscape);
