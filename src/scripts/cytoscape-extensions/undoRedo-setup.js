@@ -33,7 +33,10 @@ function animate({ element, color, size, tag, weight }) {
         element.data('weight', weight);
     }
 
-    setTag(element, tag?.toString());
+    if (tag != undefined) {
+        current.tag = current.tag ?? '';
+        setTag(element, tag.toString());
+    }
 
     let animation = {
         style: {},
@@ -56,13 +59,13 @@ function animate({ element, color, size, tag, weight }) {
     return { element, ...current };
 }
 
-const console = document.getElementById('animation-console');
+const consoleanimation = document.getElementById('animation-console');
 function print({ message, color = 'red' }) {
     const newMessage = document.createElement('p');
     newMessage.textContent = message;
     newMessage.style.color = color;
 
-    console.appendChild(newMessage);
+    consoleanimation.appendChild(newMessage);
 
     return {
         element: newMessage
@@ -74,7 +77,7 @@ function revertPrint({ element }) {
         message: element.textContent, color: element.style.color
     };
 
-    console.removeChild(element);
+    consoleanimation.removeChild(element);
 
     return backup;
 }
