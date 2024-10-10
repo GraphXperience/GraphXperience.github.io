@@ -4,7 +4,7 @@ const VALID_ACTIONS = {
         properties: {
             type: { type: 'string' },
             elementId: { type: 'string' },
-            color: { type: 'string', pattern: new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$') },
+            color: { type: 'string' },
             size: { type: 'number', min: 1, max: 10 },
             tag: { type: 'string' },
             weight: { type: 'number', min: 1, max: Infinity },
@@ -15,6 +15,7 @@ const VALID_ACTIONS = {
         properties: {
             type: { type: 'string' },
             message: { type: 'string' },
+            color: { type: 'string' },
         }
     }
 };
