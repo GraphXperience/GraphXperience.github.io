@@ -24,9 +24,15 @@ function setGlobalConfig(config) {
     localStorage.setItem('global-config', JSON.stringify(config));
 }
 
+function resetLocalStorage() {
+    localStorage.removeItem('global-config');
+    localStorage.removeItem('global-style');
+}
+
 export {
     getGlobalConfig,
     getGlobalStyle,
     setGlobalConfig,
-    setGlobalStyle
+    setGlobalStyle,
+    resetLocalStorage
 }

@@ -32,13 +32,13 @@ function buildStylesheet(globalConfig, globalStyle) {
         'events': 'no'
     };
 
-    if (globalConfig !== null) {
+    if (globalConfig) {
         edgeStyle['target-arrow-shape'] = globalConfig.isDirected ? 'triangle' : 'none';
         nodeStyle['label'] = globalConfig.isNodeWeighted ? 'data(weight)' : '';
         edgeStyle['label'] = globalConfig.isEdgeWeighted ? 'data(weight)' : '';
     }
 
-    if (globalStyle !== null) {
+    if (globalStyle) {
         let elementStyle = globalStyle.find(s => s.selector === 'node');
         if (elementStyle) {
             nodeStyle['background-color'] = elementStyle.style['background-color'];

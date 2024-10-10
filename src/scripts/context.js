@@ -134,10 +134,22 @@ class Context {
         sessionStorage.setItem('graph', JSON.stringify(jsonData));
         sessionStorage.setItem('updatedAt', Date.now());
     }
+
+    reset() {
+        contextState.cytoscape.style(buildStylesheet());
+        contextState.cytoscape.data('animation', false);
+        contextState.cytoscape.data('elementToEdit', undefined);
+        contextState.cytoscape.data('isDirected', true);
+        contextState.cytoscape.data('isEdgeWeighted', false);
+        contextState.cytoscape.data('isNodeWeighted', false);
+        contextState.cytoscape.data('selectedNodeIds', new Set());
+        contextState.cytoscape.data('sliderSpeed', 1);
+    }
 }
 
 const context = Object.freeze(new Context());
 
 export function getCytoscape() { return context.getValue('cytoscape'); }
+export function resetCytoscape() { return context.reset(); }
 export function getEdgeHandles() { return context.getValue('edgehandles'); }
 export function getUndoRedo() { return context.getValue('undoRedo'); }
