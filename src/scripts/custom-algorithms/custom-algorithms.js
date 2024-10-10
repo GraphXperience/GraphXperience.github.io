@@ -10,7 +10,7 @@ let cy = getCytoscape();
 
 function runCustomAlgorithm(customAlgorithm) {
     const graph = new Graph(cy);
-    const selectedNodeIds = cy.nodes(':selected').map(selectedNode => selectedNode.id());
+    const selectedNodeIds = Array.from(cy.data('selectedNodeIds'));
     const selectedNodes = graph.nodes.filter(node => selectedNodeIds.includes(node.id));
     const blob = new Blob([customAlgorithm.fileContent], { type: 'application/javascript' });
 

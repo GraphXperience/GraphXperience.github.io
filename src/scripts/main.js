@@ -104,7 +104,7 @@ function handleKeyDownEvent(event) {
             createNode(mousePosition);
             break;
         case S_KEY_CODE:
-            connectNodes(cy.$('node:selected'));
+            connectNodes(Array.from(cy.data('selectedNodeIds')).map(id => cy.$id(id)));
             break;
         case D_KEY_CODE:
             disconnectEdges(cy.$('node:selected'));

@@ -21,7 +21,7 @@ const algorithms = {
 
 async function run(algorithm) {
     const graph = new Graph(cy);
-    const selectedNodeIds = cy.nodes(':selected').map(selectedNode => selectedNode.id());
+    const selectedNodeIds = Array.from(cy.data('selectedNodeIds'));
     const selectedNodes = graph.nodes.filter(node => selectedNodeIds.includes(node.id));
 
     const actions = algorithms[algorithm](graph, selectedNodes);
