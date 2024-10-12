@@ -49,6 +49,7 @@ function setupCustomAlgorithmsModal() {
 
 function openCustomAlgorithmsModal() {
     modal.style.display = 'block';
+    nameInput.focus();
 }
 
 export {
