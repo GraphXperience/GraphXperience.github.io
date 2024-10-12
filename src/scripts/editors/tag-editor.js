@@ -4,8 +4,8 @@ const tagEditor = document.getElementById("tag-editor");
 
 const tagInput = document.getElementById('new-tag-input');
 
-const cancelButton = document.getElementById('cancel-tag-button');
-const okButton = document.getElementById('ok-tag-button');
+const cancelButton = document.getElementById('tag-editor-cancel-button');
+const okButton = document.getElementById('tag-editor-ok-button');
 
 class TagEditor {
     constructor(cy) {

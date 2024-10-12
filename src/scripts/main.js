@@ -183,15 +183,15 @@ function handleEscKeyDown() {
     closeInfoWindow();
     closePopup();
 
-    for (const editor of document.getElementsByClassName('editor')) {
-        editor.style.display = 'none';
+    for (const modal of document.getElementsByClassName('modal')) {
+        modal.style.display = 'none';
     }
 }
 
 function handleEnterKeyDown() {
-    for (const editor of document.getElementsByClassName('editor')) {
-        if (editor.style.display === 'block') {
-            const okButton = editor.querySelector('.modal-content [id^="ok-"]');
+    for (const modal of document.getElementsByClassName('modal')) {
+        if (modal.style.display === 'block') {
+            const okButton = modal.querySelector('.modal-content [id$="ok-button"]');
     
             if (okButton) {
                 okButton.click();
