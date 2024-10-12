@@ -1,4 +1,4 @@
-import { getCustomAlgorithms, setCustomAlgorithms, getCurrentFileContent } from './context.js';
+import { getCustomAlgorithms, setCustomAlgorithms, getCurrentFile } from './context.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
 
 const section = document.getElementById('custom-algorithms-section');
@@ -19,7 +19,8 @@ function setupCustomAlgorithmsModal() {
     const confirmAlgorithm = () => {
         const algorithmName = nameInput.value;
         const algorithmDescription = descriptionInput.value;
-
+        const fileContent = getCurrentFile().fileContent;
+        
         if (!algorithmName) {
             alert('Coloque um nome de algoritmo válido');
             nameInput.focus();
@@ -27,17 +28,12 @@ function setupCustomAlgorithmsModal() {
         }
 
         const customAlgorithm = {
-            fileContent: getCurrentFileContent(),
+            fileContent: fileContent,
             algorithmName: algorithmName,
             algorithmDescription: algorithmDescription,
         };
 
-        let customAlgorithms = getCustomAlgorithms();
-        customAlgorithms.push(customAlgorithm);
-        setCustomAlgorithms(customAlgorithms);
-
-        const listItem = createCustomAlgorithmButton(customAlgorithm);
-        section.appendChild(listItem);
+        upsertCustomAlgorithm(customAlgorithm);
 
         closeModal();
     }
@@ -47,8 +43,24 @@ function setupCustomAlgorithmsModal() {
     confirmButton.addEventListener('click', confirmAlgorithm);
 }
 
+function upsertCustomAlgorithm(newCustomAlgorithm) {
+    let customAlgorithms = getCustomAlgorithms();
+    const existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.algorithmName === newCustomAlgorithm.algorithmName);
+
+    if (existingAlgorithmIndex !== -1) {
+        customAlgorithms[existingAlgorithmIndex] = newCustomAlgorithm;
+    } else {
+        customAlgorithms.push(newCustomAlgorithm);
+        const listItem = createCustomAlgorithmButton(newCustomAlgorithm);
+        section.appendChild(listItem);
+    }
+
+    setCustomAlgorithms(customAlgorithms);
+}
+
 function openCustomAlgorithmsModal() {
     modal.style.display = 'block';
+    nameInput.value = getCurrentFile().fileName;
     nameInput.focus();
 }
 

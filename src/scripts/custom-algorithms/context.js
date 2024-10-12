@@ -1,7 +1,7 @@
 let instance = undefined;
 let contextState = {
     customAlgorithms: JSON.parse(sessionStorage.getItem('customAlgorithms')) ?? [],
-    currentFileContent: undefined,
+    currentFile: undefined,
 };
 
 class Context {
@@ -29,5 +29,5 @@ export function setCustomAlgorithms(value) {
     context.setValue('customAlgorithms', value);
     sessionStorage.setItem('customAlgorithms', JSON.stringify(value));
 }
-export function getCurrentFileContent() { return context.getValue('currentFileContent'); }
-export function setCurrentFileContent(value) { return context.setValue('currentFileContent', value); }
+export function getCurrentFile() { return context.getValue('currentFile'); }
+export function setCurrentFile(value) { return context.setValue('currentFile', value); }
