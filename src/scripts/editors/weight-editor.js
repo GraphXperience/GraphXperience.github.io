@@ -6,8 +6,8 @@ const weightEditor = document.getElementById('weight-editor');
 
 const newWeightInput = document.getElementById('new-weight-input');
 
-const cancelButton = document.getElementById('cancel-weight-button');
-const okButton = document.getElementById('ok-weight-button');
+const cancelButton = document.getElementById('weight-editor-cancel-button');
+const okButton = document.getElementById('weight-editor-ok-button');
 
 
 class WeightEditor {

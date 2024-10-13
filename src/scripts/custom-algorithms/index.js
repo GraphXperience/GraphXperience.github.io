@@ -6,7 +6,7 @@ import { createCustomAlgorithmButton } from './button-builder.js';
 const customAlgorithmsSection = document.getElementById('custom-algorithms-section');
 
 function setupCustomAlgorithmsButtons() {
-    const customAlgorithms = getCustomAlgorithms();
+    let customAlgorithms = getCustomAlgorithms();
 
     customAlgorithms.forEach(customAlgorithm => {
         const listItem = createCustomAlgorithmButton(customAlgorithm);
@@ -14,6 +14,7 @@ function setupCustomAlgorithmsButtons() {
     });
 
     customAlgorithmsSection.addEventListener('click', event => {
+        customAlgorithms = getCustomAlgorithms();
         const sideBarButton = event.target;
 
         if (sideBarButton.dataset.type === 'algorithm') {

@@ -1,4 +1,4 @@
-import { getCustomAlgorithms, setCustomAlgorithms, setCurrentFileContent } from './context.js';
+import { getCustomAlgorithms, setCustomAlgorithms, setCurrentFile } from './context.js';
 import { getCytoscape } from '../context.js';
 import { startAnimation } from '../animation/animation.js';
 import { openPopup } from '../popup.js';
@@ -91,7 +91,9 @@ function promptCustomAlgorithmsSelection() {
                 return;
             }
 
-            setCurrentFileContent(fileContent);
+            const fileNameWithoutExtension = file.name.replace('.js', '');
+
+            setCurrentFile({ fileName: fileNameWithoutExtension, fileContent: fileContent });
             openCustomAlgorithmsModal();
         });
 
