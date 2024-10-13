@@ -29,8 +29,10 @@ class TagEditor {
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Tag ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;
+            tagInput.value = this.elementsToEdit[0].data('tag') ?? '';
         } else {
             title = `Editar Tag dos ${this.elementsToEdit.size()} Elementos`;
+            tagInput.value = '';
         }
 
         tagEditor.querySelector('h3').innerText = title;
