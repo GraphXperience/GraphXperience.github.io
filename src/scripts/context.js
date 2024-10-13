@@ -46,7 +46,7 @@ class Context {
             zoomingEnabled: false,
             panningEnabled: false,
             boxSelectionEnabled: true,
-            style: buildStylesheet(globalConfig, globalStyle.cy),
+            style: buildStylesheet(globalConfig, globalStyle?.cy),
             data: {
                 animation: false,
                 elementToEdit: undefined,
