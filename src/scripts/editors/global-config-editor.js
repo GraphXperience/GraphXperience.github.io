@@ -2,11 +2,9 @@ import { RESET_COLOR } from "../../constants/colors";
 import { resetCytoscape } from "../context";
 import { resetLocalStorage, setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
 import { clear } from "../graph";
-import { rgbStrToHex, validateMinMax } from "../utils";
+import { getTagColor, setTagColor, rgbStrToHex, validateMinMax } from "../utils";
 
 const configEditor = document.getElementById('config-editor');
-
-const colorInputFactory = () => document.getElementById('config-editor-color-input');
 const sizeInput = document.getElementById('config-editor-node-size-input');
 const edgeThicknessInput = document.getElementById('config-editor-edge-thickness-input');
 const directInput = document.getElementById('config-editor-direct-input');
@@ -44,18 +42,23 @@ class GlobalConfigEditor {
                 return;
             }
 
-            const colorInput = colorInputFactory();
-
-            const styles = this.cy.style().json();
-            const nodeStyle = styles.find(x => x.selector === 'node');
-            nodeStyle.style['background-color'] = rgbStrToHex(colorInput.style.getPropertyValue("--color")) ?? RESET_COLOR;
+            const styles = {
+                cy: this.cy.style().json(),
+                tag: this.cy.data('alwan-ce-tag').getColor().hex
+            };
+            const nodeStyle = styles.cy.find(x => x.selector === 'node');
+            nodeStyle.style['background-color'] = this.cy.data('alwan-ce-node').getColor().rgb;
             nodeStyle.style['height'] = sizeInput.value * 10;
             nodeStyle.style['width'] = sizeInput.value * 10;
 
-            const edgeStyle = styles.find(x => x.selector === 'edge');
+            const edgeStyle = styles.cy.find(x => x.selector === 'edge');
+            edgeStyle.style['line-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
+            edgeStyle.style['target-arrow-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
             edgeStyle.style['width'] = edgeThicknessInput.value;
 
-            this.cy.style().fromJson(styles);
+            this.cy.style().fromJson(styles.cy);
+
+            setTagColor(styles.tag)
 
             setGlobalStyle(styles);
             setGlobalConfig({
@@ -85,15 +88,19 @@ class GlobalConfigEditor {
         const styles = this.cy.style().json();
         const nodeStyle = styles.find(style => style.selector === 'node');
         if (nodeStyle) {
-            const colorInput = colorInputFactory();
-            colorInput.style.setProperty('--color', rgbStrToHex(nodeStyle.style['background-color']) ?? RESET_COLOR);
+            this.cy.data('alwan-ce-node').setColor(nodeStyle.style['background-color']);
             sizeInput.value = parseInt(nodeStyle.style['width']) / 10;
         }
 
+
         const edgeStyle = styles.find(style => style.selector === 'edge');
         if (edgeStyle) {
+            this.cy.data('alwan-ce-edge').setColor(edgeStyle.style['line-color']);
             edgeThicknessInput.value = parseInt(edgeStyle.style['width']);
         }
+
+        const tagColor = getTagColor();
+        this.cy.data('alwan-ce-tag').setColor(tagColor);
 
         directInput.checked = this.cy.data('isDirected');
         nodeWeightedInput.checked = this.cy.data('isNodeWeighted');
