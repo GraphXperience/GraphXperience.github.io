@@ -1,15 +1,39 @@
 import { createPredefinedGraph } from './index.js';
 import { validatePredefinedGraphSpecifications } from './validate.js';
 
-const buttonConfigurationsDict = {
-    'complete': { fields: ['nodeCount'] },
-    'regular': { fields: ['nodeCount', 'nodeDegree'] },
-    'star': { fields: ['nodeCount'] },
-    'wheel': { fields: ['nodeCount'] },
-    'bipartite': { fields: ['nodeCount', 'nodeCount2'] },
-    'complete-bipartite': { fields: ['nodeCount', 'nodeCount2'] },
-    'binary-tree': { fields: ['nodeCount', 'height'] },
-    'petersen': { fields: [] },
+const standardGraphsConfigurationDict = {
+    'complete': {
+        fields: ['nodeCount'],
+        validations: ['validNumberOfNodes']
+    },
+    'regular': {
+        fields: ['nodeCount', 'nodeDegree'],
+        validations: ['validNumberOfNodes', 'validNodeDegree']
+    },
+    'star': {
+        fields: ['nodeCount'],
+        validations: ['validNumberOfNodes']
+    },
+    'wheel': {
+        fields: ['nodeCount'],
+        validations: ['validNumberOfNodes', 'wheelNumberOfNodes']
+    },
+    'bipartite': {
+        fields: ['nodeCount', 'nodeCount2'],
+        validations: ['validNumberOfNodes']
+    },
+    'complete-bipartite': {
+        fields: ['nodeCount', 'nodeCount2'],
+        validations: ['validNumberOfNodes']
+    },
+    'binary-tree': {
+        fields: ['nodeCount', 'height'],
+        validations: ['validNumberOfNodes', 'validHeight']
+    },
+    'petersen': {
+        fields: [],
+        validations: []
+    },
 };
 
 const modal = document.getElementById('predefined-graph-specifications-modal');
@@ -35,7 +59,7 @@ function setupPredefinedGraphsModal() {
         const nodeDegree = parseInt(degreeInput.value, 10);
         const height = parseInt(heightInput.value, 10);
 
-        const errors = validatePredefinedGraphSpecifications(graphType, nodeCount, nodeCount2, nodeDegree, height, buttonConfigurationsDict);
+        const errors = validatePredefinedGraphSpecifications(graphType, nodeCount, nodeCount2, nodeDegree, height, standardGraphsConfigurationDict);
 
         if (errors.length > 0) {
             alert(errors.join('\n'));
@@ -68,7 +92,7 @@ function setupPredefinedGraphsModal() {
 function openPredefinedGraphsModal(selectedGraphType) {
     graphType = selectedGraphType;
 
-    config = buttonConfigurationsDict[graphType];
+    config = standardGraphsConfigurationDict[graphType];
 
     nodesInput.style.display = config.fields.includes('nodeCount') ? 'block' : 'none';
     nodesInput.labels[0].style.display = config.fields.includes('nodeCount') ? 'block' : 'none';
