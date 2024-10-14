@@ -5,8 +5,8 @@ const sizeEditor = document.getElementById('size-editor');
 
 const sizeInput = document.getElementById('new-size-input');
 
-const cancelButton = document.getElementById('cancel-size-button');
-const okButton = document.getElementById('ok-size-button');
+const cancelButton = document.getElementById('size-editor-cancel-button');
+const okButton = document.getElementById('size-editor-ok-button');
 
 class SizeEditor {
     constructor(cy) {

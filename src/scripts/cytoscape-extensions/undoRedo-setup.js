@@ -87,6 +87,15 @@ function handleEdgeHandlesCompletion(cy, ur) {
         cy.edges().slice(-2).remove();
         cy.nodes().slice(-1).remove();
 
+        const isThereExistingEdge = cy.edges().some(edge =>
+            edge.source().id() === sourceNode.id() &&
+            edge.target().id() === targetNode.id()
+        );
+
+        if (isThereExistingEdge) {
+            return;
+        }
+
         const edgeObj = {
             group: 'edges',
             data: { id: getRandomNumber(), source: sourceNode.id(), target: targetNode.id(), weight: 1 },

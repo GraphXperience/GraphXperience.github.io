@@ -21,19 +21,16 @@ const SPECIFICATION_VALIDATIONS = {
     },
 };
 
-function validatePredefinedGraphSpecifications(graphType, nodeCount, nodeCount2, nodeDegree, height, buttonConfigurationsDict) {
+function validatePredefinedGraphSpecifications(graphType, nodeCount, nodeCount2, nodeDegree, height, standardGraphsConfigurationDict) {
     let errors = [];
+    const validationsToApply = standardGraphsConfigurationDict[graphType]?.validations || [];
 
-    Object.keys(SPECIFICATION_VALIDATIONS).forEach(validationKey => {
+    validationsToApply.forEach(validationKey => {
         const validation = SPECIFICATION_VALIDATIONS[validationKey];
-        const hasRelatedField = validation.relatedFields.some(field => buttonConfigurationsDict[graphType]?.fields.includes(field));
+        const isValid = validation.validate({ nodeCount, nodeCount2, nodeDegree, height });
 
-        if (hasRelatedField) {
-            const isValid = validation.validate({ nodeCount, nodeCount2, nodeDegree, height });
-
-            if (!isValid) {
-                errors.push(validation.errorMessage);
-            }
+        if (!isValid) {
+            errors.push(validation.errorMessage);
         }
     });
 
