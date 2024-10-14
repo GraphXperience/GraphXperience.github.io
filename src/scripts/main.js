@@ -45,7 +45,7 @@ document.getElementById('save-graph-png').addEventListener('click', () => saveGr
 
 const globalConfigEditor = getGlobalConfigEditor(cy);
 document.getElementById('open-config-editor-button').addEventListener('click', () => globalConfigEditor.open());
-document.getElementById('global-info-icon').addEventListener('click', () => openInfoWindow('global-info'));
+document.getElementById('global-info-button').addEventListener('click', () => openInfoWindow('global-info'));
 
 document.getElementById('bfs-button').addEventListener('click', () => run('bfs'));
 document.getElementById('dfs-button').addEventListener('click', () => run('dfs'));
