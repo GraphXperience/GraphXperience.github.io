@@ -39,8 +39,14 @@ class SizeEditor {
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Tamanho ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;
+            if (this.elementsToEdit[0].isNode()) {
+                sizeInput.value = parseInt(this.elementsToEdit[0].style('width')) / 10;
+            } else {
+                sizeInput.value = parseInt(this.elementsToEdit[0].style('width'));
+            }
         } else {
             title = `Editar Tamanho dos ${this.elementsToEdit.size()} Elementos`;
+            sizeInput.value = 4;
         }
 
         sizeEditor.querySelector('h3').innerText = title;

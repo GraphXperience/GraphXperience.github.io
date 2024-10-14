@@ -4,10 +4,8 @@ import { rgbStrToHex } from "../utils";
 
 const colorEditor = document.getElementById('color-editor');
 
-const colorInputFactory = () => document.getElementById("color-input");
-
-const cancelButton = document.getElementById('color-editor-cancel-button');
-const okButton = document.getElementById('color-editor-ok-button');
+const cancelButton = document.getElementById('cancel-color-button');
+const okButton = document.getElementById('ok-color-button');
 
 class ColorEditor {
     constructor(cy) {
@@ -16,13 +14,9 @@ class ColorEditor {
         cancelButton.addEventListener('click', () => { colorEditor.style.display = 'none'; });
 
         okButton.addEventListener('click', () => {
-            const colorInput = colorInputFactory();
+            const newColor = cy.data('alwan-ce').getColor().hex;
 
-            const newColor = rgbStrToHex(colorInput.style.getPropertyValue("--color"));
-
-            this.elementsToEdit.forEach(element => {
-                setColor(element, newColor);
-            });
+            this.elementsToEdit.forEach(element => setColor(element, newColor));
 
             this.cy.trigger('save');
             colorEditor.style.display = 'none';
@@ -31,20 +25,21 @@ class ColorEditor {
 
     open(elements) {
         this.elementsToEdit = elements;
-        const colorInput = colorInputFactory();
         let title = '';
 
         if (this.elementsToEdit.size() === 1) {
-            title = `Editar Cor ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;``;
+            title = `Editar Cor ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;
+            if (this.elementsToEdit[0].isNode()) {
+                this.cy.data('alwan-ce').setColor(this.elementsToEdit[0].style('background-color'));
+            } else {
+                this.cy.data('alwan-ce').setColor(this.elementsToEdit[0].style('line-color'));
+            }
         } else {
             title = `Editar Cor dos ${this.elementsToEdit.size()} Elementos`;
+            this.cy.data('alwan-ce').setColor(RESET_COLOR);
         }
 
-        this.elementsToEdit.forEach(element => {
-        });
-        
         colorEditor.querySelector('h3').innerText = title;
-        colorInput.style.setProperty('--color', rgbStrToHex(this.elementsToEdit[0].style('background-color') ?? RESET_COLOR));
         colorEditor.style.display = 'block';
     }
 }

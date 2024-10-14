@@ -22,7 +22,7 @@ class WeightEditor {
             const newValue = parseInt(newWeightInput.value);
 
             if (newValue < 1) {
-                alert('O valor deve ser maior que 1');
+                alert('O valor deve ser maior que 0');
                 return;
             }
 
@@ -54,6 +54,7 @@ class WeightEditor {
             newWeightInput.value = this.elementsToEdit[0].data('weight');
         } else {
             title = `Editar Peso dos ${this.elementsToEdit.size()} Elementos`;
+            newWeightInput.value = 1;
         }
 
         weightEditor.querySelector('h3').innerText = title;
