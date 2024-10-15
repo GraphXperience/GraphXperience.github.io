@@ -5,6 +5,7 @@ import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
 import { openCustomAlgorithmsModal } from './modal.js';
 import { Graph } from '../models/Graph';
+import { getRandomUuid } from '../utils.js';
 
 let cy = getCytoscape();
 
@@ -61,7 +62,7 @@ function runCustomAlgorithm(customAlgorithm) {
 
 function removeCustomAlgorithm(customAlgorithm) {
     const currentAlgorithms = getCustomAlgorithms();
-    const updatedAlgorithms = currentAlgorithms.filter(alg => alg !== customAlgorithm);
+    const updatedAlgorithms = currentAlgorithms.filter(alg => alg.id !== customAlgorithm.id);
 
     setCustomAlgorithms(updatedAlgorithms);
 }
@@ -93,7 +94,14 @@ function promptCustomAlgorithmsSelection() {
 
             const fileNameWithoutExtension = file.name.replace('.js', '');
 
-            setCurrentFile({ fileName: fileNameWithoutExtension, fileContent: fileContent });
+            setCurrentFile({
+                id: getRandomUuid(),
+                name: fileNameWithoutExtension,
+                description: '',
+                fileContent: fileContent,
+                isEditing: false
+            });
+
             openCustomAlgorithmsModal();
         });
 
@@ -103,8 +111,19 @@ function promptCustomAlgorithmsSelection() {
     fileInput.click();
 }
 
+function clearCustomAlgorithms() {
+    let section = document.getElementById('custom-algorithms-section');
+    setCustomAlgorithms([]);
+    const customAlgorithmListItems = section.querySelectorAll(`[data-id^="li-algorithm"]`);
+
+    customAlgorithmListItems.forEach(item => {
+        section.removeChild(item);
+    });
+}
+
 export {
     runCustomAlgorithm,
     removeCustomAlgorithm,
     promptCustomAlgorithmsSelection,
+    clearCustomAlgorithms,
 };

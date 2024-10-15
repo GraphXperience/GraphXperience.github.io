@@ -1,4 +1,4 @@
-import { getCustomAlgorithms, setCustomAlgorithms, getCurrentFile } from './context.js';
+import { getCustomAlgorithms, setCustomAlgorithms, getCurrentFile, setCurrentFile } from './context.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
 
 const section = document.getElementById('custom-algorithms-section');
@@ -14,6 +14,8 @@ function setupCustomAlgorithmsModal() {
         modal.style.display = 'none';
         nameInput.value = '';
         descriptionInput.value = '';
+
+        setCurrentFile(undefined);
     };
 
     const confirmAlgorithm = () => {
@@ -28,9 +30,11 @@ function setupCustomAlgorithmsModal() {
         }
 
         const customAlgorithm = {
+            id: getCurrentFile().id,
+            name: algorithmName,
+            description: algorithmDescription,
             fileContent: fileContent,
-            algorithmName: algorithmName,
-            algorithmDescription: algorithmDescription,
+            isEditing: getCurrentFile().isEditing
         };
 
         upsertCustomAlgorithm(customAlgorithm);
@@ -45,10 +49,17 @@ function setupCustomAlgorithmsModal() {
 
 function upsertCustomAlgorithm(newCustomAlgorithm) {
     let customAlgorithms = getCustomAlgorithms();
-    const existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.algorithmName === newCustomAlgorithm.algorithmName);
 
-    if (existingAlgorithmIndex !== -1) {
-        customAlgorithms[existingAlgorithmIndex] = newCustomAlgorithm;
+    if (newCustomAlgorithm.isEditing) {
+        const existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.id === newCustomAlgorithm.id);
+        
+        if (existingAlgorithmIndex !== -1) {
+            let existingCustomAlgorithm = customAlgorithms[existingAlgorithmIndex];
+            
+            existingCustomAlgorithm.name = newCustomAlgorithm.name;
+            existingCustomAlgorithm.description = newCustomAlgorithm.description;
+            updateCustomAlgorithmButton(existingCustomAlgorithm);
+        }
     } else {
         customAlgorithms.push(newCustomAlgorithm);
         const listItem = createCustomAlgorithmButton(newCustomAlgorithm);
@@ -58,9 +69,34 @@ function upsertCustomAlgorithm(newCustomAlgorithm) {
     setCustomAlgorithms(customAlgorithms);
 }
 
-function openCustomAlgorithmsModal() {
+function updateCustomAlgorithmButton(customAlgorithm) {
+    const listItem = document.querySelector(`[data-id="li-algorithm-${customAlgorithm.id}"]`);
+    
+    if (listItem) {
+        const buttons = listItem.querySelectorAll('button, img');
+
+        buttons.forEach(button => {
+            if (button.dataset.type === 'algorithm') {
+                button.textContent = customAlgorithm.name;
+            }
+    
+            button.dataset.name = customAlgorithm.name;
+            button.dataset.description = customAlgorithm.description;
+        });
+    }
+}
+
+function openCustomAlgorithmsModal(existentCustomAlgorithm) {
+    if (existentCustomAlgorithm) {
+        setCurrentFile({
+            ...existentCustomAlgorithm,
+            isEditing: true
+        });
+        descriptionInput.value = existentCustomAlgorithm.description;
+    }
+
     modal.style.display = 'block';
-    nameInput.value = getCurrentFile().fileName;
+    nameInput.value = getCurrentFile().name;
     nameInput.focus();
 }
 

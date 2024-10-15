@@ -1,11 +1,8 @@
 document.getElementById('info-window-close-button').addEventListener('click', closeInfoWindow);
 
-function openInfoWindow(type) {
+function openInfoWindow(type, title = '', messages = []) {
     const infoWindow = document.getElementById('info-window');
     const infoWindowContent = document.getElementById('info-window-content')
-    
-    let title = '';
-    let messages = [];
     
     infoWindow.style.display = 'block';
 
@@ -141,94 +138,102 @@ function openInfoWindow(type) {
                 O texto dessa mensagem terá por padrão sua cor vermelha, porém pode ser opcionalmente modificada para outras cores.
             `);
             break;
-            case 'regular-graph':
-                title = 'Grafo Regular';
+        case 'custom-algorithm':
+            title = `Algoritmo '${title}'`;
+            if (messages.length === 0) {
                 messages.push(`
-                    Descrição: Um grafo regular é um grafo onde cada vértice tem o mesmo número de arestas. Ou seja, todos os vértices possuem o mesmo grau.
-                    Você pode personalizar esse grafo informando o número de nós e o grau de cada nó. Por exemplo, um grafo regular de grau 2 é um ciclo.
+                    Não há descrição para esse algoritmo.
                 `);
-                messages.push(`
-                    Ao criar um grafo regular, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'complete-graph':
-                title = 'Grafo Completo';
-                messages.push(`
-                    Descrição: Um grafo completo é um grafo em que cada par de vértices está conectado por uma aresta. Em um grafo completo com n vértices,
-                    cada vértice possui grau n-1. Você pode personalizar esse grafo informando o número de nós. 
-                `);
-                messages.push(`
-                    Ao criar um grafo completo, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'star-graph':
-                title = 'Grafo Estrela';
-                messages.push(`
-                    Descrição: Um grafo estrela é um tipo de grafo onde um único vértice central está conectado a todos os outros vértices, que não têm outras conexões entre si.
-                    Você pode personalizar esse grafo informando o número de nós. O vértice central terá grau n-1, onde n é o número total de nós.
-                `);
-                messages.push(`
-                    Ao criar um grafo estrela, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'wheel-graph':
-                title = 'Grafo Roda';
-                messages.push(`
-                    Descrição: Um grafo roda é formado por um ciclo de n-1 nós e um nó central conectado a todos os nós do ciclo.
-                    Você pode personalizar esse grafo informando o número de nós. O nó central terá grau n-1 e cada nó no ciclo terá grau 3.
-                `);
-                messages.push(`
-                    Ao criar um grafo roda, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'bipartite-graph':
-                title = 'Grafo Bipartido';
-                messages.push(`
-                    Descrição: Um grafo bipartido é um grafo cujos vértices podem ser divididos em dois conjuntos disjuntos, onde não há arestas entre vértices do mesmo conjunto.
-                    Você pode personalizar esse grafo informando o número de nós de cada conjunto.
-                `);
-                messages.push(`
-                    Ao criar um grafo bipartido, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'complete-bipartite-graph':
-                title = 'Grafo Completo Bipartido';
-                messages.push(`
-                    Descrição: Um grafo completo bipartido é um tipo de grafo bipartido onde cada vértice de um conjunto está conectado a todos os vértices do outro conjunto.
-                    Você pode personalizar esse grafo informando o número de nós de cada conjunto.
-                `);
-                messages.push(`
-                    Ao criar um grafo completo bipartido, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'binary-tree-graph':
-                title = 'Grafo Árvore Binária';
-                messages.push(`
-                    Descrição: Um grafo árvore binária é um grafo acíclico conexo em que cada nó possui no máximo 2 filhos.
-                    Em uma árvore binária, todos os nós, exceto a raiz, têm exatamente um nó pai. É muito utilizada
-                    para algoritmos de pesquisa de dados.
-                `);
-                messages.push(`
-                    Você pode personalizar esse grafo definindo o número total de nós e a altura da árvore.
-                    Lembre-se: a altura mínima é o piso de log2 de "n" e a altura máxima é "n", onde "n"
-                    é o número de nós.
-                `);
-                messages.push(`
-                    Ao criar um grafo árvore binária, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
-            case 'petersen-graph':
-                title = 'Grafo Petersen';
-                messages.push(`
-                    Descrição: O grafo de Petersen é um grafo bem específico: ele é simétrico e possui 10 vértices e 15 arestas,
-                    organizados de maneira que cada vértice está conectado a exatamente 3 outros vértices, formando uma "estrela"
-                    com um ciclo externo conectado a ela. É muito usado em problemas de combinatória e possui propriedades únicas.
-                    Como ele é um exemplo fixo, não permite personalização.
-                `);
-                messages.push(`
-                    Ao criar o grafo de Petersen, o grafo atualmente desenhado na tela será deletado.
-                `);
-                break;
+            }
+            break;
+        case 'regular-graph':
+            title = 'Grafo Regular';
+            messages.push(`
+                Descrição: Um grafo regular é um grafo onde cada vértice tem o mesmo número de arestas. Ou seja, todos os vértices possuem o mesmo grau.
+                Você pode personalizar esse grafo informando o número de nós e o grau de cada nó. Por exemplo, um grafo regular de grau 2 é um ciclo.
+            `);
+            messages.push(`
+                Ao criar um grafo regular, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'complete-graph':
+            title = 'Grafo Completo';
+            messages.push(`
+                Descrição: Um grafo completo é um grafo em que cada par de vértices está conectado por uma aresta. Em um grafo completo com n vértices,
+                cada vértice possui grau n-1. Você pode personalizar esse grafo informando o número de nós. 
+            `);
+            messages.push(`
+                Ao criar um grafo completo, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'star-graph':
+            title = 'Grafo Estrela';
+            messages.push(`
+                Descrição: Um grafo estrela é um tipo de grafo onde um único vértice central está conectado a todos os outros vértices, que não têm outras conexões entre si.
+                Você pode personalizar esse grafo informando o número de nós. O vértice central terá grau n-1, onde n é o número total de nós.
+            `);
+            messages.push(`
+                Ao criar um grafo estrela, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'wheel-graph':
+            title = 'Grafo Roda';
+            messages.push(`
+                Descrição: Um grafo roda é formado por um ciclo de n-1 nós e um nó central conectado a todos os nós do ciclo.
+                Você pode personalizar esse grafo informando o número de nós. O nó central terá grau n-1 e cada nó no ciclo terá grau 3.
+            `);
+            messages.push(`
+                Ao criar um grafo roda, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'bipartite-graph':
+            title = 'Grafo Bipartido';
+            messages.push(`
+                Descrição: Um grafo bipartido é um grafo cujos vértices podem ser divididos em dois conjuntos disjuntos, onde não há arestas entre vértices do mesmo conjunto.
+                Você pode personalizar esse grafo informando o número de nós de cada conjunto.
+            `);
+            messages.push(`
+                Ao criar um grafo bipartido, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'complete-bipartite-graph':
+            title = 'Grafo Completo Bipartido';
+            messages.push(`
+                Descrição: Um grafo completo bipartido é um tipo de grafo bipartido onde cada vértice de um conjunto está conectado a todos os vértices do outro conjunto.
+                Você pode personalizar esse grafo informando o número de nós de cada conjunto.
+            `);
+            messages.push(`
+                Ao criar um grafo completo bipartido, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'binary-tree-graph':
+            title = 'Grafo Árvore Binária';
+            messages.push(`
+                Descrição: Um grafo árvore binária é um grafo acíclico conexo em que cada nó possui no máximo 2 filhos.
+                Em uma árvore binária, todos os nós, exceto a raiz, têm exatamente um nó pai. É muito utilizada
+                para algoritmos de pesquisa de dados.
+            `);
+            messages.push(`
+                Você pode personalizar esse grafo definindo o número total de nós e a altura da árvore.
+                Lembre-se: a altura mínima é o piso de log2 de "n" e a altura máxima é "n", onde "n"
+                é o número de nós.
+            `);
+            messages.push(`
+                Ao criar um grafo árvore binária, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
+        case 'petersen-graph':
+            title = 'Grafo Petersen';
+            messages.push(`
+                Descrição: O grafo de Petersen é um grafo bem específico: ele é simétrico e possui 10 vértices e 15 arestas,
+                organizados de maneira que cada vértice está conectado a exatamente 3 outros vértices, formando uma "estrela"
+                com um ciclo externo conectado a ela. É muito usado em problemas de combinatória e possui propriedades únicas.
+                Como ele é um exemplo fixo, não permite personalização.
+            `);
+            messages.push(`
+                Ao criar o grafo de Petersen, o grafo atualmente desenhado na tela será deletado.
+            `);
+            break;
     }
 
     const heading = document.createElement('h1');
