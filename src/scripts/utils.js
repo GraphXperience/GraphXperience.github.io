@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 function rgbToHex(r, g, b) {
     const toHex = (value) => {
         const hex = value.toString(16);
@@ -51,6 +53,10 @@ function getRandomNumber(min = 1e6, max = 1e7) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function getRandomUuid() {
+    return uuidv4();
+}
+
 function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -100,6 +106,7 @@ export {
     sleep,
     validateMinMax,
     getRandomNumber,
+    getRandomUuid,
     getRandomColor,
     getTagColor,
     setTagColor

@@ -1,7 +1,8 @@
 import { getCustomAlgorithms } from './context.js';
-import { setupCustomAlgorithmsModal } from './modal.js';
+import { openCustomAlgorithmsModal, setupCustomAlgorithmsModal } from './modal.js';
 import { removeCustomAlgorithm, runCustomAlgorithm } from './custom-algorithms.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
+import { openInfoWindow } from '../info-window.js';
 
 const customAlgorithmsSection = document.getElementById('custom-algorithms-section');
 
@@ -14,20 +15,32 @@ function setupCustomAlgorithmsButtons() {
     });
 
     customAlgorithmsSection.addEventListener('click', event => {
-        customAlgorithms = getCustomAlgorithms();
-        const sideBarButton = event.target;
+        let sideBarButton = event.target;
+        let customAlgorithmListItem = undefined;
+        let customAlgorithm = undefined;
 
-        if (sideBarButton.dataset.type === 'algorithm') {
-            const algorithmName = sideBarButton.dataset.name;
-            const customAlgorithm = customAlgorithms.find(alg => alg.algorithmName === algorithmName);
-            runCustomAlgorithm(customAlgorithm);
-        }
-
-        if (sideBarButton.dataset.type === 'delete') {
-            const algorithmName = sideBarButton.dataset.name;
-            const customAlgorithm = customAlgorithms.find(alg => alg.algorithmName === algorithmName);
-            removeCustomAlgorithm(customAlgorithm);
-            sideBarButton.closest('li').remove();
+        switch (sideBarButton.dataset.type) {
+            case 'algorithm':
+                customAlgorithmListItem = sideBarButton.parentNode;
+                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                runCustomAlgorithm(customAlgorithm);
+                break;
+            case 'delete':
+                customAlgorithmListItem = sideBarButton.parentNode;
+                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                removeCustomAlgorithm(customAlgorithm);
+                sideBarButton.closest('li').remove();
+                break;
+            case 'info':
+                let algorithmName = sideBarButton.dataset.name;
+                let algorithmDescription = sideBarButton.dataset.description;
+                openInfoWindow('custom-algorithm', algorithmName, [algorithmDescription]);
+                break;
+            case 'edit':
+                customAlgorithmListItem = sideBarButton.parentNode;
+                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                openCustomAlgorithmsModal(customAlgorithm);
+                break;
         }
     });
 }

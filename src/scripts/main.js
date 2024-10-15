@@ -4,7 +4,7 @@ import { closePopup } from './popup';
 import { ENTER_KEY_CODE, ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
 import { openInfoWindow, closeInfoWindow } from './info-window';
 import { initializeCustomAlgorithms } from './custom-algorithms';
-import { promptCustomAlgorithmsSelection } from './custom-algorithms/custom-algorithms';
+import { promptCustomAlgorithmsSelection, clearCustomAlgorithms } from './custom-algorithms/custom-algorithms';
 import { setupPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { setupAnimationButtons } from './animation';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from './context';
@@ -53,7 +53,8 @@ document.getElementById('check-cycles-button').addEventListener('click', () => r
 document.getElementById('get-connected-components-button').addEventListener('click', () => run('getConnectedComponents'));
 document.getElementById('get-strongly-connected-components-button').addEventListener('click', () => run('getStronglyConnectedComponents'));
 document.getElementById('get-shortest-path-button').addEventListener('click', () => run('getShortestPath'));
-document.getElementById('add-custom-algorithm-button').addEventListener('click', () => promptCustomAlgorithmsSelection());
+document.getElementById('custom-algorithms-button-add').addEventListener('click', () => promptCustomAlgorithmsSelection());
+document.getElementById('custom-algorithms-button-clear').addEventListener('click', () => clearCustomAlgorithms());
 
 document.getElementById('bfs-info-icon').addEventListener('click', () => openInfoWindow('bfs'));
 document.getElementById('dfs-info-icon').addEventListener('click', () => openInfoWindow('dfs'));

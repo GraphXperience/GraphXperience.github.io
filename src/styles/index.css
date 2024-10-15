@@ -77,7 +77,7 @@ header {
     background: var(--main-color);
 }
 
-.info-icon {
+.info-icon, .edit-icon {
     width: 1.5em;
     height: auto;
 }
