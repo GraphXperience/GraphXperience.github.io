@@ -4,8 +4,8 @@ import { rgbStrToHex } from "../utils";
 
 const colorEditor = document.getElementById('color-editor');
 
-const cancelButton = document.getElementById('cancel-color-button');
-const okButton = document.getElementById('ok-color-button');
+const cancelButton = document.getElementById('color-editor-cancel-button');
+const okButton = document.getElementById('color-editor-ok-button');
 
 class ColorEditor {
     constructor(cy) {
