@@ -193,9 +193,10 @@ function handleEnterKeyDown() {
     for (const modal of document.getElementsByClassName('modal')) {
         if (modal.style.display === 'block') {
             const okButton = modal.querySelector('.modal-content [id$="ok-button"]');
-    
+
             if (okButton) {
                 okButton.click();
+                return;
             }
         }
     }
