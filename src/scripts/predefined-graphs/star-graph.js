@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 import { getCentralAndOuterPositions } from '../layout-utils';
 
 function createStarGraph(cy, ur, nodeCount) {
@@ -8,14 +8,14 @@ function createStarGraph(cy, ur, nodeCount) {
     let nodes = [];
     let edges = [];
 
-    const centralNodeId = getRandomNumber();
+    const centralNodeId = getRandomUuid();
 
     nodes.push({ data: { id: centralNodeId } });
 
     for (let i = 1; i < nodeCount; i++) {
-        const outerNodeId = getRandomNumber();
+        const outerNodeId = getRandomUuid();
         nodes.push({ data: { id: outerNodeId } });
-        edges.push({ data: { id: getRandomNumber(), source: centralNodeId, target: outerNodeId } });
+        edges.push({ data: { id: getRandomUuid(), source: centralNodeId, target: outerNodeId } });
     }
 
     ur.do('add', nodes);

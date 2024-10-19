@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 
 function createCompleteGraph(cy, ur, nodeCount) {
     cy.elements().remove();
@@ -8,7 +8,7 @@ function createCompleteGraph(cy, ur, nodeCount) {
     let edges = [];
 
     for (let i = 0; i < nodeCount; i++) {
-        nodes.push({ data: { id: getRandomNumber() } });
+        nodes.push({ data: { id: getRandomUuid() } });
     }
 
     ur.do('add', nodes);
@@ -17,7 +17,7 @@ function createCompleteGraph(cy, ur, nodeCount) {
         for (let j = i + 1; j < nodeCount; j++) {
             const sourceNodeId = nodes[i].data.id;
             const targetNodeId = nodes[j].data.id;
-            edges.push({ data: { id: getRandomNumber(), source: sourceNodeId, target: targetNodeId } });
+            edges.push({ data: { id: getRandomUuid(), source: sourceNodeId, target: targetNodeId } });
         }
     }
 

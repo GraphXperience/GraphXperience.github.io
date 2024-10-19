@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 
 function createBipartiteGraph(cy, ur, nodeCount, nodeCount2) {
     cy.elements().remove();
@@ -8,13 +8,13 @@ function createBipartiteGraph(cy, ur, nodeCount, nodeCount2) {
     let nodes2 = [];
 
     for (let i = 0; i < nodeCount; i++) {
-        nodes.push({ data: { id: getRandomNumber() } });
+        nodes.push({ data: { id: getRandomUuid() } });
     }
 
     ur.do('add', nodes);
 
     for (let i = 0; i < nodeCount2; i++) {
-        nodes2.push({ data: { id: getRandomNumber() } });
+        nodes2.push({ data: { id: getRandomUuid() } });
     }
 
     ur.do('add', nodes2);
