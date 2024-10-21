@@ -1,5 +1,6 @@
 import { getCustomAlgorithms } from './context.js';
-import { openCustomAlgorithmsModal, setupCustomAlgorithmsModal } from './modal.js';
+import { openCustomAlgorithmsModal, setupCustomAlgorithmsModal } from './custom-algorithms-modal.js';
+import { setupConfirmOverwriteModal } from './overwrite-modal.js';
 import { removeCustomAlgorithm, runCustomAlgorithm } from './custom-algorithms.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
 import { openInfoWindow } from '../info-window.js';
@@ -18,18 +19,18 @@ function setupCustomAlgorithmsButtons() {
         let sideBarButton = event.target;
         let customAlgorithmListItem = undefined;
         let customAlgorithm = undefined;
+        let customAlgorithmIndex = -1;
 
         switch (sideBarButton.dataset.type) {
             case 'algorithm':
                 customAlgorithmListItem = sideBarButton.parentNode;
-                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                customAlgorithm = getCustomAlgorithms().find(alg => alg.id === customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
                 runCustomAlgorithm(customAlgorithm);
                 break;
             case 'delete':
                 customAlgorithmListItem = sideBarButton.parentNode;
-                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
-                removeCustomAlgorithm(customAlgorithm);
-                sideBarButton.closest('li').remove();
+                customAlgorithmIndex = getCustomAlgorithms().findIndex(alg => alg.id === customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem);
                 break;
             case 'info':
                 let algorithmName = sideBarButton.dataset.name;
@@ -38,7 +39,7 @@ function setupCustomAlgorithmsButtons() {
                 break;
             case 'edit':
                 customAlgorithmListItem = sideBarButton.parentNode;
-                customAlgorithm = getCustomAlgorithms().find(alg => alg.id=== customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
+                customAlgorithm = getCustomAlgorithms().find(alg => alg.id === customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
                 openCustomAlgorithmsModal(customAlgorithm);
                 break;
         }
@@ -48,6 +49,7 @@ function setupCustomAlgorithmsButtons() {
 function initializeCustomAlgorithms() {
     setupCustomAlgorithmsButtons();
     setupCustomAlgorithmsModal();
+    setupConfirmOverwriteModal();
 }
 
 export {

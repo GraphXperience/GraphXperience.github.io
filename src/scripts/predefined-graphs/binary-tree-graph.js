@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 import { centerGraphHorizontallyAndAlignRoot } from '../layout-utils';
 
 function createBinaryTreeGraph(cy, ur, nodeCount, height) {
@@ -17,21 +17,21 @@ function createBinaryTreeGraph(cy, ur, nodeCount, height) {
         const rightChildIndex = 2 * currentIndex + 1;
         
         if (nodes.length < nodeCount) {
-            const leftChildId = getRandomNumber();
+            const leftChildId = getRandomUuid();
             nodes.push({ data: { id: leftChildId } });
-            edges.push({ data: { id: getRandomNumber(), source: parentNodeId, target: leftChildId } });
+            edges.push({ data: { id: getRandomUuid(), source: parentNodeId, target: leftChildId } });
             addChildren(leftChildId, currentLevel + 1, leftChildIndex);
         }
         
         if (nodes.length < nodeCount) {
-            const rightChildId = getRandomNumber();
+            const rightChildId = getRandomUuid();
             nodes.push({ data: { id: rightChildId } });
-            edges.push({ data: { id: getRandomNumber(), source: parentNodeId, target: rightChildId } });
+            edges.push({ data: { id: getRandomUuid(), source: parentNodeId, target: rightChildId } });
             addChildren(rightChildId, currentLevel + 1, rightChildIndex);
         }
     }
     
-    const rootNodeId = getRandomNumber();
+    const rootNodeId = getRandomUuid();
     nodes.push({ data: { id: rootNodeId } });
     addChildren(rootNodeId, 1, 1);
 

@@ -1,6 +1,6 @@
 import { ANIMATED_COLOR } from '../../constants/colors';
 import { setTag } from '../extensions/element-extensions';
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 
 function setupUndoRedo(cy) {
     var options = {
@@ -98,7 +98,7 @@ function handleEdgeHandlesCompletion(cy, ur) {
 
         const edgeObj = {
             group: 'edges',
-            data: { id: getRandomNumber(), source: sourceNode.id(), target: targetNode.id(), weight: 1 },
+            data: { id: getRandomUuid(), source: sourceNode.id(), target: targetNode.id(), weight: 1 },
         };
 
         ur.do('add', edgeObj);
