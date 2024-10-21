@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../utils';
+import { getRandomUuid } from '../utils';
 import { positionPetersenGraph } from '../layout-utils';
 
 function createPetersenGraph(cy, ur) {
@@ -12,33 +12,33 @@ function createPetersenGraph(cy, ur) {
     let middleEdges = [];
 
     for (let i = 0; i < 5; i++) {
-        innerNodes.push({ data: { id: getRandomNumber() } });
+        innerNodes.push({ data: { id: getRandomUuid() } });
     }
 
     ur.do('add', innerNodes);
 
     for (let i = 0; i < 5; i++) {
-        outerNodes.push({ data: { id: getRandomNumber() } });
+        outerNodes.push({ data: { id: getRandomUuid() } });
     }
 
     ur.do('add', outerNodes);
 
-    innerEdges.push({ data: { id: getRandomNumber(), source: innerNodes[0].data.id, target: innerNodes[2].data.id } });
-    innerEdges.push({ data: { id: getRandomNumber(), source: innerNodes[0].data.id, target: innerNodes[3].data.id } });
-    innerEdges.push({ data: { id: getRandomNumber(), source: innerNodes[1].data.id, target: innerNodes[3].data.id } });
-    innerEdges.push({ data: { id: getRandomNumber(), source: innerNodes[1].data.id, target: innerNodes[4].data.id } });
-    innerEdges.push({ data: { id: getRandomNumber(), source: innerNodes[2].data.id, target: innerNodes[4].data.id } });
+    innerEdges.push({ data: { id: getRandomUuid(), source: innerNodes[0].data.id, target: innerNodes[2].data.id } });
+    innerEdges.push({ data: { id: getRandomUuid(), source: innerNodes[0].data.id, target: innerNodes[3].data.id } });
+    innerEdges.push({ data: { id: getRandomUuid(), source: innerNodes[1].data.id, target: innerNodes[3].data.id } });
+    innerEdges.push({ data: { id: getRandomUuid(), source: innerNodes[1].data.id, target: innerNodes[4].data.id } });
+    innerEdges.push({ data: { id: getRandomUuid(), source: innerNodes[2].data.id, target: innerNodes[4].data.id } });
 
     ur.do('add', innerEdges);
     
     for (let i = 0; i < 5; i++) {
-        middleEdges.push({ data: { id: getRandomNumber(), source: innerNodes[i].data.id, target: outerNodes[i].data.id } });
+        middleEdges.push({ data: { id: getRandomUuid(), source: innerNodes[i].data.id, target: outerNodes[i].data.id } });
     }
 
     ur.do('add', middleEdges);
 
     for (let i = 0; i < 5; i++) {
-        outerEdges.push({ data: { id: getRandomNumber(), source: outerNodes[i].data.id, target: outerNodes[(i + 1) % 5].data.id } });
+        outerEdges.push({ data: { id: getRandomUuid(), source: outerNodes[i].data.id, target: outerNodes[(i + 1) % 5].data.id } });
     }
 
     ur.do('add', outerEdges);

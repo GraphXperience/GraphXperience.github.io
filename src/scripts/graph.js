@@ -1,6 +1,6 @@
 import { getCytoscape, getUndoRedo } from "./context";
 import { removeTag } from "./extensions/element-extensions";
-import { getRandomNumber } from "./utils";
+import { getRandomUuid } from "./utils";
 
 var cy = getCytoscape();
 var ur = getUndoRedo();
@@ -25,7 +25,7 @@ function connectNodes(nodes) {
         var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
 
         if (existingEdge.empty()) {
-            const newEdgeId = getRandomNumber();
+            const newEdgeId = getRandomUuid();
 
             actions.push({
                 name: 'add',
@@ -58,7 +58,7 @@ function createNode(mousePosition) {
     const nodeObj = {
         group: 'nodes',
         data: {
-            id: getRandomNumber(),
+            id: getRandomUuid(),
             weight: 1,
         },
         position: nodePosition,
