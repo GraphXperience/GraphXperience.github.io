@@ -3,7 +3,7 @@ import { getCytoscape } from '../context.js';
 import { startAnimation } from '../animation/animation.js';
 import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
-import { openCustomAlgorithmsModal } from './modal.js';
+import { openCustomAlgorithmsModal } from './custom-algorithms-modal.js';
 import { Graph } from '../models/Graph';
 import { getRandomUuid } from '../utils.js';
 
@@ -60,11 +60,15 @@ function runCustomAlgorithm(customAlgorithm) {
     fileReader.readAsText(blob);
 }
 
-function removeCustomAlgorithm(customAlgorithm) {
-    const currentAlgorithms = getCustomAlgorithms();
-    const updatedAlgorithms = currentAlgorithms.filter(alg => alg.id !== customAlgorithm.id);
+function removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem) {
+    let currentAlgorithms = getCustomAlgorithms();
+    currentAlgorithms.splice(customAlgorithmIndex, 1);
 
-    setCustomAlgorithms(updatedAlgorithms);
+    setCustomAlgorithms(currentAlgorithms);
+
+    if (customAlgorithmListItem) {
+        customAlgorithmListItem.remove();
+    }
 }
 
 function promptCustomAlgorithmsSelection() {
