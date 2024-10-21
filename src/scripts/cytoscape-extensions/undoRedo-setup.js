@@ -2,6 +2,9 @@ import { ANIMATED_COLOR } from '../../constants/colors';
 import { setTag } from '../extensions/element-extensions';
 import { getRandomNumber } from '../utils';
 
+const toggleConsole = document.getElementById('animation-console-toggle');
+const printConsole = document.getElementById('animation-console');
+
 function setupUndoRedo(cy) {
     var options = {
         isDebug: false,
@@ -15,6 +18,12 @@ function setupUndoRedo(cy) {
 
     ur.action('animate', animate, animate);
     ur.action('print', print, revertPrint);
+    
+    toggleConsole.addEventListener('click', (evt) => {
+        printConsole.classList.toggle('-active');
+        toggleConsole.classList.toggle('-active');
+    });
+
 
     handleEdgeHandlesCompletion(cy, ur);
 
@@ -59,11 +68,12 @@ function animate({ element, color, size, tag, weight }) {
     return { element, ...current };
 }
 
-const printConsole = document.getElementById('animation-console');
-function print({ message, color = 'red' }) {
+function print({ message, color }) {
     const newMessage = document.createElement('p');
     newMessage.textContent = message;
-    newMessage.style.color = color;
+    if (color) {
+        newMessage.style.color = color;
+    }
 
     printConsole.appendChild(newMessage);
 

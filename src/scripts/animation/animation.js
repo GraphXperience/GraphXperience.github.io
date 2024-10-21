@@ -6,7 +6,9 @@ import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPause
 import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons, setAnimationCounter } from './panel';
 import { validate } from './validate';
 
-var cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
+const cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
+const animationConsole = document.getElementById('animation-console');
+const animationConsoleToggle = document.getElementById('animation-console-toggle');
 
 async function startAnimation(actions) {
     const errors = validate(actions);
@@ -20,6 +22,7 @@ async function startAnimation(actions) {
     disableButtons();
     hideSideBar();
     showAnimationPanel();
+    animationConsoleToggle.style.display = 'block';
 
     cy.data('animation', true);
 }
@@ -106,9 +109,11 @@ function endAnimation() {
 function closeAnimation() {
     resetToOriginal();
     closeAnimationPanel();
+    animationConsole.classList.remove('-active');
+    animationConsole.replaceChildren();
+    animationConsoleToggle.classList.remove('-active');
+    animationConsoleToggle.style.display = 'none';
     enableButtons();
-
-    document.getElementById('animation-console').replaceChildren();
 
     const { undo, redo } = getUndoRedoStack();
     ur.reset(undo, redo);
