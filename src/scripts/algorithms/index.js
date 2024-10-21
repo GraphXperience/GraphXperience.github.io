@@ -7,6 +7,7 @@ import { checkCycles } from "./checkCycles";
 import { getConnectedComponents } from './getConnectedComponents';
 import { getStronglyConnectedComponents } from "./getStronglyConnectedComponents";
 import { getShortestPath } from "./getShortestPath";
+import { openPopup } from "../popup";
 
 var cy = getCytoscape();
 
@@ -24,10 +25,15 @@ async function run(algorithm) {
     const selectedNodeIds = Array.from(cy.data('selectedNodeIds'));
     const selectedNodes = graph.nodes.filter(node => selectedNodeIds.includes(node.id));
 
-    const actions = algorithms[algorithm](graph, selectedNodes);
+    try {
+        const actions = algorithms[algorithm](graph, selectedNodes);
 
-    if (actions.length > 0) {
-        await startAnimation(actions);
+        if (actions.length > 0) {
+            await startAnimation(actions);
+        }
+    }
+    catch (error) {
+        openPopup(error);
     }
 }
 
