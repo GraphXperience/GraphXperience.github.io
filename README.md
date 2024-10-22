@@ -148,8 +148,7 @@ Não se esqueça de clicar em *Ok* para salvar as alterações ou em *Cancelar* 
 O projeto permite que o usuário importe grafos em formato JSON para visualização e manipulação.
 Da mesma forma, os grafos criados podem ser exportados tanto em formato JSON quanto em imagem (JPEG/PNG).
 - **Carregar grafo JSON**: Clique no botão *Carregar grafo* e selecione e o arquivo JSON.
-- **Salvar Grafo JSON**: Coloque o mouse sobre o botão *Salvar grafo* e clique na opção *JSON* para exportar o grafo
-atual em formato JSON
+- **Salvar Grafo JSON**: Coloque o mouse sobre o botão *Salvar grafo* e clique na opção *JSON* para exportar o grafo atual em formato JSON
 - **Salvar Grafo como Imagem**: Coloque o mouse sobre o botão *Salvar grafo* e clique ou na opção *JPEG* ou na opção *PNG* para salvar o grafo como uma imagem
 
 
