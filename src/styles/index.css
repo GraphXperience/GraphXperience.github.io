@@ -170,3 +170,14 @@ header {
     height: 100%;
     width: 100%;
 }
+
+#github-page-button-img {
+    height: 100%;
+    width: 100%;
+}
+
+a .graph-button {
+    display: block;
+    height: 100%;
+    width: 100%;    
+}
