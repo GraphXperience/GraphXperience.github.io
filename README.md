@@ -155,7 +155,6 @@ atual em formato JSON
 
 
 ## Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests com melhorias
-e sugestões. Elas podem ser aprovadas por nós: [Lucas Formaggine](https://github.com/lucasformaggine) e [Pedro Lucas](https://github.com/pancine).
+Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests com melhorias e sugestões. Elas podem ser aprovadas por nós: [Lucas Formaggine](https://github.com/lucasformaggine) e [Pedro Lucas](https://github.com/pancine).
 
 
