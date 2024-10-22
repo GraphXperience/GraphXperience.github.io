@@ -124,8 +124,7 @@ Caso queira limpar todos os algoritmos customizados, utilize o botão *Limpar Al
 A interface permite diversas personalizações nos vértices e arestas do grafo, fora configurações globais
 para o grafo todo, como:
 - **Cores**: as cores dos nós e arestas podem ser individualmente alterados ou globalmente alterados com o *editor de configuração global* <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
-- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo
-vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
+- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
 - **Tags**: as tags servem para setar um *label* aos nós e arestas, facilitando na visualização de algoritmos.
 - **Dimensões**: os nós e arestas podem ter suas dimensões alteradas. Os valores são sempre de 1 a 10, onde 10 é o tamanho máximo e 1 é o tamanho
 mínimo. No caso de arestas, a dimensão está relacionada à espessura da aresta. No caso de nós, a dimensão está relacionada
