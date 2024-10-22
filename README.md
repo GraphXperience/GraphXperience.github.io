@@ -112,8 +112,7 @@ Durante a execução da animação, um novo botão surge no canto superior direi
 > Além da extensão precisar ser .js, é importante que a função principal se chame *customAlgorithm* e que contenha o parâmetro *Graph* obrigatório. Ela também pode ter o parâmetro *selectedNodes* opcional.
 5. Após selecionar um arquivo válido, abrirá um modal de *Detalhes do Algoritmo*.
 Digite obrigatoriamente um nome e opcionalmente uma descrição e então clique em *Ok*.
-> Caso já exista um algoritmo de mesmo nome, será aberto um modal de confirmação se o usuário deseja
-substituir o algoritmo existente pelo novo. Clique em *Sim* se quiser, ou em *Não* para voltar ao modal de *Detalhes do Algoritmo*.
+> Caso já exista um algoritmo de mesmo nome, será aberto um modal de confirmação se o usuário deseja substituir o algoritmo existente pelo novo. Clique em *Sim* se quiser, ou em *Não* para voltar ao modal de *Detalhes do Algoritmo*.
 
 Algoritmos importados passam a fazer parte da lista de algoritmos na seção de *Algoritmos Personalizados*.
 Você pode:
