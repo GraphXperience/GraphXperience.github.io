@@ -108,8 +108,7 @@ Durante a execução da animação, um novo botão surge no canto superior direi
 2. Role a barra de rolagem para baixo até chegar na seção *Algoritmos Personalizados*
 3. Clique em *Adicionar Algoritmo*
 4. Selecione o arquivo com extensão .js presente em seu diretório local.
-> Além da extensão precisar ser .js, é importante que a função principal se chame *customAlgorithm* e que contenha o parâmetro *Graph* obrigatório. Ela também
-pode ter o parâmetro *selectedNodes* opcional.
+> Além da extensão precisar ser .js, é importante que a função principal se chame *customAlgorithm* e que contenha o parâmetro *Graph* obrigatório. Ela também pode ter o parâmetro *selectedNodes* opcional.
 5. Após selecionar um arquivo válido, abrirá um modal de *Detalhes do Algoritmo*.
 Digite obrigatoriamente um nome e opcionalmente uma descrição e então clique em *Ok*.
 > Caso já exista um algoritmo de mesmo nome, será aberto um modal de confirmação se o usuário deseja
