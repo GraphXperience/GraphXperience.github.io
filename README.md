@@ -71,9 +71,9 @@ O menu superior oferece várias opções para manipular o grafo, de maneira pare
 - **Limpar Grafo**: Remove todos os elementos do grafo.
 - **Carregar Grafo**: Importa um grafo em formato JSON.
 - **Salvar Grafo (JSON)**: Exporta o grafo atual (nos formatos JSON, JPEG ou PNG).
-- **Editor de Configurações Globais** <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">: Abre um editor para customizar as configurações globais do grafo.
-- **GitHub** <img src="dist/assets/github.svg" alt="Símbolo do GitHub: uma silhueta de um gato" width="20" height="20">: Ícone que leva à página oficial do projeto no GitHub, onde é possível visualizar essa documentação.
-- **Informações Gerais** <img src="dist/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">: Acessa informações sobre a interface, como as dicas de teclas de atalho
+- **Editor de Configurações Globais** <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">: Abre um editor para customizar as configurações globais do grafo.
+- **GitHub** <img src="src/assets/github.svg" alt="Símbolo do GitHub: uma silhueta de um gato" width="20" height="20">: Ícone que leva à página oficial do projeto no GitHub, onde é possível visualizar essa documentação.
+- **Informações Gerais** <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">: Acessa informações sobre a interface, como as dicas de teclas de atalho
 
 ## Menu Lateral da Esquerda
 O menu lateral da esquerda inicialmente está escondido, mas pode ser aberto ao clicar no "botão hamburguer" (com as três linhas horizontais paralelas). Nele, é possível acessar:
@@ -84,7 +84,7 @@ O input pode ser, por exemplo, o número "n" de nós: varia conforme o grafo pre
 como deve ser o arquivo importado.
 
 ## Algoritmos Predefinidos
-Existem algoritmos predefinidos já disponíveis. É possível abrir as informações do algoritmo através do ícone <img src="dist/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20"> ou acessar a página do arquivo .js desse algoritmo no botão *</>*. Os algoritmos disponíveis são:
+Existem algoritmos predefinidos já disponíveis. É possível abrir as informações do algoritmo através do ícone <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20"> ou acessar a página do arquivo .js desse algoritmo no botão *</>*. Os algoritmos disponíveis são:
 - **Busca em Largura (BFS)**: Explora o grafo começando de um nó raiz e se expandindo para os vizinhos.
 - **Busca em Profundidade (DFS)**: Explora o grafo de maneira recursiva, descendo profundamente pelos caminhos do grafo e voltando em backtracking.
 - **Detecção de Ciclos**: Verifica se o grafo contém ciclos.
@@ -114,22 +114,22 @@ Digite obrigatoriamente um nome e opcionalmente uma descrição e então clique 
 
 Algoritmos importados passam a fazer parte da lista de algoritmos na seção de *Algoritmos Personalizados*.
 Você pode:
-- *Deletar*, clicando no <img src="dist/assets/close.svg" alt="Ícone de deleção (X)" width="20" height="20">
-- *Editar*, clicando no <img src="dist/assets/edit.svg" alt="Ícone de edição (lápis)" width="20" height="20"> 
-- *Ver informações*, clicando no <img src="dist/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">
+- *Deletar*, clicando no <img src="src/assets/close.svg" alt="Ícone de deleção (X)" width="20" height="20">
+- *Editar*, clicando no <img src="src/assets/edit.svg" alt="Ícone de edição (lápis)" width="20" height="20"> 
+- *Ver informações*, clicando no <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">
 
 Caso queira limpar todos os algoritmos customizados, utilize o botão *Limpar Algoritmos Customizados*
 
 ## Personalização dos Grafos
 A interface permite diversas personalizações nos vértices e arestas do grafo, fora configurações globais
 para o grafo todo, como:
-- **Cores**: as cores dos nós e arestas podem ser individualmente alterados ou globalmente alterados com o *editor de configuração global* <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
-- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
+- **Cores**: as cores dos nós e arestas podem ser individualmente alterados ou globalmente alterados com o *editor de configuração global* <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
+- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
 - **Tags**: as tags servem para setar um *label* aos nós e arestas, facilitando na visualização de algoritmos.
 - **Dimensões**: os nós e arestas podem ter suas dimensões alteradas. Os valores são sempre de 1 a 10, onde 10 é o tamanho máximo e 1 é o tamanho mínimo. No caso de arestas, a dimensão está relacionada à espessura da aresta. No caso de nós, a dimensão está relacionada ao diâmetro do nó.
 
 ## Editor de Configuração Global
-Representando pelo símbolo <img src="dist/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas no cache (sessionStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
+Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas no cache (sessionStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
 - **Cor dos nós**: altera a cor global dos nós.
 - **Cor das arestas**: altera a cor global das arestas.
 - **Cor das tags**: altera a cor global da tags, caso algum elemento a possua. A cor será aplicada tanto para tags de nós quanto para tags de arestas.
