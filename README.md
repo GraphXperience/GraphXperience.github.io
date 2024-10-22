@@ -53,6 +53,7 @@ Este projeto permite que o usuário:
 - **Ctrl + V**: Cola os elementos copiados.
 - **Ctrl + Z**: Desfaz a última ação.
 - **Ctrl + Y**: Refaz a última ação.
+- **E**: Entra no modo desenho, onde é possível clicar e arrastar de um nó para o outro para criar uma nova aresta.
 - **N**: Adiciona um novo nó no local do cursor do mouse.
 - **S**: Conecta os nós selecionados.
 - **D**: Desconecta os nós selecionados.
