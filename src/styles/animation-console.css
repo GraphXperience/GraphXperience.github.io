@@ -3,8 +3,7 @@
     top: 3em;
     right: -22em;
     padding: 1em;
-    padding-bottom: 0;
-    height: 100%;
+    height: calc(100% - 5em);
     width: 20em;
     overflow-y: auto;
     z-index: 1000;
