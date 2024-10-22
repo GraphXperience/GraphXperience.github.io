@@ -79,8 +79,7 @@ O menu superior oferece várias opções para manipular o grafo, de maneira pare
 O menu lateral da esquerda inicialmente está escondido, mas pode ser aberto ao clicar no "botão hamburguer" (com as três linhas horizontais paralelas). Nele, é possível acessar:
 - **Algoritmos**: Aqui o usuário pode executar algoritmos já implementados (ex: BFS, DFS, checar ciclos, obter componentes conexas, obter componentes fortemente-conexas,
 obter caminho mínimo entre dois nós). Há botões informativos ao lado de cada algoritmo para explicar como ele funciona e sua complexidade de tempo-espaço (Big O).
-- **Grafos Predefinidos**: Aqui o usuário pode criar grafos predefinidos a partir de algum input, como grafo regular, grafo completo, grafo estrela, grafo roda, grafo bipartido,
-grafo bipartido completo, grafo árvore binária, grafo de Pertersen.
+- **Grafos Predefinidos**: Aqui o usuário pode criar grafos predefinidos a partir de algum input, como grafo regular, grafo completo, grafo estrela, grafo roda, grafo bipartido, grafo bipartido completo, grafo árvore binária, grafo de Pertersen.
 O input pode ser, por exemplo, o número "n" de nós: varia conforme o grafo predefinido. Há um botão de informação para cada tipo de grafo explicando sua definição.
 - **Algoritmos Personalizados**: Aqui o usuário pode *limpar* algoritmos já carregados ou *adicionar algoritmo* direto do diretório local. Há um botão de informação explicando
 como deve ser o arquivo importado.
