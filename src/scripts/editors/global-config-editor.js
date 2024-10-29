@@ -33,23 +33,14 @@ class GlobalConfigEditor {
 
         okButton.addEventListener('click', () => {
             if (cy.data('isDirected') !== directInput.checked) {
-                if (!cy.data('isEdgeWeighted')) {
-                    removeBidirectionalEdges();
-                } else {
-                    if (!edgeWeightedInput.checked) {
-                        removeBidirectionalEdges();
+                const pairs = new Set();
+                for (const edge of cy.edges()) {
+                    const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
+                    if (pairs.has(reverse_edge)) {
+                        openPopup('Para tornar um grafo direcionado em um não direcionado, remova as arestas bidirecionais que possuem peso.');
+                        return;
                     }
-                    else {
-                        const pairs = new Set();
-                        for (const edge of cy.edges()) {
-                            const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
-                            if (pairs.has(reverse_edge)) {
-                                openPopup('Para tornar um grafo direcionado em um não direcionado, remova as arestas bidirecionais que possuem peso.');
-                                return;
-                            }
-                            pairs.add(`${edge.source().id()}${edge.target().id()}`);
-                        }
-                    }
+                    pairs.add(`${edge.source().id()}${edge.target().id()}`);
                 }
             }
 
