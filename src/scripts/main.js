@@ -177,11 +177,7 @@ function handleSelectByRightClick() {
     cy.on('cxttap', 'node, edge', event => {
         let selectedElements = cy.$(':selected');
 
-        const isAlreadySelected = selectedElements.some(selectedElement => selectedElement.id() === event.target.id());
-
-        if (isAlreadySelected) {
-            selectedElements.select();
-        } else {
+        if (!event.target.selected()) {
             selectedElements.unselect();
             event.target.select();        
         }
