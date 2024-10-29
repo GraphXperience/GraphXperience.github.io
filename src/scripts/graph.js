@@ -22,8 +22,12 @@ function connectNodes(nodes) {
         var sourceNodeId = nodeIds[i];
         var targetNodeId = nodeIds[i + 1];
 
-        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
+        if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
+            console.log('nao criou');
+            continue;
+        }
 
+        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
         if (existingEdge.empty()) {
             const newEdgeId = getRandomUuid();
 
