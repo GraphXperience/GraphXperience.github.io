@@ -78,7 +78,7 @@ header {
 }
 
 .info-icon, .edit-icon {
-    width: 1.5em;
+    width: 1.8em;
     height: auto;
 }
 
@@ -163,7 +163,7 @@ header {
 #open-config-editor-button {
     height: 3em;
     width: 3em;
-    padding: 0.75em;
+    padding: 0.6em;
 }
 
 #open-config-editor-button-img {
@@ -171,13 +171,12 @@ header {
     width: 100%;
 }
 
+#github-page-button {
+    height: 2.4em;
+    padding: 0.3em;
+}
+
 #github-page-button-img {
     height: 100%;
     width: 100%;
-}
-
-a .graph-button {
-    display: block;
-    height: 100%;
-    width: 100%;    
 }
