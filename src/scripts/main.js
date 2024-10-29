@@ -175,7 +175,13 @@ function handleSlideSpeedDisplayInput() {
 
 function handleSelectByRightClick() {
     cy.on('cxttap', 'node, edge', event => {
-        event.target.select();        
+        let selectedElements = cy.$(':selected');
+
+        if (!event.target.selected()) {
+            selectedElements.unselect();
+            event.target.select();        
+        }
+
         event.originalEvent.preventDefault();
     });
 }
