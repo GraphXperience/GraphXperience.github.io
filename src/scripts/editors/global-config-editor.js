@@ -1,8 +1,8 @@
-import { RESET_COLOR } from "../../constants/colors";
 import { resetCytoscape } from "../context";
 import { resetLocalStorage, setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
-import { clear } from "../graph";
-import { getTagColor, setTagColor, rgbStrToHex, validateMinMax } from "../utils";
+import { clear, removeBidirectionalEdges } from "../graph";
+import { getTagColor, setTagColor, validateMinMax } from "../utils";
+import { openPopup } from '../popup';
 
 const configEditor = document.getElementById('config-editor');
 const sizeInput = document.getElementById('config-editor-node-size-input');
@@ -32,6 +32,18 @@ class GlobalConfigEditor {
         cancelButton.addEventListener('click', () => { configEditor.style.display = 'none'; });
 
         okButton.addEventListener('click', () => {
+            if (cy.data('isDirected') !== directInput.checked) {
+                const pairs = new Set();
+                for (const edge of cy.edges()) {
+                    const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
+                    if (pairs.has(reverse_edge)) {
+                        openPopup('Para tornar um grafo direcionado em um não direcionado, remova as arestas bidirecionais que possuem peso.');
+                        return;
+                    }
+                    pairs.add(`${edge.source().id()}${edge.target().id()}`);
+                }
+            }
+
             if (sizeInput.value < 1 || sizeInput.value > 10) {
                 alert('Tamanho do nó deve estar entre 1 e 10.');
                 return;

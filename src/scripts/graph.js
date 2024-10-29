@@ -22,8 +22,12 @@ function connectNodes(nodes) {
         var sourceNodeId = nodeIds[i];
         var targetNodeId = nodeIds[i + 1];
 
-        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
+        if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
+            console.log('nao criou');
+            continue;
+        }
 
+        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
         if (existingEdge.empty()) {
             const newEdgeId = getRandomUuid();
 
@@ -88,11 +92,29 @@ function removeElements(elements) {
     ur.do('remove', elements);
 }
 
+function removeBidirectionalEdges() {
+    const pairs = new Set();
+    const edgeIdsToRemove = new Set();
+
+    for (const edge of cy.edges()) {
+        const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
+        if (pairs.has(reverse_edge)) {
+            edgeIdsToRemove.add(edge.id());
+        }
+        pairs.add(`${edge.source().id()}${edge.target().id()}`);
+    }
+    
+    for (const edgeId of edgeIdsToRemove) {
+        cy.$id(edgeId).remove();
+    }
+}
+
 export {
     clear,
     connectNodes,
     createNode,
     disconnectEdges,
     removeElement,
-    removeElements
+    removeElements,
+    removeBidirectionalEdges
 }

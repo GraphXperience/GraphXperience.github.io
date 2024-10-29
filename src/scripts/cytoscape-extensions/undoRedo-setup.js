@@ -18,7 +18,7 @@ function setupUndoRedo(cy) {
 
     ur.action('animate', animate, animate);
     ur.action('print', print, revertPrint);
-    
+
     toggleConsole.addEventListener('click', (evt) => {
         printConsole.classList.toggle('-active');
         toggleConsole.classList.toggle('-active');
@@ -103,6 +103,10 @@ function handleEdgeHandlesCompletion(cy, ur) {
         );
 
         if (isThereExistingEdge) {
+            return;
+        }
+
+        if (!cy.data('isDirected') && !cy.edges('[source="' + targetNode.id() + '"][target="' + sourceNode.id() + '"]').empty()) {
             return;
         }
 
