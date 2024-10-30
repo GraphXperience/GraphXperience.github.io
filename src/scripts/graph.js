@@ -23,7 +23,6 @@ function connectNodes(nodes) {
         var targetNodeId = nodeIds[i + 1];
 
         if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
-            console.log('nao criou');
             continue;
         }
 
