@@ -1,5 +1,5 @@
 import { loadGraphJson, saveGraphJson, saveGraphJpeg, saveGraphPng } from './file';
-import { clear, connectNodes, createNode, disconnectEdges, removeElements } from './graph';
+import { clear, connectNodes, createNode, disconnectEdges, generateNodeTags, removeElements } from './graph';
 import { closePopup } from './popup';
 import { ENTER_KEY_CODE, ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
 import { openInfoWindow, closeInfoWindow } from './info-window';
@@ -9,7 +9,7 @@ import { setupPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { setupAnimationButtons } from './animation';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from './context';
 import { toggleDrawMode } from './cytoscape-extensions/edgehandles-setup';
-import { openPredefinedGraphsModal } from './predefined-graphs/modal.js'
+import { openPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { run } from './algorithms';
 import { getGlobalConfigEditor } from './editors/global-config-editor';
 
@@ -36,6 +36,7 @@ document.getElementById('remove-edge-button').addEventListener('click', () => re
 document.getElementById('connect-nodes-button').addEventListener('click', () => connectNodes(Array.from(cy.data('selectedNodeIds')).map(id => cy.$id(id))));
 document.getElementById('disconnect-nodes-button').addEventListener('click', () => disconnectEdges(cy.$('node:selected')));
 document.getElementById('clear-button').addEventListener('click', () => clear());
+document.getElementById('generate-tags-button').addEventListener('click', () => { generateNodeTags(); cy.trigger('save'); });
 
 document.getElementById('load-graph-button').addEventListener('click', () => loadGraphJson());
 
@@ -179,7 +180,7 @@ function handleSelectByRightClick() {
 
         if (!event.target.selected()) {
             selectedElements.unselect();
-            event.target.select();        
+            event.target.select();
         }
 
         event.originalEvent.preventDefault();

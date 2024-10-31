@@ -1,5 +1,5 @@
 import { getCytoscape, getUndoRedo } from "./context";
-import { removeTag } from "./extensions/element-extensions";
+import { removeTag, setTag } from "./extensions/element-extensions";
 import { getRandomUuid } from "./utils";
 
 var cy = getCytoscape();
@@ -23,7 +23,6 @@ function connectNodes(nodes) {
         var targetNodeId = nodeIds[i + 1];
 
         if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
-            console.log('nao criou');
             continue;
         }
 
@@ -81,6 +80,14 @@ function disconnectEdges(nodes) {
     ur.do('remove', edges);
 }
 
+function generateEdgeTags() {
+    cy.edges().forEach((edge, i) => setTag(edge, i.toString()));
+}
+
+function generateNodeTags() {
+    cy.nodes().forEach((node, i) => setTag(node, i.toString()));
+}
+
 function removeElement(element) {
     removeTag(element);
 
@@ -114,6 +121,8 @@ export {
     connectNodes,
     createNode,
     disconnectEdges,
+    generateEdgeTags,
+    generateNodeTags,
     removeElement,
     removeElements,
     removeBidirectionalEdges
