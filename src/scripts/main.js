@@ -206,9 +206,9 @@ function handleEnterKeyDown() {
         }
     }
 
-    for (const $modal2 of document.querySelectorAll('.modal2')) {
-        if ($modal2.open) {
-            const confirm = $modal2.querySelector('.modal-confirm');
+    for (const modal of document.querySelectorAll('.modal')) {
+        if (modal.open) {
+            const confirm = modal.querySelector('.modal-confirm');
             if (confirm) {
                 confirm.click();
                 return;
