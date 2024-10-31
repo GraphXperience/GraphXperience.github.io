@@ -13,7 +13,8 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    
+    padding-right: 2em;
     width: 100%;
 }
 
