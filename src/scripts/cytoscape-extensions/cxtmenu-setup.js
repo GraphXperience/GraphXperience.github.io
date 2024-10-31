@@ -29,7 +29,7 @@ function setupCxtMenu(cy) {
             },
             {
                 fillColor: 'rgba(200, 200, 200, 0.75)',
-                content: 'Dimensão',
+                content: 'Espessura',
                 contentStyle: {},
                 select: () => sizeEditor.open(cy.elements(":selected")),
                 enabled: true
