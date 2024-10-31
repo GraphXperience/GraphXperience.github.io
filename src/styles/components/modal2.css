@@ -1,0 +1,55 @@
+.modal2::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal2 {
+    padding: 5em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 1em;
+}
+
+.modal2-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+
+    height: 100%;
+    width: 100%;
+}
+
+.modal-title {
+    color: var(--main-color);
+    font-size: 2.4em;
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+}
+
+.modal-input {
+    color: var(--main-color);
+    font-size: 1.6em;
+    height: 2em;
+    padding-left: 0.5em;
+}
+
+.modal-close {
+    font-size: 2.4em;
+    cursor: pointer;
+    background-color: var(--error);
+    border: 0;
+    border-radius: 0.5em;
+    width: 50%;
+}
+
+.modal-confirm {
+    font-size: 2.4em;
+    cursor: pointer;
+    background-color: var(--success);
+    border: 0;
+    border-radius: 0.5em;
+    width: 50%;
+}

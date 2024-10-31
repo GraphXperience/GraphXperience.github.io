@@ -1,0 +1,19 @@
+.graph-button-2 {
+    font-size: 1.6em;
+
+    background-color: var(--main-color);
+    border: 0;
+    border-radius: 0.5em;
+    padding: 1em 2em;
+    transition: background 0.25s;
+    cursor: pointer;
+}
+
+.graph-button-2:hover {
+    background: var(--secondary-color);
+    transition: background 0.25s ease-in-out;
+}
+
+.graph-button-2:active {
+    background: var(--main-color);
+}

@@ -16,51 +16,76 @@
   <link rel="stylesheet" href="./styles/side-bar.css">
   <link rel="stylesheet" href="./styles/info-window.css">
   <link rel="stylesheet" href="./styles/tooltip.css" title="tooltip">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alwan/dist/css/alwan.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/sidebar-menu.css">
+  <link rel="stylesheet" href="./styles/icon-button.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/side-bar.css">
+  <link rel="stylesheet" href="./styles/modal2.css">
+  <link rel="stylesheet" href="./styles/graph-button.css">
 </head>
 
 <body>
   <header>
-    <div id="algorithms">
-      <div id="hamburger">
-        <bar id="first-bar"></bar>
-        <bar id="second-bar"></bar>
-        <bar id="third-bar"></bar>
+    <span id="sidebar-menu" class="material-symbols-outlined sidebar-menu">menu</span>
+    <div class="header-buttons">
+      <div class="button-group">
+        <button id="add-node-button" class="icon-button" title="Adicionar nós">
+          <span class="material-symbols-outlined">add_circle</span>
+        </button>
+
+        <button id="remove-elements-button" class="icon-button" title="Remover elementos selecionados">
+          <span class="material-symbols-outlined">remove</span>
+        </button>
+
+        <button id="connect-nodes-button" class="icon-button" title="Conectar nós selecionados">
+          <span class="material-symbols-outlined">conversion_path</span>
+        </button>
+
+        <button id="disconnect-nodes-button" class="icon-button" title="Desconectar nós selecionados">
+          <span class="material-symbols-outlined">conversion_path_off</span>
+        </button>
+
+        <button id="draw-mode-button" class="icon-button" title="Modo desenho">
+          <span class="material-symbols-outlined">rebase_edit</span>
+        </button>
+
+        <button id="clear-button" class="icon-button" title="Limpar nós e arestas">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+
+        <button id="generate-tags-button" class="icon-button" title="Adicionar tag nos nós">
+          <span class="material-symbols-outlined">new_label</span>
+        </button>
       </div>
-    </div>
-    <div id="header-buttons">
-      <div id="graph-actions">
-        <button id="add-node-button" class="graph-button">Adicionar nó</button>
-        <button id="remove-node-button" class="graph-button">Remover nó</button>
-        <button id="remove-edge-button" class="graph-button">Remover aresta</button>
-        <button id="connect-nodes-button" class="graph-button">Conectar nós</button>
-        <button id="disconnect-nodes-button" class="graph-button">Desconectar nós</button>
-        <button id="clear-button" class="graph-button">Limpar</button>
-        <button id="generate-tags-button" class="graph-button">Gerar Tags</button>
-        <button id="load-graph-button" class="graph-button">Carregar Grafo</button>
-        <div id="save-graph-dropdown-container" class="save-graph-dropdown-container">
-          <button id="save-graph-button" class="graph-button">
-            Salvar Grafo
-          </button>
-          <div id="save-graph-dropdown">
-            <div id="save-graph-json" class="save-graph-dropdown-option"><p>JSON</p></div>
-            <div id="save-graph-jpeg" class="save-graph-dropdown-option"><p>JPEG</p></div>
-            <div id="save-graph-png" class="save-graph-dropdown-option"><p>PNG</p></div>
-          </div>
-        </div>
-      </div>
-      <div id="config-and-info">
+
+      <div class="button-group">
+        <button id="upload-button" class="icon-button">
+          <span class="material-symbols-outlined">upload_file</span>
+        </button>
+
+        <button id="download-button" class="icon-button">
+          <span class="material-symbols-outlined">download</span>
+        </button>
+
         <a id="github-page-button" href="https://github.com/graphxperience/graphxperience.github.io" target="_blank">
           <img id="github-page-button-img" class="" src="./assets/github.svg">
         </a>
-        <button id="open-config-editor-button" class="graph-button">
-          <img id="open-config-editor-button-img" src="./assets/configuration.svg">
+
+        <button id="open-config-editor-button" class="icon-button fill">
+          <span class="material-symbols-outlined">settings</span>
         </button>
-        <button id="global-info-button" class="graph-button">
-          <img src="./assets/info.svg" id="global-info-icon" class="info-icon">
+
+        <button id="global-info-button" class="icon-button">
+          <span class="material-symbols-outlined">info</span>
         </button>
       </div>
     </div>
@@ -147,6 +172,21 @@
         </li>
       </ul>
     </div>
+
+    <dialog id="download-modal" class="modal2">
+      <div class="modal2-content">
+        <h1 class="modal-title">Salvar Grafo</h1>
+        <div class="modal-section">
+          <button id="download-json" class="graph-button-2">JSON</button>
+          <button id="download-jpeg" class="graph-button-2">JPEG</button>
+          <button id="download-png" class="graph-button-2">PNG</button>
+        </div>
+        <div class="modal-section">
+          <button class="modal-close">X</button>
+        </div>
+      </div>
+    </dialog>
+
     <div id="custom-algorithms-modal" class="modal">
       <div id="custom-algorithms-modal-content" class="modal-content">
         <span id="custom-algorithms-close-button" class="modal-close-button">&times;</span>

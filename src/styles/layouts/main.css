@@ -1,0 +1,10 @@
+main {
+    height: calc(100% - 5em);
+    width: 100%;
+}
+
+#cy {
+    background-color: transparent;
+    height: 100%;
+    z-index: 990;
+}
