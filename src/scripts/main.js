@@ -19,7 +19,6 @@ var cy = getCytoscape();
 var eh = getEdgeHandles();
 var ur = getUndoRedo();
 
-handleHamburgerButtonClick();
 handleSlideSpeedDisplayInput();
 handleSelectByRightClick();
 
@@ -30,19 +29,22 @@ setupPredefinedGraphsModal();
 document.addEventListener('keydown', handleKeyDownEvent);
 document.addEventListener('mousemove', handleMouseMoveEvent);
 
+document.getElementById('sidebar-menu').addEventListener('click', handleMenuClick);
 document.getElementById('add-node-button').addEventListener('click', () => createNode(mousePosition));
-document.getElementById('remove-node-button').addEventListener('click', () => removeElements(cy.$('node:selected')));
-document.getElementById('remove-edge-button').addEventListener('click', () => removeElements(cy.$('edge:selected')));
+document.getElementById('remove-elements-button').addEventListener('click', () => removeElements(cy.$(':selected')));
 document.getElementById('connect-nodes-button').addEventListener('click', () => connectNodes(Array.from(cy.data('selectedNodeIds')).map(id => cy.$id(id))));
 document.getElementById('disconnect-nodes-button').addEventListener('click', () => disconnectEdges(cy.$('node:selected')));
 document.getElementById('clear-button').addEventListener('click', () => clear());
 document.getElementById('generate-tags-button').addEventListener('click', () => { generateNodeTags(); cy.trigger('save'); });
 
-document.getElementById('load-graph-button').addEventListener('click', () => loadGraphJson());
+document.getElementById('upload-button').addEventListener('click', () => loadGraphJson());
 
-document.getElementById('save-graph-json').addEventListener('click', () => saveGraphJson());
-document.getElementById('save-graph-jpeg').addEventListener('click', () => saveGraphJpeg());
-document.getElementById('save-graph-png').addEventListener('click', () => saveGraphPng());
+const downloadModal = document.getElementById('download-modal');
+downloadModal.querySelector('.modal-close').addEventListener('click', () => downloadModal.close());
+document.getElementById('download-button').addEventListener('click', () => downloadModal.showModal());
+document.getElementById('download-json').addEventListener('click', () => saveGraphJson());
+document.getElementById('download-jpeg').addEventListener('click', () => saveGraphJpeg());
+document.getElementById('download-png').addEventListener('click', () => saveGraphPng());
 
 const globalConfigEditor = getGlobalConfigEditor(cy);
 document.getElementById('open-config-editor-button').addEventListener('click', () => globalConfigEditor.open());
@@ -148,17 +150,13 @@ function handleMouseMoveEvent(event) {
     mousePosition.y = event.y - topMenuHeight;
 }
 
-function handleHamburgerButtonClick() {
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('side-bar');
+function handleMenuClick(event) {
+    if (event.target.classList.contains('disabled')) {
+        return;
+    }
+    event.target.textContent = event.target.textContent === 'menu' ? 'menu_open' : 'menu';
 
-    hamburger.addEventListener('click', () => {
-        if (hamburger.classList.contains('disabled')) {
-            return;
-        }
-        sidebar.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
+    document.getElementById('side-bar').classList.toggle('active');
 }
 
 function handleSlideSpeedDisplayInput() {
@@ -203,6 +201,16 @@ function handleEnterKeyDown() {
 
             if (okButton) {
                 okButton.click();
+                return;
+            }
+        }
+    }
+
+    for (const $modal2 of document.querySelectorAll('.modal2')) {
+        if ($modal2.open) {
+            const confirm = $modal2.querySelector('.modal-confirm');
+            if (confirm) {
+                confirm.click();
                 return;
             }
         }
