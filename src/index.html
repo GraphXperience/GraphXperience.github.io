@@ -224,14 +224,18 @@
         <button id="predefined-graph-specifications-cancel-button" class="graph-button">Cancelar</button>
       </div>
     </div>
-    <div id="tag-editor" class="modal editor">
-      <div id="tag-editor-content" class="modal-content">
-        <h3>Editar Tag</h3>
-        <input type="text" id="new-tag-input" placeholder="Ex: teste123">
-        <button id="tag-editor-ok-button" class="graph-button">OK</button>
-        <button id="tag-editor-cancel-button" class="graph-button">Cancelar</button>
+
+    <dialog id="tag-editor" class="modal2">
+      <div class="modal2-content">
+        <h1 class="modal-title">Editar Tag</h1>
+        <input type="text" id="tag-input" class="modal-input" placeholder="Ex: 123">
+        <div class="modal-section">
+          <button class="modal-close">X</button>
+          <button class="modal-confirm">OK</button>
+        </div>
       </div>
-    </div>
+    </dialog>
+
     <div id="color-editor" class="modal editor">
       <div id="color-editor-content" class="modal-content">
         <h3>Editar Cor</h3>
