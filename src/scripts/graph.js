@@ -1,5 +1,5 @@
 import { getCytoscape, getUndoRedo } from "./context";
-import { removeTag } from "./extensions/element-extensions";
+import { removeTag, setTag } from "./extensions/element-extensions";
 import { getRandomUuid } from "./utils";
 
 var cy = getCytoscape();
@@ -80,6 +80,14 @@ function disconnectEdges(nodes) {
     ur.do('remove', edges);
 }
 
+function generateEdgeTags() {
+    cy.edges().forEach((edge, i) => setTag(edge, i.toString()));
+}
+
+function generateNodeTags() {
+    cy.nodes().forEach((node, i) => setTag(node, i.toString()));
+}
+
 function removeElement(element) {
     removeTag(element);
 
@@ -113,6 +121,8 @@ export {
     connectNodes,
     createNode,
     disconnectEdges,
+    generateEdgeTags,
+    generateNodeTags,
     removeElement,
     removeElements,
     removeBidirectionalEdges
