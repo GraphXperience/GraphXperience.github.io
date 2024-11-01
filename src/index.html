@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GraphXperience</title>
-  <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./styles/animation-console.css">
   <link rel="stylesheet" href="./styles/animation-control.css">
@@ -22,6 +21,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" rel="stylesheet" />
 
+  <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/base.css">
   <link rel="stylesheet" href="./styles/header.css">
   <link rel="stylesheet" href="./styles/sidebar-menu.css">
@@ -79,7 +79,7 @@
           <img id="github-page-button-img" class="" src="./assets/github.svg">
         </a>
 
-        <button id="open-config-editor-button" class="icon-button fill">
+        <button id="global-config-editor-button" class="icon-button fill">
           <span class="material-symbols-outlined">settings</span>
         </button>
 
@@ -186,7 +186,70 @@
       </div>
     </dialog>
 
-    <div id="custom-algorithms-modal" class="modal">
+    <dialog id="global-config-editor" class="modal">
+      <div class="modal-content" data-gap="2">
+        <h1 class="modal-title">Configurações Gerais</h1>
+
+        <div class="modal-section">
+          <p>Cor dos nós</p>
+          <div id="gc-node-color-input"></div>
+        </div>
+
+        <div class="modal-section">
+          <p>Cor das arestas</p>
+          <div id="gc-edge-color-input"></div>
+        </div>
+
+        <div class="modal-section">
+          <p>Cor das tags</p>
+          <div id="gc-tag-color-input"></div>
+        </div>
+
+        <div class="modal-section">
+          <p>Tamanho do nó (1-10)</p>
+          <input type="number" id="gc-node-size-input" class="modal-input" min="1" max="10">
+        </div>
+
+        <div class="modal-section">
+          <p>Espessura da aresta (1-10)</p>
+          <input type="number" id="gc-edge-thickness-input" class="modal-input" min="1" max="10">
+        </div>
+
+        <div class="modal-section">
+          <p>Grafo direcionado?</p>
+          <input type="checkbox" id="gc-direct-input">
+        </div>
+
+        <div class="modal-section">
+          <p>Peso nos nós?</p>
+          <input type="checkbox" id="gc-node-weighted-input">
+        </div>
+
+        <div class="modal-section">
+          <p>Peso nas arestas?</p>
+          <input type="checkbox" id="gc-edge-weighted-input">
+        </div>
+
+        <div class="modal-section">
+          <button id="gc-reset-button" class="icon-button" title="Restaurar Aplicação">
+            <span class="material-symbols-outlined">reset_settings</span>
+          </button>
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="tag-editor" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Editar Tag</h1>
+        <input type="text" id="tag-input" class="modal-input" placeholder="Ex: 123">
+        <div class="modal-section">
+          <button class="modal-close">X</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
       <div id="custom-algorithms-modal-content" class="modal-content">
         <span id="custom-algorithms-close-button" class="modal-close-button">&times;</span>
         <h3>Detalhes do Algoritmo</h3>
@@ -259,55 +322,7 @@
         <button id="weight-editor-cancel-button" class="graph-button">Cancelar</button>
       </div>
     </div>
-    <div id="config-editor" class="modal editor">
-      <div id="config-editor-content" class="modal-content">
-        <div class="config-editor-grid-item">
-          <p>Cor dos nós</p>
-          <div id="config-editor-node-color-input"></div>
-        </div>
-
-        <div class="config-editor-grid-item">
-          <p>Cor das arestas</p>
-          <div id="config-editor-edge-color-input"></div>
-        </div>
-
-        <div class="config-editor-grid-item">
-          <p>Cor das tags</p>
-          <div id="config-editor-tag-color-input"></div>
-        </div>
-
-        <div class="config-editor-grid-item config-editor-node-size">
-          <label for="config-editor-node-size-input">Tamanho do nó (1-10)</label>
-          <input type="number" id="config-editor-node-size-input" min="1" max="10">
-        </div>
-
-        <div class="config-editor-grid-item config-editor-edge-thickness">
-          <label for="config-editor-edge-thickness-input">Espessura da aresta (1-10)</label>
-          <input type="number" id="config-editor-edge-thickness-input" min="1" max="10">
-        </div>
-
-        <div class="config-editor-grid-item config-editor-direct">
-          <label for="config-editor-direct-input">Grafo direcionado?</label>
-          <input type="checkbox" id="config-editor-direct-input">
-        </div>
-
-        <div class="config-editor-grid-item config-editor-node-weighted">
-          <label for="config-editor-node-weighted-input">Peso nos nós?</label>
-          <input type="checkbox" id="config-editor-node-weighted-input">
-        </div>
-
-        <div class="config-editor-grid-item config-editor-edge-weighted">
-          <label for="config-editor-edge-weighted-input">Peso nas arestas?</label>
-          <input type="checkbox" id="config-editor-edge-weighted-input">
-        </div>
-
-        <div class="config-editor-grid-item config-editor-confirm-buttons">
-          <button id="config-editor-reset-button" class="graph-button">Resetar Aplicação</button>
-          <button id="config-editor-cancel-button" class="graph-button">Cancelar</button>
-          <button id="config-editor-ok-button" class="graph-button">OK</button>
-        </div>
-      </div>
-    </div>
+    
     <div id="algorithm-popup" class="modal">
       <div id="algorithm-popup-content" class="modal-content">
         <button id="algorithm-popup-close-button" class="modal-close-button">&times;</button>

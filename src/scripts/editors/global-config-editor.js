@@ -1,18 +1,18 @@
 import { resetCytoscape } from "../context";
 import { resetLocalStorage, setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
-import { clear, removeBidirectionalEdges } from "../graph";
+import { clear } from "../graph";
 import { getTagColor, setTagColor, validateMinMax } from "../utils";
 import { openPopup } from '../popup';
 
-const configEditor = document.getElementById('config-editor');
-const sizeInput = document.getElementById('config-editor-node-size-input');
-const edgeThicknessInput = document.getElementById('config-editor-edge-thickness-input');
-const directInput = document.getElementById('config-editor-direct-input');
-const nodeWeightedInput = document.getElementById('config-editor-node-weighted-input');
-const edgeWeightedInput = document.getElementById('config-editor-edge-weighted-input');
-const resetButton = document.getElementById('config-editor-reset-button');
-const cancelButton = document.getElementById('config-editor-cancel-button');
-const okButton = document.getElementById('config-editor-ok-button');
+const configEditor = document.getElementById('global-config-editor');
+const sizeInput = document.getElementById('gc-node-size-input');
+const edgeThicknessInput = document.getElementById('gc-edge-thickness-input');
+const directInput = document.getElementById('gc-direct-input');
+const nodeWeightedInput = document.getElementById('gc-node-weighted-input');
+const edgeWeightedInput = document.getElementById('gc-edge-weighted-input');
+const resetButton = document.getElementById('gc-reset-button');
+const cancelButton = configEditor.querySelector('.modal-close');
+const okButton = configEditor.querySelector('.modal-confirm');
 
 class GlobalConfigEditor {
     constructor(cy) {
@@ -26,10 +26,10 @@ class GlobalConfigEditor {
             clear();
             resetCytoscape();
 
-            configEditor.style.display = 'none';
+            configEditor.close();
         });
 
-        cancelButton.addEventListener('click', () => { configEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { configEditor.close(); });
 
         okButton.addEventListener('click', () => {
             if (cy.data('isDirected') !== directInput.checked) {
@@ -92,7 +92,7 @@ class GlobalConfigEditor {
 
             this.cy.trigger('save');
 
-            configEditor.style.display = 'none';
+            configEditor.close();
         });
     }
 
@@ -118,7 +118,7 @@ class GlobalConfigEditor {
         nodeWeightedInput.checked = this.cy.data('isNodeWeighted');
         edgeWeightedInput.checked = this.cy.data('isEdgeWeighted');
 
-        configEditor.style.display = 'block';
+        configEditor.showModal();
     }
 }
 

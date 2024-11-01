@@ -8,19 +8,22 @@ function setupAlwan(cy) {
     }));
 
     const styles = cy.style().json();
-    cy.data('alwan-ce-node', new Alwan('#config-editor-node-color-input', {
+    cy.data('alwan-ce-node', new Alwan('#gc-node-color-input', {
+        parent: '#gc-node-color-input',
         opacity: false,
         theme: 'dark',
         color: rgbStrToHex(styles.find(s => s.selector === 'node').style["background-color"])
     }));
 
-    cy.data('alwan-ce-edge', new Alwan('#config-editor-edge-color-input', {
+    cy.data('alwan-ce-edge', new Alwan('#gc-edge-color-input', {
+        parent: '#gc-edge-color-input',
         opacity: false,
         theme: 'dark',
         color: rgbStrToHex(styles.find(s => s.selector === 'edge').style["line-color"])
     }));
 
-    cy.data('alwan-ce-tag', new Alwan('#config-editor-tag-color-input', {
+    cy.data('alwan-ce-tag', new Alwan('#gc-tag-color-input', {
+        parent: '#gc-tag-color-input',
         opacity: false,
         theme: 'dark',
         color: rgbStrToHex(getTagColor())
