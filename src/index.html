@@ -186,23 +186,46 @@
       </div>
     </dialog>
 
+    <dialog id="color-editor" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Editar Cor</h1>
+
+        <div class="modal-section">
+          <div id="color-input-container">
+            <div id="color-input"></div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
+
     <dialog id="global-config-editor" class="modal">
       <div class="modal-content" data-gap="2">
         <h1 class="modal-title">Configurações Gerais</h1>
 
         <div class="modal-section">
           <p>Cor dos nós</p>
-          <div id="gc-node-color-input"></div>
+          <div id="gc-node-color-input-container">
+            <div id="gc-node-color-input"></div>
+          </div>
         </div>
 
         <div class="modal-section">
           <p>Cor das arestas</p>
-          <div id="gc-edge-color-input"></div>
+          <div id="gc-edge-color-input-container">
+            <div id="gc-edge-color-input"></div>
+          </div>
         </div>
 
         <div class="modal-section">
           <p>Cor das tags</p>
-          <div id="gc-tag-color-input"></div>
+          <div id="gc-tag-color-input-container">
+            <div id="gc-tag-color-input"></div>
+          </div>
         </div>
 
         <div class="modal-section">
@@ -287,25 +310,6 @@
       </div>
     </div>
 
-    <dialog id="tag-editor" class="modal">
-      <div class="modal-content">
-        <h1 class="modal-title">Editar Tag</h1>
-        <input type="text" id="tag-input" class="modal-input" placeholder="Ex: 123">
-        <div class="modal-section">
-          <button class="modal-close">X</button>
-          <button class="modal-confirm">OK</button>
-        </div>
-      </div>
-    </dialog>
-
-    <div id="color-editor" class="modal editor">
-      <div id="color-editor-content" class="modal-content">
-        <h3>Editar Cor</h3>
-        <div id="color-input"></div>
-        <button id="color-editor-ok-button" class="graph-button">OK</button>
-        <button id="color-editor-cancel-button" class="graph-button">Cancelar</button>
-      </div>
-    </div>
     <div id="size-editor" class="modal editor">
       <div id="size-editor-content" class="modal-content">
         <h3>Editar Tamanho</h3>

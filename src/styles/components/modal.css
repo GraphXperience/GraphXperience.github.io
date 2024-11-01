@@ -53,16 +53,14 @@
     padding-left: 0.5em;
 }
 
-.modal-section input {
-    width: 3em;
-}
-
 .modal-section input[type=number] {
     text-align: center;
+    width: 3em;
 }
 
 .modal-section input[type=checkbox] {
     height: 3em;
+    width: 3em;
 }
 
 .modal-close {
