@@ -7,7 +7,7 @@ function setupCxtMenu(cy) {
     const colorEditor = getColorEditor(cy);
     const sizeEditor = getSizeEditor(cy);
     const tagEditor = getTagEditor(cy);
-    // const weightEditor = getWeightEditor(cy);
+    const weightEditor = getWeightEditor(cy);
 
     let defaults = {
         menuRadius: 100,
