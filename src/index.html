@@ -273,6 +273,19 @@
         </div>
       </div>
     </dialog>
+
+    <dialog id="size-editor" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Editar Tamanho</h1>
+        
+        <input type="number" id="new-size-input" class="modal-input" min="1" max="10">
+
+        <div class="modal-section">
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
       <div id="custom-algorithms-modal-content" class="modal-content">
         <span id="custom-algorithms-close-button" class="modal-close-button">&times;</span>
         <h3>Detalhes do Algoritmo</h3>
@@ -310,14 +323,6 @@
       </div>
     </div>
 
-    <div id="size-editor" class="modal editor">
-      <div id="size-editor-content" class="modal-content">
-        <h3>Editar Tamanho</h3>
-        <input type="number" id="new-size-input" min="1" max="10">
-        <button id="size-editor-ok-button" class="graph-button">OK</button>
-        <button id="size-editor-cancel-button" class="graph-button">Cancelar</button>
-      </div>
-    </div>
     <div id="weight-editor" class="modal editor">
       <div id="weight-editor-content" class="modal-content">
         <h3>Editar Peso</h3>

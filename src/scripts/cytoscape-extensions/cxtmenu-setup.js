@@ -5,7 +5,7 @@ import { getWeightEditor } from '../editors/weight-editor';
 
 function setupCxtMenu(cy) {
     const colorEditor = getColorEditor(cy);
-    // const sizeEditor = getSizeEditor(cy);
+    const sizeEditor = getSizeEditor(cy);
     const tagEditor = getTagEditor(cy);
     // const weightEditor = getWeightEditor(cy);
 
