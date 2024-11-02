@@ -28,6 +28,7 @@ function setupCustomAlgorithmsModal() {
         if (!algorithmName) {
             alert('Coloque um nome de algoritmo válido');
             nameInput.focus();
+            nameInput.select();
             return;
         }
 
@@ -110,6 +111,7 @@ function openCustomAlgorithmsModal(existentCustomAlgorithm) {
     modal.style.display = 'block';
     nameInput.value = getCurrentFile().name;
     nameInput.focus();
+    nameInput.select();
 }
 
 export {

@@ -38,6 +38,7 @@ class TagEditor {
         tagEditor.querySelector('h3').innerText = title;
         tagEditor.style.display = "block";
         tagInput.focus();
+        tagInput.select();
     }
 }
 

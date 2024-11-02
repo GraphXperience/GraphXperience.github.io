@@ -52,6 +52,7 @@ class SizeEditor {
         sizeEditor.querySelector('h3').innerText = title;
         sizeEditor.style.display = 'block';
         sizeInput.focus();
+        sizeInput.select();
     }
 }
 
