@@ -12,6 +12,7 @@ import { toggleDrawMode } from './cytoscape-extensions/edgehandles-setup';
 import { openPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { run } from './algorithms';
 import { getGlobalConfigEditor } from './editors/global-config-editor';
+import { isAnyModalOpened } from './utils';
 
 var mousePosition = { x: 0, y: 0 };
 
@@ -89,13 +90,21 @@ function handleKeyDownEvent(event) {
         return;
     }
 
+    const isModalOpened = isAnyModalOpened();
+
+    if (event.keyCode === ENTER_KEY_CODE) {
+        handleEnterKeyDown();
+        return;
+    } else if (event.keyCode === ESC_KEY_CODE) {
+        handleEscKeyDown();
+        return;
+    }
+
+    if (isModalOpened) {
+        return;
+    }
+
     switch (event.keyCode) {
-        case ENTER_KEY_CODE:
-            handleEnterKeyDown();
-            break;
-        case ESC_KEY_CODE:
-            handleEscKeyDown();
-            break;
         case DELETE_KEY_CODE:
             removeElements(cy.$(':selected'));
             break;
