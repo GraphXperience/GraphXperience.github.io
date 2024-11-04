@@ -61,6 +61,11 @@
     gap: 5em;
 }
 
+.modal-section[data-fd-column] {
+    flex-direction: column;
+    gap: 3em;
+}
+
 .modal-input {
     color: var(--main-color);
     font-size: 1.6em;
