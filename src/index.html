@@ -125,41 +125,43 @@
           <img src="./assets/info.svg" id="get-shortest-path-info-icon" class="info-icon">
         </li>
       </ul>
-      <h1>Grafos Predefinidos</h1>
+      
+      <h1>Criar Grafo Predefinido</h1>
       <ul id="predefined-graphs-section" class="side-bar-section">
         <li>
           <button id="regular-graph-button" class="side-bar-button">Grafo Regular</button>
-          <img src="./assets/info.svg" id="regular-graph-info-icon" class="info-icon">
+          <span id="regular-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="complete-graph-button" class="side-bar-button">Grafo Completo</button>
-          <img src="./assets/info.svg" id="complete-graph-info-icon" class="info-icon">
+          <span id="complete-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="star-graph-button" class="side-bar-button">Grafo Estrela</button>
-          <img src="./assets/info.svg" id="star-graph-info-icon" class="info-icon">
+          <span id="star-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="wheel-graph-button" class="side-bar-button">Grafo Roda</button>
-          <img src="./assets/info.svg" id="wheel-graph-info-icon" class="info-icon">
+          <span id="wheel-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="bipartite-graph-button" class="side-bar-button">Grafo Bipartido</button>
-          <img src="./assets/info.svg" id="bipartite-graph-info-icon" class="info-icon">
+          <span id="bipartite-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="complete-bipartite-graph-button" class="side-bar-button">Grafo Bipartido Completo</button>
-          <img src="./assets/info.svg" id="complete-bipartite-graph-info-icon" class="info-icon">
+          <span id="complete-bipartite-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="binary-tree-graph-button" class="side-bar-button">Grafo Árvore Binária</button>
-          <img src="./assets/info.svg" id="binary-tree-graph-info-icon" class="info-icon">
+          <span id="binary-tree-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
           <button id="petersen-graph-button" class="side-bar-button">Grafo de Petersen</button>
-          <img src="./assets/info.svg" id="petersen-graph-info-icon" class="info-icon">
+          <span id="petersen-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
       </ul>
+
       <h1>Algoritmos Personalizados</h1>
       <ul id="custom-algorithms-section" class="side-bar-section">
         <li>
@@ -181,13 +183,14 @@
           <button id="download-jpeg" class="graph-button-2">JPEG</button>
           <button id="download-png" class="graph-button-2">PNG</button>
         </div>
-        
+
         <div class="modal-section">
           <button class="modal-close">X</button>
         </div>
       </div>
     </dialog>
 
+    <!-- #region Editors -->
     <dialog id="color-editor" class="modal">
       <div class="modal-content">
         <h1 class="modal-title">Editar Cor</h1>
@@ -281,7 +284,7 @@
     <dialog id="tag-editor" class="modal">
       <div class="modal-content">
         <h1 class="modal-title">Editar Tag</h1>
-        
+
         <input type="text" id="tag-input" class="modal-input" placeholder="Ex: 123">
 
         <div class="modal-section">
@@ -303,26 +306,73 @@
         </div>
       </div>
     </dialog>
-      <div id="custom-algorithms-modal-content" class="modal-content">
-        <span id="custom-algorithms-close-button" class="modal-close-button">&times;</span>
-        <h3>Detalhes do Algoritmo</h3>
-        <label for="custom-algorithms-name-input">Nome:</label>
-        <input type="text" id="custom-algorithms-name-input">
-        <label for="custom-algorithms-description-textarea">Descrição:</label>
-        <textarea id="custom-algorithms-description-textarea"></textarea>
-        <button id="custom-algorithms-ok-button" class="graph-button">OK</button>
-        <button id="custom-algorithms-cancel-button" class="graph-button">Cancelar</button>
+    <!-- #endregion -->
+
+    <dialog id="custom-algorithms-modal" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Detalhes do Algoritmo</h1>
+
+        <div class="modal-section">
+          <p>Nome:</p>
+          <input type="text" id="ca-name-input" class="modal-input">
+        </div>
+
+        <div class="modal-section">
+          <p for="ca-description-textarea">Descrição:</p>
+          <textarea id="ca-description-textarea" class="modal-input"></textarea>
+        </div>
+
+        <div class="modal-section">
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
       </div>
-    </div>
-    <div id="confirm-overwrite-modal" class="modal">
-      <div id="confirm-overwrite-modal-content" class="modal-content">
-        <span id="confirm-overwrite-close-button" class="modal-close-button">&times;</span>
-        <h3>Substituir Algoritmo</h3>
+    </dialog>
+
+    <dialog id="confirm-overwrite-modal" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Substituir Algoritmo</h1>
+
         <p>Já existe um algoritmo com esse nome. Deseja substituí-lo?</p>
-        <button id="confirm-overwrite-ok-button" class="graph-button">Sim</button>
-        <button id="confirm-overwrite-cancel-button" class="graph-button">Não</button>
+
+        <div class="modal-section">
+          <button class="modal-close">Não</button>
+          <button class="modal-confirm">Sim</button>
+        </div>
       </div>
-    </div>
+    </dialog>
+
+    <dialog id="predefined-graph-specifications-modal" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Especificações do Grafo</h1>
+
+        <div id="pgs-nodes-section" class="modal-section">
+          <p>Numero de Nós:</p>
+          <input type="number" id="pgs-nodes-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-nodes-2-section" class="modal-section">
+          <p>Numero de Nós da Segunda Partição:</p>
+          <input type="number" id="pgs-nodes-2-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-degree-section" class="modal-section">
+          <p>Grau dos Nós:</p>
+          <input type="number" id="pgs-degree-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-height-section" class="modal-section">
+          <p>Altura da Árvore:</p>
+          <input type="number" id="pgs-height-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div class="modal-section">
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
+
     <div id="predefined-graph-specifications-modal" class="modal">
       <div id="predefined-graph-specifications-modal-content" class="modal-content">
         <span id="predefined-graph-specifications-close-button" class="modal-close-button">&times;</span>

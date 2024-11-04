@@ -6,6 +6,8 @@
     padding: 5em;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
     border-radius: 1em;
+
+    max-width: 50%;
 }
 
 .modal-content {
@@ -15,12 +17,25 @@
 
     height: 100%;
     width: 100%;
+
+    color: var(--main-color);
 }
 
-.modal-content[data-gap="1"] { gap: 1em; }
-.modal-content[data-gap="2"] { gap: 2em; }
-.modal-content[data-gap="3"] { gap: 3em; }
-.modal-content[data-gap="4"] { gap: 4em; }
+.modal-content[data-gap="1"] {
+    gap: 1em;
+}
+
+.modal-content[data-gap="2"] {
+    gap: 2em;
+}
+
+.modal-content[data-gap="3"] {
+    gap: 3em;
+}
+
+.modal-content[data-gap="4"] {
+    gap: 4em;
+}
 
 .modal-title {
     color: var(--main-color);
@@ -61,6 +76,10 @@
 .modal-section input[type=checkbox] {
     height: 3em;
     width: 3em;
+}
+
+.modal-section textarea {
+    color: var(--main-color);
 }
 
 .modal-close {
