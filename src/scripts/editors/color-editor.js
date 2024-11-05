@@ -1,17 +1,16 @@
 import { RESET_COLOR } from "../../constants/colors";
 import { setColor } from "../extensions/element-extensions";
-import { rgbStrToHex } from "../utils";
 
 const colorEditor = document.getElementById('color-editor');
 
-const cancelButton = document.getElementById('color-editor-cancel-button');
-const okButton = document.getElementById('color-editor-ok-button');
+const cancelButton = colorEditor.querySelector('.modal-close');
+const okButton = colorEditor.querySelector('.modal-confirm');
 
 class ColorEditor {
     constructor(cy) {
         this.cy = cy;
 
-        cancelButton.addEventListener('click', () => { colorEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { colorEditor.close(); });
 
         okButton.addEventListener('click', () => {
             const newColor = cy.data('alwan-ce').getColor().hex;
@@ -19,7 +18,7 @@ class ColorEditor {
             this.elementsToEdit.forEach(element => setColor(element, newColor));
 
             this.cy.trigger('save');
-            colorEditor.style.display = 'none';
+            colorEditor.close();
         });
     }
 
@@ -39,8 +38,8 @@ class ColorEditor {
             this.cy.data('alwan-ce').setColor(RESET_COLOR);
         }
 
-        colorEditor.querySelector('h3').innerText = title;
-        colorEditor.style.display = 'block';
+        colorEditor.querySelector('h1').innerText = title;
+        colorEditor.showModal();
     }
 }
 

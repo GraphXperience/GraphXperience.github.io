@@ -5,8 +5,8 @@ const sizeEditor = document.getElementById('size-editor');
 
 const sizeInput = document.getElementById('new-size-input');
 
-const cancelButton = document.getElementById('size-editor-cancel-button');
-const okButton = document.getElementById('size-editor-ok-button');
+const cancelButton = sizeEditor.querySelector('.modal-close');
+const okButton = sizeEditor.querySelector('.modal-confirm');
 
 class SizeEditor {
     constructor(cy) {
@@ -14,7 +14,7 @@ class SizeEditor {
 
         sizeInput.addEventListener('change', (evt) => validateMinMax(evt, 1, 10));
 
-        cancelButton.addEventListener('click', () => { sizeEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { sizeEditor.close(); });
 
         okButton.addEventListener('click', () => {
             const size = sizeInput.value;
@@ -29,7 +29,7 @@ class SizeEditor {
             });
 
             this.cy.trigger('save');
-            sizeEditor.style.display = 'none';
+            sizeEditor.close();
         });
     }
 
@@ -49,9 +49,10 @@ class SizeEditor {
             sizeInput.value = 4;
         }
 
-        sizeEditor.querySelector('h3').innerText = title;
-        sizeEditor.style.display = 'block';
+        sizeEditor.querySelector('h1').innerText = title;
+        sizeEditor.showModal();
         sizeInput.focus();
+        sizeInput.select();
     }
 }
 

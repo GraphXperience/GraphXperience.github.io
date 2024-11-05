@@ -1,10 +1,10 @@
 #animation-console {
     position: fixed;
-    top: 3em;
-    right: -22em;
+    top: var(--header-size);
+    right: -32em;
     padding: 1em;
-    height: calc(100% - 5em);
-    width: 20em;
+    height: calc(100% - var(--header-size));
+    width: 30em;
     overflow-y: auto;
     z-index: 1000;
 
@@ -24,12 +24,16 @@
     -moz-box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-.animation-button {
+#animation-console p {
+    font-size: 1.6em;
+}
+
+.animation-button {    
     display: none;
     position: absolute;
-    top: 3em;
+    top: var(--header-size);
     right: 0;
-    padding: 0.5em 2em;
+    padding: 0.5em 4em;
 
     background-color: var(--main-color);
     border: 0;
@@ -42,4 +46,8 @@
 .animation-button.-active {
     transform: rotate(180deg);
     border-radius: 0 0.3em 0 0;
+}
+
+.animation-button span {
+    font-size: 1.6em;
 }
