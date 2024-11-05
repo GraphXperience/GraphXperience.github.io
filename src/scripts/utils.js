@@ -109,7 +109,7 @@ function isAnyModalOpened() {
     let modals = document.getElementsByClassName("modal");
 
     for (let modal of modals) {
-        if (modal.style.display === "block") {
+        if (modal.open) {
             return true;
         }
     }

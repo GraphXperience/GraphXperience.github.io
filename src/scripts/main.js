@@ -97,11 +97,8 @@ function handleKeyDownEvent(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
         handleEnterKeyDown();
         return;
-    } else if (event.keyCode === ESC_KEY_CODE) {
-        handleEscKeyDown();
-        return;
     }
-
+    
     if (isModalOpened) {
         return;
     }
