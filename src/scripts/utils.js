@@ -105,6 +105,18 @@ function invertColor(hex) {
     return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '#000000' : '#FFFFFF';
 }
 
+function isAnyModalOpened() {
+    let modals = document.getElementsByClassName("modal");
+
+    for (let modal of modals) {
+        if (modal.open) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 export {
     rgbToHex,
     rgbStrToHex,
@@ -114,5 +126,6 @@ export {
     getRandomUuid,
     getRandomColor,
     getTagColor,
-    setTagColor
+    setTagColor,
+    isAnyModalOpened,
 };
