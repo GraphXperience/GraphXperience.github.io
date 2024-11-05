@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./styles/github-button.css">
   <link rel="stylesheet" href="./styles/main.css">
   <link rel="stylesheet" href="./styles/side-bar.css">
+  <link rel="stylesheet" href="./styles/side-bar-button.css">
   <link rel="stylesheet" href="./styles/modal.css">
   <link rel="stylesheet" href="./styles/graph-button.css">
   <link rel="stylesheet" href="./styles/tooltip.css" title="tooltip">
@@ -85,9 +86,9 @@
     </div>
   </header>
   <main>
-    <div id="side-bar">
-      <h1>Testar Algoritmo</h1>
-      <ul id="algorithm-buttons-section" class="side-bar-section">
+    <div id="side-bar" class="side-bar">
+      <ul class="side-bar-section">
+        <h1>Testar Algoritmo</h1>
         <li>
           <button id="bfs-button" class="side-bar-button" title="Testar algoritmo Busca em Largura (BFS)">Busca em Largura (BFS)</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/bfs.js" target="_blank">
@@ -132,8 +133,8 @@
         </li>
       </ul>
 
-      <h1>Criar Grafo Predefinido</h1>
       <ul id="predefined-graphs-section" class="side-bar-section">
+        <h1>Criar Grafo Predefinido</h1>
         <li>
           <button id="regular-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Regular">Grafo Regular</button>
           <span id="regular-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Regular" class="material-symbols-outlined icon-button">info</span>
@@ -168,8 +169,8 @@
         </li>
       </ul>
 
-      <h1>Algoritmos Personalizados</h1>
       <ul id="custom-algorithms-section" class="side-bar-section">
+        <h1>Algoritmos Personalizados</h1>
         <li>
           <button id="ca-button-clear" class="side-bar-button" title="Remover todos os algoritmos personalizados">Limpar</button>
         </li>
