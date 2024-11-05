@@ -11,6 +11,8 @@
     --success: #75c75c;
     --error: #e23636;
     --warning: #edb95e;
+
+    --header-size: 6em;
 }
 
 *, p {

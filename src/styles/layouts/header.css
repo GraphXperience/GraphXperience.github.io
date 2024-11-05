@@ -1,11 +1,13 @@
 header {
+    font-size: 10px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
 
     background: var(--main-color);
 
-    height: 4em;
+    height: var(--header-size);
     width: 100%;
 }
 
