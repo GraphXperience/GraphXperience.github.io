@@ -95,7 +95,7 @@ function handleKeyDownEvent(event) {
     const isModalOpened = isAnyModalOpened();
 
     if (event.keyCode === ENTER_KEY_CODE) {
-        handleEnterKeyDown();
+        handleEnterKeyDown(event);
         return;
     }
     
