@@ -70,7 +70,7 @@ class GlobalConfigEditor {
 
             this.cy.style().fromJson(styles.cy);
 
-            setTagColor(styles.tag)
+            setTagColor(styles.tag);
 
             setGlobalStyle(styles);
             setGlobalConfig({

@@ -68,9 +68,11 @@ function getRandomColor() {
 }
 
 function getTagColor() {
-    for (var stylesheet of document.styleSheets) {
-        if (stylesheet.title === 'tooltip') {
-            return stylesheet.cssRules[0].style["background-color"];
+    for (let stylesheet of document.styleSheets) {
+        for (let cssRule of stylesheet.cssRules) {
+            if (cssRule.selectorText === '.tooltip-content') {
+                return cssRule.style["background-color"];
+            }
         }
     }
 }
@@ -80,10 +82,13 @@ function setTagColor(hex) {
         throw new Error("Invalid color");
     }
 
-    for (var stylesheet of document.styleSheets) {
-        if (stylesheet.title === 'tooltip') {
-            stylesheet.cssRules[0].style["background-color"] = hex;
-            stylesheet.cssRules[0].style["color"] = invertColor(hex);
+    for (let stylesheet of document.styleSheets) {
+        for (let cssRule of stylesheet.cssRules) {
+            if (cssRule.selectorText === '.tooltip-content') {
+                cssRule.style["background-color"] = hex;
+                cssRule.style["color"] = invertColor(hex);
+                return;
+            }
         }
     }
 }

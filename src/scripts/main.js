@@ -93,7 +93,7 @@ function handleKeyDownEvent(event) {
 
     switch (event.keyCode) {
         case ENTER_KEY_CODE:
-            handleEnterKeyDown();
+            handleEnterKeyDown(event);
             break;
         case DELETE_KEY_CODE:
             removeElements(cy.$(':selected'));
@@ -182,12 +182,14 @@ function handleSelectByRightClick() {
     });
 }
 
-function handleEnterKeyDown() {
+function handleEnterKeyDown(event) {
     for (const modal of document.querySelectorAll('.modal')) {
         if (modal.open) {
             const confirm = modal.querySelector('.modal-confirm');
             if (confirm) {
                 confirm.click();
+                modal.close();
+                event.preventDefault();
                 return;
             }
         }
