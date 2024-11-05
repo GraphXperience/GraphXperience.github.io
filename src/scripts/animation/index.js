@@ -53,9 +53,9 @@ async function onPreviousClick(event) {
 }
 
 async function onPlayPauseClick(event) {
-    const playPauseButtonImg = document.getElementById('play-pause-button-img');
+    const playPauseButtonImg = document.getElementById('ac-play-pause-img');
 
-    if (playPauseButtonImg.classList.contains('play')) {
+    if (playPauseButtonImg.textContent === 'play_circle') {
         showPauseIcon();
         await resumeAnimation();
         return;
