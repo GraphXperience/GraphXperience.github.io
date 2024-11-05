@@ -183,17 +183,6 @@ function handleSelectByRightClick() {
 }
 
 function handleEnterKeyDown() {
-    for (const modal of document.getElementsByClassName('modal')) {
-        if (modal.style.display === 'block') {
-            const okButton = modal.querySelector('.modal-content [id$="ok-button"]');
-
-            if (okButton) {
-                okButton.click();
-                return;
-            }
-        }
-    }
-
     for (const modal of document.querySelectorAll('.modal')) {
         if (modal.open) {
             const confirm = modal.querySelector('.modal-confirm');
