@@ -1,4 +1,4 @@
-.graph-button-2 {
+.graph-button {
     font-size: 1.6em;
 
     background-color: var(--main-color);
@@ -9,11 +9,18 @@
     cursor: pointer;
 }
 
-.graph-button-2:hover {
+.graph-button:hover {
     background: var(--secondary-color);
     transition: background 0.25s ease-in-out;
 }
 
-.graph-button-2:active {
+.graph-button:active {
     background: var(--main-color);
+}
+
+.graph-button:disabled {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    cursor: not-allowed;
+    opacity: 0.6;
 }
