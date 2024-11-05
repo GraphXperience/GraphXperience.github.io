@@ -52,6 +52,7 @@ class SizeEditor {
         sizeEditor.querySelector('h1').innerText = title;
         sizeEditor.showModal();
         sizeInput.focus();
+        sizeInput.select();
     }
 }
 

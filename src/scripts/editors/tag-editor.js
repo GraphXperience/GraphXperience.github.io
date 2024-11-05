@@ -38,6 +38,7 @@ class TagEditor {
         editorTitle.innerText = title;
         tagEditor.showModal();
         tagInput.focus();
+        tagInput.select();
     }
 }
 

@@ -60,6 +60,7 @@ class WeightEditor {
         weightEditor.querySelector('h1').innerText = title;
         weightEditor.showModal();
         newWeightInput.focus();
+        newWeightInput.select();
     }
 }
 
