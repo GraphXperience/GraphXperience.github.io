@@ -5,15 +5,17 @@ import { removeCustomAlgorithm } from './custom-algorithms.js';
 
 const section = document.getElementById('custom-algorithms-section');
 const modal = document.getElementById('custom-algorithms-modal');
-const closeButton = document.getElementById('custom-algorithms-close-button');
-const confirmButton = document.getElementById('custom-algorithms-ok-button');
-const cancelButton = document.getElementById('custom-algorithms-cancel-button');
-const nameInput = document.getElementById('custom-algorithms-name-input');
-const descriptionInput = document.getElementById('custom-algorithms-description-textarea');
+
+const nameInput = document.getElementById('ca-name-input');
+const descriptionInput = document.getElementById('ca-description-textarea');
+
+const cancelButton = modal.querySelector('.modal-close');
+const confirmButton = modal.querySelector('.modal-confirm');
+
 
 function setupCustomAlgorithmsModal() {
     const closeModal = () => {
-        modal.style.display = 'none';
+        modal.close();
         nameInput.value = '';
         descriptionInput.value = '';
 
@@ -26,7 +28,7 @@ function setupCustomAlgorithmsModal() {
         const fileContent = getCurrentFile().fileContent;
         
         if (!algorithmName) {
-            alert('Coloque um nome de algoritmo válido');
+            alert('Coloque um nome de algoritmo válido.');
             nameInput.focus();
             return;
         }
@@ -44,7 +46,6 @@ function setupCustomAlgorithmsModal() {
         closeModal();
     }
 
-    closeButton.addEventListener('click', closeModal);
     cancelButton.addEventListener('click', closeModal);
     confirmButton.addEventListener('click', confirmAlgorithm);
 }
@@ -107,7 +108,7 @@ function openCustomAlgorithmsModal(existentCustomAlgorithm) {
         descriptionInput.value = existentCustomAlgorithm.description;
     }
 
-    modal.style.display = 'block';
+    modal.showModal();
     nameInput.value = getCurrentFile().name;
     nameInput.focus();
 }

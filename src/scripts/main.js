@@ -19,7 +19,6 @@ var cy = getCytoscape();
 var eh = getEdgeHandles();
 var ur = getUndoRedo();
 
-handleHamburgerButtonClick();
 handleSlideSpeedDisplayInput();
 handleSelectByRightClick();
 
@@ -30,22 +29,25 @@ setupPredefinedGraphsModal();
 document.addEventListener('keydown', handleKeyDownEvent);
 document.addEventListener('mousemove', handleMouseMoveEvent);
 
+document.getElementById('sidebar-menu').addEventListener('click', handleMenuClick);
 document.getElementById('add-node-button').addEventListener('click', () => createNode(mousePosition));
-document.getElementById('remove-node-button').addEventListener('click', () => removeElements(cy.$('node:selected')));
-document.getElementById('remove-edge-button').addEventListener('click', () => removeElements(cy.$('edge:selected')));
+document.getElementById('remove-elements-button').addEventListener('click', () => removeElements(cy.$(':selected')));
 document.getElementById('connect-nodes-button').addEventListener('click', () => connectNodes(Array.from(cy.data('selectedNodeIds')).map(id => cy.$id(id))));
 document.getElementById('disconnect-nodes-button').addEventListener('click', () => disconnectEdges(cy.$('node:selected')));
 document.getElementById('clear-button').addEventListener('click', () => clear());
 document.getElementById('generate-tags-button').addEventListener('click', () => { generateNodeTags(); cy.trigger('save'); });
 
-document.getElementById('load-graph-button').addEventListener('click', () => loadGraphJson());
+document.getElementById('upload-button').addEventListener('click', () => loadGraphJson());
 
-document.getElementById('save-graph-json').addEventListener('click', () => saveGraphJson());
-document.getElementById('save-graph-jpeg').addEventListener('click', () => saveGraphJpeg());
-document.getElementById('save-graph-png').addEventListener('click', () => saveGraphPng());
+const downloadModal = document.getElementById('download-modal');
+downloadModal.querySelector('.modal-close').addEventListener('click', () => downloadModal.close());
+document.getElementById('download-button').addEventListener('click', () => downloadModal.showModal());
+document.getElementById('download-json').addEventListener('click', () => saveGraphJson());
+document.getElementById('download-jpeg').addEventListener('click', () => saveGraphJpeg());
+document.getElementById('download-png').addEventListener('click', () => saveGraphPng());
 
 const globalConfigEditor = getGlobalConfigEditor(cy);
-document.getElementById('open-config-editor-button').addEventListener('click', () => globalConfigEditor.open());
+document.getElementById('global-config-editor-button').addEventListener('click', () => globalConfigEditor.open());
 document.getElementById('global-info-button').addEventListener('click', () => openInfoWindow('global-info'));
 
 document.getElementById('bfs-button').addEventListener('click', () => run('bfs'));
@@ -54,8 +56,8 @@ document.getElementById('check-cycles-button').addEventListener('click', () => r
 document.getElementById('get-connected-components-button').addEventListener('click', () => run('getConnectedComponents'));
 document.getElementById('get-strongly-connected-components-button').addEventListener('click', () => run('getStronglyConnectedComponents'));
 document.getElementById('get-shortest-path-button').addEventListener('click', () => run('getShortestPath'));
-document.getElementById('custom-algorithms-button-add').addEventListener('click', () => promptCustomAlgorithmsSelection());
-document.getElementById('custom-algorithms-button-clear').addEventListener('click', () => clearCustomAlgorithms());
+document.getElementById('ca-button-add').addEventListener('click', () => promptCustomAlgorithmsSelection());
+document.getElementById('ca-button-clear').addEventListener('click', () => clearCustomAlgorithms());
 
 document.getElementById('bfs-info-icon').addEventListener('click', () => openInfoWindow('bfs'));
 document.getElementById('dfs-info-icon').addEventListener('click', () => openInfoWindow('dfs'));
@@ -63,7 +65,7 @@ document.getElementById('check-cycles-info-icon').addEventListener('click', () =
 document.getElementById('get-connected-components-info-icon').addEventListener('click', () => openInfoWindow('get-connected-components'));
 document.getElementById('get-strongly-connected-components-info-icon').addEventListener('click', () => openInfoWindow('get-strongly-connected-components'));
 document.getElementById('get-shortest-path-info-icon').addEventListener('click', () => openInfoWindow('get-shortest-path'));
-document.getElementById('custom-algorithm-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
+document.getElementById('ca-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
 
 document.getElementById('complete-graph-button').addEventListener('click', () => openPredefinedGraphsModal('complete'));
 document.getElementById('regular-graph-button').addEventListener('click', () => openPredefinedGraphsModal('regular'));
@@ -91,10 +93,7 @@ function handleKeyDownEvent(event) {
 
     switch (event.keyCode) {
         case ENTER_KEY_CODE:
-            handleEnterKeyDown();
-            break;
-        case ESC_KEY_CODE:
-            handleEscKeyDown();
+            handleEnterKeyDown(event);
             break;
         case DELETE_KEY_CODE:
             removeElements(cy.$(':selected'));
@@ -148,22 +147,18 @@ function handleMouseMoveEvent(event) {
     mousePosition.y = event.y - topMenuHeight;
 }
 
-function handleHamburgerButtonClick() {
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('side-bar');
+function handleMenuClick(event) {
+    if (event.target.classList.contains('disabled')) {
+        return;
+    }
+    document.getElementById('sidebar-menu-icon').textContent = document.getElementById('sidebar-menu-icon').textContent === 'menu' ? 'menu_open' : 'menu';
 
-    hamburger.addEventListener('click', () => {
-        if (hamburger.classList.contains('disabled')) {
-            return;
-        }
-        sidebar.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
+    document.getElementById('side-bar').classList.toggle('active');
 }
 
 function handleSlideSpeedDisplayInput() {
-    const slider = document.getElementById('animation-control-slider');
-    const speedDisplay = document.getElementById('animation-control-slider-speed-display');
+    const slider = document.getElementById('ac-slider');
+    const speedDisplay = document.getElementById('ac-slider-speed-display');
     const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 
     slider.addEventListener('input', function () {
@@ -187,22 +182,14 @@ function handleSelectByRightClick() {
     });
 }
 
-function handleEscKeyDown() {
-    closeInfoWindow();
-    closePopup();
-
-    for (const modal of document.getElementsByClassName('modal')) {
-        modal.style.display = 'none';
-    }
-}
-
-function handleEnterKeyDown() {
-    for (const modal of document.getElementsByClassName('modal')) {
-        if (modal.style.display === 'block') {
-            const okButton = modal.querySelector('.modal-content [id$="ok-button"]');
-
-            if (okButton) {
-                okButton.click();
+function handleEnterKeyDown(event) {
+    for (const modal of document.querySelectorAll('.modal')) {
+        if (modal.open) {
+            const confirm = modal.querySelector('.modal-confirm');
+            if (confirm) {
+                confirm.click();
+                modal.close();
+                event.preventDefault();
                 return;
             }
         }

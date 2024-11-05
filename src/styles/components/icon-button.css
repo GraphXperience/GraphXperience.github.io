@@ -1,0 +1,46 @@
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+
+    cursor: pointer;
+
+    background-color: transparent;
+    border: 0;
+
+    height: 100%;
+}
+
+.icon-button span {
+    font-size: 4em;
+}
+
+.icon-button.active span {
+    color: var(--red);
+}
+
+.icon-button.fill span {
+    font-variation-settings: 'FILL' 1
+}
+
+.icon-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.icon-button:disabled span {
+    cursor: not-allowed;
+}
+
+.invert-x {
+    transform: rotateX(180deg);
+}
+
+.invert-y {
+    transform: rotateY(180deg);
+}
+
+.red span {
+    color: var(--red);
+}

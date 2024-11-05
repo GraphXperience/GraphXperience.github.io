@@ -1,0 +1,10 @@
+.sidebar-menu {
+    font-size: 2.4em;
+    padding: 0 1em;
+    cursor: pointer;
+}
+
+.sidebar-menu .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

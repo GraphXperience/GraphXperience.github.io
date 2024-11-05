@@ -1,0 +1,28 @@
+header {
+    font-size: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: var(--main-color);
+
+    height: var(--header-size);
+    width: 100%;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    padding-right: 2em;
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
