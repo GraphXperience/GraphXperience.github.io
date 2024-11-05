@@ -1,17 +1,18 @@
-document.getElementById('algorithm-popup-close-button').addEventListener('click', closePopup);
+const modal = document.getElementById("popup");
+modal.querySelector('.modal-close').addEventListener('click', closePopup);
 
 function openPopup(...messages) {
-    const popupContent = document.getElementById("algorithm-popup-content-p");
+    const popupContent = document.getElementById("popup-content");
 
     if (messages.length > 0) {
         popupContent.innerHTML = messages.join('<br>');
     }
-    
-    document.getElementById("algorithm-popup").style.display = "block";
+
+    modal.showModal();
 }
 
 function closePopup() {
-    document.getElementById("algorithm-popup").style.display = "none";
+    modal.close();
 }
 
 export {

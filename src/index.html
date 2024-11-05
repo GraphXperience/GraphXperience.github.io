@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="./styles/config-editor.css">
   <link rel="stylesheet" href="./styles/panel.css">
   <link rel="stylesheet" href="./styles/side-bar.css">
-  <link rel="stylesheet" href="./styles/info-window.css">
   <link rel="stylesheet" href="./styles/tooltip.css" title="tooltip">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alwan/dist/css/alwan.min.css" />
@@ -391,18 +390,16 @@
       </div>
     </dialog>
 
-    <!--
-    
-    <div id="algorithm-popup" class="modal">
-      <div id="algorithm-popup-content" class="modal-content">
-        <button id="algorithm-popup-close-button" class="modal-close-button">&times;</button>
-        <p id="algorithm-popup-content-p"></p>
+    <dialog id="popup" class="modal">
+      <div class="modal-content">
+        <p id="popup-content"></p>
+        <div class="modal-section">
+          <button class="modal-close">&times;</button>
+        </div>
       </div>
-    </div>
-    -->
-    <div id="cy" class="cy">
-    </div>
-    <div id="animation-control" class="panel">
+    </dialog>
+
+    <div id="cy" class="cy"></div>
       <button id="close-animation-button" class="animation-control-button">
         <img id="close-button-img" class="animation-control-button-img" src="./assets/close.svg">
       </button>
