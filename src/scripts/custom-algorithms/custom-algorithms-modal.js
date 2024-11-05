@@ -28,7 +28,7 @@ function setupCustomAlgorithmsModal() {
         const fileContent = getCurrentFile().fileContent;
         
         if (!algorithmName) {
-            alert('Coloque um nome de algoritmo válido');
+            alert('Coloque um nome de algoritmo válido.');
             nameInput.focus();
             return;
         }
