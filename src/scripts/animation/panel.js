@@ -14,12 +14,12 @@ function closeAnimationPanel() {
     }
 }
 
-const closeButton = document.getElementById('close-animation-button');
-const goToBeginButton = document.getElementById('go-to-begin-animation-button');
-const previousButton = document.getElementById('previous-animation-button');
-const playPauseButton = document.getElementById('play-pause-animation-button');
-const nextButton = document.getElementById('next-animation-button');
-const goToEndButton = document.getElementById('go-to-end-animation-button');
+const closeButton = document.getElementById('ac-close-button');
+const goToBeginButton = document.getElementById('ac-go-to-begin-button');
+const previousButton = document.getElementById('ac-previous-button');
+const playPauseButton = document.getElementById('ac-play-pause-button');
+const nextButton = document.getElementById('ac-next-button');
+const goToEndButton = document.getElementById('ac-go-to-end-button');
 
 function blockAnimationButtons(includePlayPause = false) {
     closeButton.disabled = true;
@@ -49,19 +49,13 @@ function setAnimationCounter(step, total) {
 }
 
 function showPlayIcon() {
-    const playPauseButtonImg = document.getElementById('play-pause-button-img');
-
-    playPauseButtonImg.classList.remove('pause');
-    playPauseButtonImg.classList.add('play');
-    playPauseButtonImg.src = './assets/play.svg';
+    const playPauseButtonIcon = document.getElementById('ac-play-pause-img');
+    playPauseButtonIcon.textContent = 'play_circle';
 }
 
 function showPauseIcon() {
-    const playPauseButtonImg = document.getElementById('play-pause-button-img');
-
-    playPauseButtonImg.classList.remove('play');
-    playPauseButtonImg.classList.add('pause');
-    playPauseButtonImg.src = './assets/pause.svg';
+    const playPauseButtonIcon = document.getElementById('ac-play-pause-img');
+    playPauseButtonIcon.textContent = 'pause_circle';
 }
 
 export {

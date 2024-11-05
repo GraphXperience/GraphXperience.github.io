@@ -56,8 +56,8 @@ document.getElementById('check-cycles-button').addEventListener('click', () => r
 document.getElementById('get-connected-components-button').addEventListener('click', () => run('getConnectedComponents'));
 document.getElementById('get-strongly-connected-components-button').addEventListener('click', () => run('getStronglyConnectedComponents'));
 document.getElementById('get-shortest-path-button').addEventListener('click', () => run('getShortestPath'));
-document.getElementById('custom-algorithms-button-add').addEventListener('click', () => promptCustomAlgorithmsSelection());
-document.getElementById('custom-algorithms-button-clear').addEventListener('click', () => clearCustomAlgorithms());
+document.getElementById('ca-button-add').addEventListener('click', () => promptCustomAlgorithmsSelection());
+document.getElementById('ca-button-clear').addEventListener('click', () => clearCustomAlgorithms());
 
 document.getElementById('bfs-info-icon').addEventListener('click', () => openInfoWindow('bfs'));
 document.getElementById('dfs-info-icon').addEventListener('click', () => openInfoWindow('dfs'));
@@ -65,7 +65,7 @@ document.getElementById('check-cycles-info-icon').addEventListener('click', () =
 document.getElementById('get-connected-components-info-icon').addEventListener('click', () => openInfoWindow('get-connected-components'));
 document.getElementById('get-strongly-connected-components-info-icon').addEventListener('click', () => openInfoWindow('get-strongly-connected-components'));
 document.getElementById('get-shortest-path-info-icon').addEventListener('click', () => openInfoWindow('get-shortest-path'));
-document.getElementById('custom-algorithm-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
+document.getElementById('ca-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
 
 document.getElementById('complete-graph-button').addEventListener('click', () => openPredefinedGraphsModal('complete'));
 document.getElementById('regular-graph-button').addEventListener('click', () => openPredefinedGraphsModal('regular'));
@@ -94,9 +94,6 @@ function handleKeyDownEvent(event) {
     switch (event.keyCode) {
         case ENTER_KEY_CODE:
             handleEnterKeyDown();
-            break;
-        case ESC_KEY_CODE:
-            handleEscKeyDown();
             break;
         case DELETE_KEY_CODE:
             removeElements(cy.$(':selected'));
@@ -154,14 +151,14 @@ function handleMenuClick(event) {
     if (event.target.classList.contains('disabled')) {
         return;
     }
-    event.target.textContent = event.target.textContent === 'menu' ? 'menu_open' : 'menu';
+    document.getElementById('sidebar-menu-icon').textContent = document.getElementById('sidebar-menu-icon').textContent === 'menu' ? 'menu_open' : 'menu';
 
     document.getElementById('side-bar').classList.toggle('active');
 }
 
 function handleSlideSpeedDisplayInput() {
-    const slider = document.getElementById('animation-control-slider');
-    const speedDisplay = document.getElementById('animation-control-slider-speed-display');
+    const slider = document.getElementById('ac-slider');
+    const speedDisplay = document.getElementById('ac-slider-speed-display');
     const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 
     slider.addEventListener('input', function () {
@@ -183,15 +180,6 @@ function handleSelectByRightClick() {
 
         event.originalEvent.preventDefault();
     });
-}
-
-function handleEscKeyDown() {
-    closeInfoWindow();
-    closePopup();
-
-    for (const modal of document.getElementsByClassName('modal')) {
-        modal.style.display = 'none';
-    }
 }
 
 function handleEnterKeyDown() {

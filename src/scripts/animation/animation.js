@@ -73,19 +73,14 @@ function disableButtons() {
     [
         ...document.getElementsByClassName('graph-button'),
         ...document.getElementsByClassName('side-bar-button'),
-        drawModeButton
+        ...document.getElementsByClassName('icon-button'),
     ].forEach(element => element.disabled = true);
-
-    hamburger.classList.toggle('disabled');
 }
 
 function hideSideBar() {
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('side-bar');
-
-    if (sidebar.classList.contains('active')) {
-        sidebar.classList.toggle('active');
-        hamburger.classList.toggle('active');
+    if (document.getElementById('sidebar-menu-icon').textContent === 'menu_open') {
+        document.getElementById('sidebar-menu-icon').textContent = 'menu';
+        document.getElementById('side-bar').classList.toggle('active');
     }
 }
 
@@ -146,10 +141,8 @@ function enableButtons() {
     [
         ...document.getElementsByClassName('graph-button'),
         ...document.getElementsByClassName('side-bar-button'),
-        document.getElementById('draw-mode-button')
+        ...document.getElementsByClassName('icon-button'),
     ].forEach(element => element.disabled = false);
-
-    document.getElementById('hamburger').classList.toggle('disabled');
 }
 
 async function goToStart() {

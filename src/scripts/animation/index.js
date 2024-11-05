@@ -15,25 +15,25 @@ import { showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationBut
 var cy = getCytoscape();
 
 function setupAnimationButtons() {
-    const closeButton = document.getElementById('close-animation-button');
+    const closeButton = document.getElementById('ac-close-button');
     closeButton.addEventListener('click', onCloseClick);
 
-    const goToBeginButton = document.getElementById('go-to-begin-animation-button');
+    const goToBeginButton = document.getElementById('ac-go-to-begin-button');
     goToBeginButton.addEventListener('click', onGoToBeginClick);
 
-    const previousButton = document.getElementById('previous-animation-button');
+    const previousButton = document.getElementById('ac-previous-button');
     previousButton.addEventListener('click', onPreviousClick);
 
-    const playPauseButton = document.getElementById('play-pause-animation-button');
+    const playPauseButton = document.getElementById('ac-play-pause-button');
     playPauseButton.addEventListener('click', onPlayPauseClick);
 
-    const nextButton = document.getElementById('next-animation-button');
+    const nextButton = document.getElementById('ac-next-button');
     nextButton.addEventListener('click', onNextClick);
 
-    const goToEndButton = document.getElementById('go-to-end-animation-button');
+    const goToEndButton = document.getElementById('ac-go-to-end-button');
     goToEndButton.addEventListener('click', onGoToEndClick);
 
-    const slider = document.getElementById('animation-control-slider');
+    const slider = document.getElementById('ac-slider');
     slider.addEventListener('input', onSliderInput);
 }
 
@@ -76,7 +76,7 @@ async function onGoToEndClick(event) {
 }
 
 function onSliderInput(event) {
-    const speedDisplay = document.getElementById('animation-control-slider-speed-display');
+    const speedDisplay = document.getElementById('ac-slider-speed-display');
     const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 
     const speedIndex = parseInt(this.value);

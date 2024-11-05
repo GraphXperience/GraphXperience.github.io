@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24..48,200..400,0..1" rel="stylesheet" />
 
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/base.css">
@@ -34,7 +34,9 @@
 
 <body>
   <header>
-    <span id="sidebar-menu" class="material-symbols-outlined sidebar-menu">menu</span>
+    <button id="sidebar-menu" class="icon-button">
+      <span id="sidebar-menu-icon" class="material-symbols-outlined sidebar-menu">menu</span>
+    </button>
     <div class="header-buttons">
       <div class="button-group">
         <button id="add-node-button" class="icon-button" title="Adicionar nós">
@@ -76,7 +78,7 @@
         </button>
 
         <a id="github-page-button" href="https://github.com/graphxperience/graphxperience.github.io" target="_blank">
-          <img id="github-page-button-img" class="icon-button" src="./assets/github.svg">
+          <img id="github-page-button-img" src="./assets/github.svg">
         </a>
 
         <button id="global-config-editor-button" class="icon-button fill">
@@ -178,11 +180,11 @@
       <h1>Algoritmos Personalizados</h1>
       <ul id="custom-algorithms-section" class="side-bar-section">
         <li>
-          <button id="custom-algorithms-button-clear" class="side-bar-button">Limpar</button>
+          <button id="ca-button-clear" class="side-bar-button">Limpar</button>
         </li>
         <li>
-          <button id="custom-algorithms-button-add" class="side-bar-button">Adicionar Algoritmo</button>
-          <span id="custom-algorithm-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="ca-button-add" class="side-bar-button">Adicionar Algoritmo</button>
+          <span id="ca-info-icon" class="material-symbols-outlined icon-button">info</span>
         </li>
       </ul>
     </div>
@@ -205,6 +207,15 @@
 
     <dialog id="info-window" class="modal">
       <div class="modal-content" data-gap="4"></div>
+    </dialog>
+
+    <dialog id="popup" class="modal">
+      <div class="modal-content">
+        <p id="popup-content"></p>
+        <div class="modal-section">
+          <button class="modal-close">&times;</button>
+        </div>
+      </div>
     </dialog>
 
     <!-- #region Editors -->
@@ -325,6 +336,38 @@
     </dialog>
     <!-- #endregion -->
 
+    <!-- #region Custom Algorithms -->
+    <dialog id="predefined-graph-specifications-modal" class="modal">
+      <div class="modal-content">
+        <h1 class="modal-title">Especificações do Grafo</h1>
+
+        <div id="pgs-nodes-section" class="modal-section">
+          <p>Numero de Nós:</p>
+          <input type="number" id="pgs-nodes-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-nodes-2-section" class="modal-section">
+          <p>Numero de Nós da Segunda Partição:</p>
+          <input type="number" id="pgs-nodes-2-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-degree-section" class="modal-section">
+          <p>Grau dos Nós:</p>
+          <input type="number" id="pgs-degree-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div id="pgs-height-section" class="modal-section">
+          <p>Altura da Árvore:</p>
+          <input type="number" id="pgs-height-input" class="modal-input" min="1" max="30">
+        </div>
+
+        <div class="modal-section">
+          <button class="modal-close">Cancelar</button>
+          <button class="modal-confirm">OK</button>
+        </div>
+      </div>
+    </dialog>
+
     <dialog id="custom-algorithms-modal" class="modal">
       <div class="modal-content">
         <h1 class="modal-title">Detalhes do Algoritmo</h1>
@@ -358,75 +401,47 @@
         </div>
       </div>
     </dialog>
-
-    <dialog id="predefined-graph-specifications-modal" class="modal">
-      <div class="modal-content">
-        <h1 class="modal-title">Especificações do Grafo</h1>
-
-        <div id="pgs-nodes-section" class="modal-section">
-          <p>Numero de Nós:</p>
-          <input type="number" id="pgs-nodes-input" class="modal-input" min="1" max="30">
-        </div>
-
-        <div id="pgs-nodes-2-section" class="modal-section">
-          <p>Numero de Nós da Segunda Partição:</p>
-          <input type="number" id="pgs-nodes-2-input" class="modal-input" min="1" max="30">
-        </div>
-
-        <div id="pgs-degree-section" class="modal-section">
-          <p>Grau dos Nós:</p>
-          <input type="number" id="pgs-degree-input" class="modal-input" min="1" max="30">
-        </div>
-
-        <div id="pgs-height-section" class="modal-section">
-          <p>Altura da Árvore:</p>
-          <input type="number" id="pgs-height-input" class="modal-input" min="1" max="30">
-        </div>
-
-        <div class="modal-section">
-          <button class="modal-close">Cancelar</button>
-          <button class="modal-confirm">OK</button>
-        </div>
-      </div>
-    </dialog>
-
-    <dialog id="popup" class="modal">
-      <div class="modal-content">
-        <p id="popup-content"></p>
-        <div class="modal-section">
-          <button class="modal-close">&times;</button>
-        </div>
-      </div>
-    </dialog>
+    <!-- #endregion -->
 
     <div id="cy" class="cy"></div>
-      <button id="close-animation-button" class="animation-control-button">
-        <img id="close-button-img" class="animation-control-button-img" src="./assets/close.svg">
+
+    <!-- #region Animation -->
+    <div id="animation-control">
+      <button id="ac-close-button" class="ac-button red">
+        <span class="material-symbols-outlined">cancel</span>
       </button>
-      <button id="go-to-begin-animation-button" class="animation-control-button">
-        <img id="go-to-begin-button-img" class="animation-control-button-img" src="./assets/double-arrow-left.svg">
+
+      <button id="ac-go-to-begin-button" class="ac-button">
+        <span class="material-symbols-outlined invert-y">next_plan</span>
       </button>
-      <button id="previous-animation-button" class="animation-control-button">
-        <img id="previous-button-img" class="animation-control-button-img" src="./assets/arrow-left.svg">
+
+      <button id="ac-previous-button" class="ac-button">
+        <span class="material-symbols-outlined">arrow_circle_left</span>
       </button>
-      <button id="play-pause-animation-button" class="animation-control-button">
-        <img id="play-pause-button-img" class="animation-control-button-img play" src="./assets/play.svg">
+
+      <button id="ac-play-pause-button" class="ac-button">
+        <span id="ac-play-pause-img" class="material-symbols-outlined">play_circle</span>
       </button>
-      <button id="next-animation-button" class="animation-control-button">
-        <img id="next-button-img" class="animation-control-button-img" src="./assets/arrow-right.svg">
+
+      <button id="ac-next-button" class="ac-button">
+        <span class="material-symbols-outlined">arrow_circle_right</span>
       </button>
-      <button id="go-to-end-animation-button" class="animation-control-button">
-        <img id="go-to-end-button-img" class="animation-control-button-img" src="./assets/double-arrow-right.svg">
+
+      <button id="ac-go-to-end-button" class="ac-button">
+        <span class="material-symbols-outlined">next_plan</span>
       </button>
+
       <p id="animation-counter"></p>
+
       <div class="range-slider-container">
-        <input type="range" min="0" max="9" value="3" class="slider" id="animation-control-slider">
-        <span id="animation-control-slider-speed-display" class="range-slider-speed-display">1.00x</span>
+        <input type="range" min="0" max="9" value="3" class="slider" id="ac-slider">
+        <span id="ac-slider-speed-display" class="range-slider-speed-display">1.00x</span>
       </div>
     </div>
+
     <button id="animation-console-toggle" class="animation-button"> &lt; </button>
-    <div id="animation-console">
-    </div>
+    <div id="animation-console"></div>
+    <!-- #endregion -->
   </main>
   <script src="./bundle.js"></script>
 </body>
