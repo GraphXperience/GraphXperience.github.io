@@ -69,23 +69,23 @@
       </div>
 
       <div class="button-group">
-        <button id="upload-button" class="icon-button">
+        <button id="upload-button" class="icon-button" title="Upload de grafo por arquivo JSON">
           <span class="material-symbols-outlined">upload_file</span>
         </button>
 
-        <button id="download-button" class="icon-button">
+        <button id="download-button" class="icon-button" title="Download do grafo">
           <span class="material-symbols-outlined">download</span>
         </button>
 
-        <a id="github-page-button" href="https://github.com/graphxperience/graphxperience.github.io" target="_blank">
+        <a id="github-page-button" href="https://github.com/graphxperience/graphxperience.github.io" target="_blank" title="Link para a documentação do projeto">
           <img id="github-page-button-img" src="./assets/github.svg">
         </a>
 
-        <button id="global-config-editor-button" class="icon-button fill">
+        <button id="global-config-editor-button" class="icon-button fill" title="Configurações da Aplicação">
           <span class="material-symbols-outlined">settings</span>
         </button>
 
-        <button id="global-info-button" class="icon-button">
+        <button id="global-info-button" class="icon-button" title="Informações e Atalhos da aplicação">
           <span class="material-symbols-outlined">info</span>
         </button>
       </div>
@@ -96,95 +96,93 @@
       <h1>Testar Algoritmo</h1>
       <ul id="algorithm-buttons-section" class="side-bar-section">
         <li>
-          <button id="bfs-button" class="side-bar-button">Busca em Largura (BFS)</button>
+          <button id="bfs-button" class="side-bar-button" title="Testar algoritmo Busca em Largura (BFS)">Busca em Largura (BFS)</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/bfs.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Busca em Largura (BFS)" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="bfs-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <span id="bfs-info-icon" title="Informações sobre o algoritmo Busca em Largura (BFS)" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="dfs-button" class="side-bar-button">Busca em Profundidade (DFS)</button>
+          <button id="dfs-button" class="side-bar-button" title="Testar algoritmo Busca em Profundidade (DFS)">Busca em Profundidade (DFS)</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/dfs.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Busca em Profundidade (DFS)" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="dfs-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <span id="dfs-info-icon" title="Informações sobre o algoritmo Busca em Profundidade (DFS)" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="check-cycles-button" class="side-bar-button">Checar ciclos</button>
+          <button id="check-cycles-button" class="side-bar-button" title="Testar algoritmo Checar ciclos">Checar ciclos</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/checkCycles.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Checar ciclos" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="check-cycles-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <span id="check-cycles-info-icon" title="Informações sobre o algoritmo Checar ciclos" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="get-connected-components-button" class="side-bar-button">Obter componentes conexas</button>
+          <button id="get-connected-components-button" class="side-bar-button" title="Testar algoritmo Obter componentes conexas">Obter componentes conexas</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/getConnectedComponents.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Obter componentes conexas" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="get-connected-components-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <span id="get-connected-components-info-icon" title="Informações sobre o algoritmo Obter componentes conexas" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="get-strongly-connected-components-button" class="side-bar-button">Obter componentes
-            fortemente-conexas</button>
+          <button id="get-strongly-connected-components-button" class="side-bar-button" title="Testar algoritmo Obter componentes fortemente-conexas">Obter componentes fortemente-conexas</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/getStronglyConnectedComponents.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Obter componentes fortemente-conexas" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="get-strongly-connected-components-info-icon"
-            class="material-symbols-outlined icon-button">info</span>
+          <span id="get-strongly-connected-components-info-icon" title="Informações sobre o algoritmo Obter componentes fortemente-conexas" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="get-shortest-path-button" class="side-bar-button">Obter caminho mais curto entre dois nós</button>
+          <button id="get-shortest-path-button" class="side-bar-button" title="Testar algoritmo Obter caminho mais curto entre dois nós">Obter caminho mais curto entre dois nós</button>
           <a href="https://raw.githubusercontent.com/GraphXperience/GraphXperience.github.io/refs/heads/main/src/scripts/algorithms/getShortestPath.js" target="_blank">
-            <span class="material-symbols-outlined icon-button">code</span>
+            <span title="Link para o código do algoritmo Obter caminho mais curto entre dois nós" class="material-symbols-outlined icon-button">code</span>
           </a>
-          <span id="get-shortest-path-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <span id="get-shortest-path-info-icon" title="Informações sobre o algoritmo Obter caminho mais curto entre dois nós" class="material-symbols-outlined icon-button">info</span>
         </li>
       </ul>
 
       <h1>Criar Grafo Predefinido</h1>
       <ul id="predefined-graphs-section" class="side-bar-section">
         <li>
-          <button id="regular-graph-button" class="side-bar-button">Grafo Regular</button>
-          <span id="regular-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="regular-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Regular">Grafo Regular</button>
+          <span id="regular-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Regular" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="complete-graph-button" class="side-bar-button">Grafo Completo</button>
-          <span id="complete-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="complete-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Completo">Grafo Completo</button>
+          <span id="complete-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Completo" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="star-graph-button" class="side-bar-button">Grafo Estrela</button>
-          <span id="star-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="star-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Estrela">Grafo Estrela</button>
+          <span id="star-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Estrela" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="wheel-graph-button" class="side-bar-button">Grafo Roda</button>
-          <span id="wheel-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="wheel-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Roda">Grafo Roda</button>
+          <span id="wheel-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Roda" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="bipartite-graph-button" class="side-bar-button">Grafo Bipartido</button>
-          <span id="bipartite-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="bipartite-graph-button" class="side-bar-button" title="Adicionar grafo Grafo Bipartido">Grafo Bipartido</button>
+          <span id="bipartite-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Bipartido" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="complete-bipartite-graph-button" class="side-bar-button">Grafo Bipartido Completo</button>
-          <span id="complete-bipartite-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="complete-bipartite-graph-button" class="side-bar-button" title="Adicionar Grafo Bipartido Completo">Grafo Bipartido Completo</button>
+          <span id="complete-bipartite-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Bipartido Completo" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="binary-tree-graph-button" class="side-bar-button">Grafo Árvore Binária</button>
-          <span id="binary-tree-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="binary-tree-graph-button" class="side-bar-button" title="Adicionar Grafo Árvore Binária">Grafo Árvore Binária</button>
+          <span id="binary-tree-graph-info-icon" title="Informações sobre o tipo de grafo Grafo Árvore Binária" class="material-symbols-outlined icon-button">info</span>
         </li>
         <li>
-          <button id="petersen-graph-button" class="side-bar-button">Grafo de Petersen</button>
-          <span id="petersen-graph-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="petersen-graph-button" class="side-bar-button" title="Adicionar Grafo de Petersen">Grafo de Petersen</button>
+          <span id="petersen-graph-info-icon" title="Informações sobre o tipo de grafo Grafo de Petersen" class="material-symbols-outlined icon-button">info</span>
         </li>
       </ul>
 
       <h1>Algoritmos Personalizados</h1>
       <ul id="custom-algorithms-section" class="side-bar-section">
         <li>
-          <button id="ca-button-clear" class="side-bar-button">Limpar</button>
+          <button id="ca-button-clear" class="side-bar-button" title="Remover todos os algoritmos personalizados">Limpar</button>
         </li>
         <li>
-          <button id="ca-button-add" class="side-bar-button">Adicionar Algoritmo</button>
-          <span id="ca-info-icon" class="material-symbols-outlined icon-button">info</span>
+          <button id="ca-button-add" class="side-bar-button" title="Adicionar algoritmo">Adicionar Algoritmo</button>
+          <span id="ca-info-icon" class="material-symbols-outlined icon-button" title="Obter informações sobre algoritmos personalizados">info</span>
         </li>
       </ul>
     </div>
