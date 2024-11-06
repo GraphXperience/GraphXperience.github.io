@@ -117,6 +117,10 @@ function isAnyModalOpened() {
     return false;
 }
 
+function toggleSideBarSection(section) {
+    section.classList.toggle('hide');
+}
+
 export {
     rgbToHex,
     rgbStrToHex,
@@ -128,4 +132,5 @@ export {
     getTagColor,
     setTagColor,
     isAnyModalOpened,
+    toggleSideBarSection
 };
