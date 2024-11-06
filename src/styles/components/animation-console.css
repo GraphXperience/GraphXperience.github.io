@@ -1,7 +1,7 @@
 #animation-console {
     position: fixed;
     top: var(--header-size);
-    right: -32em;
+    right: -72em;
     height: calc(100% - var(--header-size));
     width: 30em;
     overflow-y: auto;
@@ -29,7 +29,7 @@
 
     padding: 1em;
 
-    white-space: pre;
+    white-space: pre-wrap;
 
     height: 100%;
     width: 100%;
