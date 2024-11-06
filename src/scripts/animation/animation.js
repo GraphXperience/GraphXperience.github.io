@@ -2,13 +2,12 @@ import { RESET_COLOR } from '../../constants/colors';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
 import { setColor, setTag, setWeight } from '../extensions/element-extensions';
 import { sleep } from '../utils';
+import { hideAnimationConsole, showAnimationConsole } from './console';
 import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
 import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons, setAnimationCounter } from './panel';
 import { validate } from './validate';
 
 const cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
-const animationConsole = document.getElementById('animation-console');
-const animationConsoleToggle = document.getElementById('animation-console-toggle');
 
 async function startAnimation(actions) {
     const errors = validate(actions);
@@ -22,7 +21,7 @@ async function startAnimation(actions) {
     disableButtons();
     hideSideBar();
     showAnimationPanel();
-    animationConsoleToggle.style.display = 'block';
+    showAnimationConsole();
 
     cy.data('animation', true);
 }
@@ -104,10 +103,7 @@ function endAnimation() {
 function closeAnimation() {
     resetToOriginal();
     closeAnimationPanel();
-    animationConsole.classList.remove('-active');
-    animationConsole.replaceChildren();
-    animationConsoleToggle.classList.remove('-active');
-    animationConsoleToggle.style.display = 'none';
+    hideAnimationConsole();
     enableButtons();
 
     const { undo, redo } = getUndoRedoStack();

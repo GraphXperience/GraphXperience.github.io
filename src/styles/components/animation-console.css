@@ -2,15 +2,13 @@
     position: fixed;
     top: var(--header-size);
     right: -32em;
-    padding: 1em;
     height: calc(100% - var(--header-size));
     width: 30em;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1010;
 
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    flex-direction: row;
 
     background-color: var(--secondary-color);
     opacity: 80%;
@@ -24,7 +22,20 @@
     -moz-box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-#animation-console p {
+#ac-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+
+    padding: 1em;
+
+    white-space: pre;
+
+    height: 100%;
+    width: 100%;
+}
+
+#ac-content p {
     font-size: 1.6em;
 }
 
@@ -38,7 +49,7 @@
     background-color: var(--main-color);
     border: 0;
     border-radius: 0 0 0 0.3em;
-    z-index: 1001;
+    z-index: 1011;
 
     cursor: pointer;
 }
@@ -50,4 +61,13 @@
 
 .animation-button span {
     font-size: 1.6em;
+}
+
+#ac-resizer {
+    position: fixed;
+    height: 100%;
+    border: 0.3em solid var(--dark-gray);
+    
+    cursor: col-resize;
+    user-select: none;
 }
