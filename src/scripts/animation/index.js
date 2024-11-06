@@ -10,6 +10,7 @@ import {
     goToStart,
     goToEnd
 } from "./animation";
+import { setupAnimationConsole } from "./console";
 import { showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationButtons } from "./panel";
 
 var cy = getCytoscape();
@@ -35,6 +36,8 @@ function setupAnimationButtons() {
 
     const slider = document.getElementById('ac-slider');
     slider.addEventListener('input', onSliderInput);
+
+    setupAnimationConsole();
 }
 
 function onCloseClick(event) {
