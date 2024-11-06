@@ -15,7 +15,7 @@ function bfs(graph, selectedNodes) {
 
         visitedNodeIds.add(currentNode.id);
         actions.push({ elementId: currentNode.id, type: 'animate', color: 'red' });
-        actions.push({ message: 'Visitando o nó ' + currentNode.id, type: 'print' });
+        actions.push({ message: 'Visitando o nó ' + currentNode.tag, type: 'print' });
 
         let neighbors = graph.getNeighbors(currentNode);
         for (let neighbor of neighbors) {

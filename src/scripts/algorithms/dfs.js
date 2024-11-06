@@ -1,13 +1,9 @@
-import { openPopup } from '../popup';
-
 function dfs(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
-        openPopup('Não há nós selecionados');
-        return [];
+        throw new Error('Não há nós selecionados.');
     }
     if (selectedNodes.length > 1) {
-        openPopup('Selecione apenas um nó para iniciar a busca');
-        return [];
+        throw new Error('Selecione apenas um nó para iniciar a busca.');
     }
 
     const startNode = graph.nodes.find(node => node.id === selectedNodes[0].id);
@@ -25,20 +21,15 @@ function dfs(graph, selectedNodes) {
 
         visitedNodeIds.add(currentNode.id);
         actions.push({ elementId: currentNode.id, type: 'animate' });
+        actions.push({ type: 'print', message: 'visitou o nó ' + currentNode.tag });
 
-        let neighbors = currentNode.getNeighbors(graph.isDirected);
-
-        currentNode.outgoingEdges.forEach(edge => actions.push({ elementId: edge.id, type: 'animate' }));
-        if (!graph.isDirected) {
-            currentNode.incomingEdges.forEach(edge => actions.push({ elementId: edge.id, type: 'animate' }));
-        }
-
-        neighbors.forEach((neighbor) => {
+        for (const neighbor of graph.getNeighbors(currentNode)) {
             if (!visitedNodeIds.has(neighbor.id)) {
                 stack.push(neighbor);
-                actions.push({ elementId: neighbor.id, type: 'animate', color: '#FFFF00' });
+                actions.push({ elementId: graph.getEdge(currentNode, neighbor).id, type: 'animate' });
+                actions.push({ elementId: neighbor.id, type: 'animate', color: '#DBA404' });
             }
-        });
+        }
     }
 
     return actions;

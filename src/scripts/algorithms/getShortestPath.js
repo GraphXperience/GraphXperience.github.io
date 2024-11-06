@@ -1,28 +1,20 @@
-import { openPopup } from '../popup';
-
-let previous;
 
 function getShortestPath(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
-        openPopup('Não há nós selecionados');
-        return [];
+        throw new Error('Não há nós selecionados');
     }
 
     if (selectedNodes.length !== 2) {
-        openPopup('Selecione dois nós: o nó fonte e o nó destino');
-        return [];
+        throw new Error('Selecione dois nós: o nó fonte e o nó destino');
     }
 
     const actions = [];
-
-    const isDirected = graph.isDirected;
     const nodes = graph.nodes;
     const sourceNode = selectedNodes[0];
     const targetNode = selectedNodes[1];
 
     const distances = new Map();
-    previous = new Map();
-
+    const previous = new Map();
     const priorityQueue = [];
 
     nodes.forEach(node => {
@@ -38,21 +30,16 @@ function getShortestPath(graph, selectedNodes) {
         const { nodeId, distance } = priorityQueue.shift();
 
         const node = nodes.find(node => node.id === nodeId);
+        actions.push({ type: 'print', message: `Visitou o nó ${node.tag}. Distancia: ${distance}` });
         actions.push({ elementId: node.id, type: 'animate' });
 
         if (nodeId === targetNode.id) {
-            actions.push({ elementId: nodeId, type: 'animate', color: '#008000' });
+            actions.push({ type: 'print', message: 'Achou o nó de destino.' });
+            actions.push({ elementId: nodeId, type: 'animate', color: 'green' });
             break;
         }
 
-        let neighbors;
-        if (isDirected) {
-            neighbors = node.outgoingEdges;
-        } else {
-            neighbors = [...node.incomingEdges, ...node.outgoingEdges];
-        }
-
-        neighbors.forEach(edge => {
+        for (const edge of graph.getEdges(node)) {
             const neighbor = edge.targetNode.id === nodeId ? edge.sourceNode : edge.targetNode;
             const weight = edge.weight;
             const currentDistance = distances.get(neighbor.id);
@@ -64,25 +51,25 @@ function getShortestPath(graph, selectedNodes) {
 
                 priorityQueue.push({ nodeId: neighbor.id, distance: newDistance });
             }
-        });
+        }
     }
 
     const shortestPath = reconstructPath(targetNode);
-    shortestPath.forEach(nodeId => { actions.push({ elementId: nodeId, type: 'animate', color: '#008000' }); });
+    shortestPath.forEach(nodeId => { actions.push({ elementId: nodeId, type: 'animate', color: 'green' }); });
 
     return actions;
-}
 
-function reconstructPath(targetNode) {
-    const path = [];
-    let currentNode = targetNode;
+    function reconstructPath(targetNode) {
+        const path = [];
+        let currentNode = targetNode;
 
-    while (currentNode !== null) {
-        path.push(currentNode.id);
-        currentNode = previous.get(currentNode.id);
+        while (currentNode !== null) {
+            path.push(currentNode.id);
+            currentNode = previous.get(currentNode.id);
+        }
+
+        return path;
     }
-
-    return path;
 }
 
 export {
