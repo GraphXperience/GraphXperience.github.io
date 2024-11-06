@@ -7,6 +7,7 @@ import { createCompleteBipartiteGraph } from './complete-bipartite-graph.js';
 import { createBinaryTreeGraph } from './binary-tree-graph.js';
 import { createPetersenGraph } from './petersen-graph.js';
 import { getCytoscape, getUndoRedo } from '../context.js';
+import { removeTag } from '../extensions/element-extensions.js';
 
 var cy = getCytoscape();
 var ur = getUndoRedo();
@@ -23,6 +24,10 @@ const graphCreationFunctions = {
 };
 
 function createPredefinedGraph(graphType, params) {
+    cy.elements().forEach(removeTag);
+    cy.elements().remove();
+    cy.trigger('changeIsDirected', false);
+
     let graphCreationFunction = graphCreationFunctions[graphType];
     graphCreationFunction(cy, ur, ...params);
 }

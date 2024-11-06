@@ -1,9 +1,6 @@
 import { getRandomUuid } from '../utils';
 
 function createCompleteGraph(cy, ur, nodeCount) {
-    cy.elements().remove();
-    cy.trigger('changeIsDirected', false);
-
     let nodes = [];
     let edges = [];
 

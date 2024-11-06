@@ -1,9 +1,6 @@
 import { getRandomUuid } from '../utils';
 
 function createCompleteBipartiteGraph(cy, ur, nodeCount, nodeCount2) {
-    cy.elements().remove();
-    cy.trigger('changeIsDirected', false);
-
     let nodes = [];
     let nodes2 = [];
     let edges = [];

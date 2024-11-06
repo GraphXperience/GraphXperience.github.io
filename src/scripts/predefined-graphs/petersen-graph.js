@@ -2,9 +2,6 @@ import { getRandomUuid } from '../utils';
 import { positionPetersenGraph } from '../layout-utils';
 
 function createPetersenGraph(cy, ur) {
-    cy.elements().remove();
-    cy.trigger('changeIsDirected', false);
-
     let innerNodes = [];
     let outerNodes = [];
     let innerEdges = [];
