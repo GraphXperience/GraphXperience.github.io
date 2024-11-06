@@ -1,8 +1,7 @@
 import { loadGraphJson, saveGraphJson, saveGraphJpeg, saveGraphPng } from './file';
 import { clear, connectNodes, createNode, disconnectEdges, generateNodeTags, removeElements } from './graph';
-import { closePopup } from './popup';
-import { ENTER_KEY_CODE, ESC_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
-import { openInfoWindow, closeInfoWindow } from './info-window';
+import { ENTER_KEY_CODE, DELETE_KEY_CODE, D_KEY_CODE, E_KEY_CODE, N_KEY_CODE, S_KEY_CODE, Y_KEY_CODE, Z_KEY_CODE, C_KEY_CODE, V_KEY_CODE, A_KEY_CODE } from '../constants/key';
+import { openInfoWindow } from './info-window';
 import { initializeCustomAlgorithms } from './custom-algorithms';
 import { promptCustomAlgorithmsSelection, clearCustomAlgorithms } from './custom-algorithms/custom-algorithms';
 import { setupPredefinedGraphsModal } from './predefined-graphs/modal.js';
@@ -12,7 +11,7 @@ import { toggleDrawMode } from './cytoscape-extensions/edgehandles-setup';
 import { openPredefinedGraphsModal } from './predefined-graphs/modal.js';
 import { run } from './algorithms';
 import { getGlobalConfigEditor } from './editors/global-config-editor';
-import { isAnyModalOpened } from './utils';
+import { isAnyModalOpened, toggleSideBarSection } from './utils';
 
 var mousePosition = { x: 0, y: 0 };
 
@@ -51,6 +50,7 @@ const globalConfigEditor = getGlobalConfigEditor(cy);
 document.getElementById('global-config-editor-button').addEventListener('click', () => globalConfigEditor.open());
 document.getElementById('global-info-button').addEventListener('click', () => openInfoWindow('global-info'));
 
+document.getElementById('as-title').addEventListener('click', () => toggleSideBarSection(document.getElementById('algorithms-section')));
 document.getElementById('bfs-button').addEventListener('click', () => run('bfs'));
 document.getElementById('dfs-button').addEventListener('click', () => run('dfs'));
 document.getElementById('check-cycles-button').addEventListener('click', () => run('checkCycles'));
@@ -68,6 +68,7 @@ document.getElementById('get-strongly-connected-components-info-icon').addEventL
 document.getElementById('get-shortest-path-info-icon').addEventListener('click', () => openInfoWindow('get-shortest-path'));
 document.getElementById('ca-info-icon').addEventListener('click', () => openInfoWindow('custom-algorithms'));
 
+document.getElementById('pg-title').addEventListener('click', () => toggleSideBarSection(document.getElementById('predefined-graphs-section')));
 document.getElementById('complete-graph-button').addEventListener('click', () => openPredefinedGraphsModal('complete'));
 document.getElementById('regular-graph-button').addEventListener('click', () => openPredefinedGraphsModal('regular'));
 document.getElementById('star-graph-button').addEventListener('click', () => openPredefinedGraphsModal('star'));
@@ -77,6 +78,7 @@ document.getElementById('complete-bipartite-graph-button').addEventListener('cli
 document.getElementById('binary-tree-graph-button').addEventListener('click', () => openPredefinedGraphsModal('binary-tree'));
 document.getElementById('petersen-graph-button').addEventListener('click', () => openPredefinedGraphsModal('petersen'));
 
+document.getElementById('ca-title').addEventListener('click', () => toggleSideBarSection(document.getElementById('custom-algorithms-section')));
 document.getElementById('regular-graph-info-icon').addEventListener('click', () => openInfoWindow('regular-graph'));
 document.getElementById('complete-graph-info-icon').addEventListener('click', () => openInfoWindow('complete-graph'));
 document.getElementById('star-graph-info-icon').addEventListener('click', () => openInfoWindow('star-graph'));

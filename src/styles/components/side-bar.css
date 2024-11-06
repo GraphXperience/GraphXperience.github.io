@@ -18,9 +18,15 @@
 }
 
 .side-bar h1 {
+    display: flex;
+    justify-content: center;
+
     font-size: 2em;
     font-weight: 700;
     margin-bottom: 1em;
+
+    user-select: none;
+    cursor: pointer;
 }
 
 .side-bar.active {
@@ -51,4 +57,28 @@
     gap: 1em;
 
     width: 100%;
+}
+
+#algorithms-section.hide li {
+    display: none;
+}
+
+#algorithms-section.hide #as-hide-arrow {
+    transform: rotateX(180deg);
+}
+
+#predefined-graphs-section.hide li {
+    display: none;
+}
+
+#predefined-graphs-section.hide #as-hide-arrow {
+    transform: rotateX(180deg);
+}
+
+#custom-algorithms-section.hide li {
+    display: none;
+}
+
+#custom-algorithms-section.hide #as-hide-arrow {
+    transform: rotateX(180deg);
 }
