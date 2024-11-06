@@ -21,7 +21,7 @@ function getConnectedComponents(graph) {
             let componentColor = colors[i++ % 7];
             visitComponent(node, currentComponent, componentColor);
             connectedComponents.push(currentComponent);
-            actions.push({type:'print', message: 'Os componentes ' + currentComponent.map(id => idToTag.get(id)).join(', ') + ' estão conexos.'})
+            actions.push({ type: 'print', message: 'Os componentes ' + currentComponent.map(id => idToTag.get(id)).join(', ') + ' estão conexos.' })
         }
     }
 
