@@ -1,5 +1,5 @@
 import { getCytoscape, getUndoRedo } from "./context";
-import { removeTag } from "./extensions/element-extensions";
+import { removeTag, setTag } from "./extensions/element-extensions";
 import { getRandomUuid } from "./utils";
 
 var cy = getCytoscape();
@@ -22,8 +22,11 @@ function connectNodes(nodes) {
         var sourceNodeId = nodeIds[i];
         var targetNodeId = nodeIds[i + 1];
 
-        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
+        if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
+            continue;
+        }
 
+        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
         if (existingEdge.empty()) {
             const newEdgeId = getRandomUuid();
 
@@ -77,6 +80,14 @@ function disconnectEdges(nodes) {
     ur.do('remove', edges);
 }
 
+function generateEdgeTags() {
+    cy.edges().forEach((edge, i) => setTag(edge, i.toString()));
+}
+
+function generateNodeTags() {
+    cy.nodes().forEach((node, i) => setTag(node, i.toString()));
+}
+
 function removeElement(element) {
     removeTag(element);
 
@@ -88,11 +99,31 @@ function removeElements(elements) {
     ur.do('remove', elements);
 }
 
+function removeBidirectionalEdges() {
+    const pairs = new Set();
+    const edgeIdsToRemove = new Set();
+
+    for (const edge of cy.edges()) {
+        const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
+        if (pairs.has(reverse_edge)) {
+            edgeIdsToRemove.add(edge.id());
+        }
+        pairs.add(`${edge.source().id()}${edge.target().id()}`);
+    }
+    
+    for (const edgeId of edgeIdsToRemove) {
+        cy.$id(edgeId).remove();
+    }
+}
+
 export {
     clear,
     connectNodes,
     createNode,
     disconnectEdges,
+    generateEdgeTags,
+    generateNodeTags,
     removeElement,
-    removeElements
+    removeElements,
+    removeBidirectionalEdges
 }

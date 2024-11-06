@@ -1,5 +1,6 @@
 import { getCytoscape, getUndoRedo } from './context';
 import { getBatchFromJson, createGraphJson } from './extensions/cytoscape-extensions';
+import { setTag } from './extensions/element-extensions';
 
 var cy = getCytoscape();
 var ur = getUndoRedo();
@@ -30,6 +31,10 @@ function loadGraphJson() {
                     cy.trigger('changeIsEdgeWeighted', graphData.isEdgeWeighted);
 
                 ur.do('batch', getBatchFromJson(e.target.result));
+
+                cy.elements()
+                    .filter(ele => ele.data('tag'))
+                    .forEach(ele => setTag(ele, ele.data('tag')));
             };
 
             reader.readAsText(file);

@@ -1,0 +1,108 @@
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+    padding: 5em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 1em;
+
+    max-width: 50%;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+
+    height: 100%;
+    width: 100%;
+
+    color: var(--main-color);
+}
+
+.modal-content[data-gap="1"] {
+    gap: 1em;
+}
+
+.modal-content[data-gap="2"] {
+    gap: 2em;
+}
+
+.modal-content[data-gap="3"] {
+    gap: 3em;
+}
+
+.modal-content[data-gap="4"] {
+    gap: 4em;
+}
+
+.modal-title {
+    color: var(--main-color);
+    font-size: 2.4em;
+}
+
+.modal p,
+.modal label {
+    color: var(--main-color);
+    font-size: 1.6em;
+    width: 100%;
+}
+
+.modal span {
+    color: var(--main-color);
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5em;
+}
+
+.modal-section[data-fd-column] {
+    flex-direction: column;
+    gap: 3em;
+}
+
+.modal-input {
+    color: var(--main-color);
+    font-size: 1.6em;
+    height: 2em;
+    padding-left: 0.5em;
+}
+
+.modal-section input[type=number] {
+    text-align: center;
+    width: 3em;
+}
+
+.modal-section input[type=checkbox] {
+    height: 3em;
+    width: 3em;
+}
+
+.modal-section textarea {
+    color: var(--main-color);
+}
+
+.modal-close {
+    font-size: 2.4em;
+    cursor: pointer;
+    background-color: var(--error);
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.2em 0.5em;
+    width: 50%;
+}
+
+.modal-confirm {
+    font-size: 2.4em;
+    cursor: pointer;
+    background-color: var(--success);
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.2em 0.5em;
+    width: 50%;
+}

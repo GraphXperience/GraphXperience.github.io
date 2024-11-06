@@ -2,16 +2,16 @@ import { setTag } from '../extensions/element-extensions';
 
 const tagEditor = document.getElementById("tag-editor");
 
-const tagInput = document.getElementById('new-tag-input');
-
-const cancelButton = document.getElementById('tag-editor-cancel-button');
-const okButton = document.getElementById('tag-editor-ok-button');
+const editorTitle = tagEditor.querySelector('.modal-title');
+const tagInput = document.getElementById('tag-input');
+const cancelButton = tagEditor.querySelector('.modal-close');
+const okButton = tagEditor.querySelector('.modal-confirm');
 
 class TagEditor {
     constructor(cy) {
         this.cy = cy;
 
-        cancelButton.addEventListener('click', () => { tagEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { tagEditor.close(); });
 
         okButton.addEventListener('click', () => {
             this.elementsToEdit.forEach(element => {
@@ -19,7 +19,7 @@ class TagEditor {
             });
 
             this.cy.trigger('save');
-            tagEditor.style.display = 'none';
+            tagEditor.close();
         });
     }
 
@@ -35,9 +35,10 @@ class TagEditor {
             tagInput.value = '';
         }
 
-        tagEditor.querySelector('h3').innerText = title;
-        tagEditor.style.display = "block";
+        editorTitle.innerText = title;
+        tagEditor.showModal();
         tagInput.focus();
+        tagInput.select();
     }
 }
 

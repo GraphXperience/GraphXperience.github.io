@@ -1,10 +1,8 @@
-document.getElementById('info-window-close-button').addEventListener('click', closeInfoWindow);
+const infoWindow = document.getElementById('info-window');
+const infoWindowContent = infoWindow.querySelector('.modal-content');
 
 function openInfoWindow(type, title = '', messages = []) {
-    const infoWindow = document.getElementById('info-window');
-    const infoWindowContent = document.getElementById('info-window-content')
-    
-    infoWindow.style.display = 'block';
+    infoWindow.showModal();
 
     clearInfoWindowContent();
 
@@ -238,34 +236,42 @@ function openInfoWindow(type, title = '', messages = []) {
 
     const heading = document.createElement('h1');
     heading.textContent = title;
+    heading.classList.add('modal-title');
 
-    const lineBreak = document.createElement('br');
-    
-    let paragraphs = [];
-
+    const content = document.createElement('div');
+    content.classList.add('modal-section');
+    content.dataset.fdColumn = true;
     for (const message of messages) {
         const paragraph = document.createElement('p');
         paragraph.textContent = message;
-        paragraphs.push(paragraph);
+        content.appendChild(paragraph);
     }
 
     infoWindowContent.appendChild(heading);
-    infoWindowContent.appendChild(lineBreak);
-    infoWindowContent.append(...paragraphs);
+    infoWindowContent.appendChild(content);
+    infoWindowContent.appendChild(createCloseButton());
+}
+
+function createCloseButton() {
+    const div = document.createElement('div');
+    div.classList.add('modal-section');
+    
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Fechar';
+    closeButton.classList.add('modal-close');
+    closeButton.addEventListener('click', closeInfoWindow);
+
+    div.appendChild(closeButton);
+
+    return div;
 }
 
 function clearInfoWindowContent() {
-    const infoWindowContent = document.getElementById('info-window-content');
-    const children = Array.from(infoWindowContent.children).filter(child => child.tagName.toLowerCase() !== 'button');
-
-    children.forEach(child => {
-        infoWindowContent.removeChild(child);
-    });
+    infoWindowContent.replaceChildren();
 }
 
 function closeInfoWindow() {
-    const infoWindow = document.getElementById('info-window');
-    infoWindow.style.display = 'none';
+    infoWindow.close();
 }
 
 export {

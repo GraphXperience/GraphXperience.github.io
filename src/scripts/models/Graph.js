@@ -50,7 +50,7 @@ export class Graph {
 
         node.outgoingEdges.forEach(edge => addNeighbor(edge.targetNode));
 
-        if (!node.isDirected) {
+        if (!this.isDirected) {
             node.incomingEdges.forEach(edge => addNeighbor(edge.sourceNode));
         }
 

@@ -2,13 +2,12 @@ import { RESET_COLOR } from '../../constants/colors';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
 import { setColor, setTag, setWeight } from '../extensions/element-extensions';
 import { sleep } from '../utils';
+import { hideAnimationConsole, showAnimationConsole } from './console';
 import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
 import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons, setAnimationCounter } from './panel';
 import { validate } from './validate';
 
 const cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
-const animationConsole = document.getElementById('animation-console');
-const animationConsoleToggle = document.getElementById('animation-console-toggle');
 
 async function startAnimation(actions) {
     const errors = validate(actions);
@@ -22,7 +21,7 @@ async function startAnimation(actions) {
     disableButtons();
     hideSideBar();
     showAnimationPanel();
-    animationConsoleToggle.style.display = 'block';
+    showAnimationConsole();
 
     cy.data('animation', true);
 }
@@ -73,19 +72,14 @@ function disableButtons() {
     [
         ...document.getElementsByClassName('graph-button'),
         ...document.getElementsByClassName('side-bar-button'),
-        drawModeButton
+        ...document.getElementsByClassName('icon-button'),
     ].forEach(element => element.disabled = true);
-
-    hamburger.classList.toggle('disabled');
 }
 
 function hideSideBar() {
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('side-bar');
-
-    if (sidebar.classList.contains('active')) {
-        sidebar.classList.toggle('active');
-        hamburger.classList.toggle('active');
+    if (document.getElementById('sidebar-menu-icon').textContent === 'menu_open') {
+        document.getElementById('sidebar-menu-icon').textContent = 'menu';
+        document.getElementById('side-bar').classList.toggle('active');
     }
 }
 
@@ -109,10 +103,7 @@ function endAnimation() {
 function closeAnimation() {
     resetToOriginal();
     closeAnimationPanel();
-    animationConsole.classList.remove('-active');
-    animationConsole.replaceChildren();
-    animationConsoleToggle.classList.remove('-active');
-    animationConsoleToggle.style.display = 'none';
+    hideAnimationConsole();
     enableButtons();
 
     const { undo, redo } = getUndoRedoStack();
@@ -146,10 +137,8 @@ function enableButtons() {
     [
         ...document.getElementsByClassName('graph-button'),
         ...document.getElementsByClassName('side-bar-button'),
-        document.getElementById('draw-mode-button')
+        ...document.getElementsByClassName('icon-button'),
     ].forEach(element => element.disabled = false);
-
-    document.getElementById('hamburger').classList.toggle('disabled');
 }
 
 async function goToStart() {

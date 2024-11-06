@@ -14,30 +14,30 @@ function setupCxtMenu(cy) {
         selector: 'node, edge',
         commands: [
             {
-                fillColor: 'rgba(200, 200, 200, 0.75)',
+                fillColor: 'rgba(200, 200, 200, 0.9)',
                 content: 'Cor',
-                contentStyle: {},
+                contentStyle: { "font-size": '1.6em' },
                 select: () => colorEditor.open(cy.elements(":selected")),
                 enabled: true
             },
             {
-                fillColor: 'rgba(200, 200, 200, 0.75)',
+                fillColor: 'rgba(200, 200, 200, 0.9)',
                 content: 'Tag',
-                contentStyle: {},
+                contentStyle: { "font-size": '1.6em' },
                 select: () => tagEditor.open(cy.elements(":selected")),
                 enabled: true
             },
             {
-                fillColor: 'rgba(200, 200, 200, 0.75)',
-                content: 'Dimensão',
-                contentStyle: {},
+                fillColor: 'rgba(200, 200, 200, 0.9)',
+                content: 'Espessura',
+                contentStyle: { "font-size": '1.6em' },
                 select: () => sizeEditor.open(cy.elements(":selected")),
                 enabled: true
             },
             {
-                fillColor: 'rgba(200, 200, 200, 0.75)',
+                fillColor: 'rgba(200, 200, 200, 0.9)',
                 content: 'Peso',
-                contentStyle: {},
+                contentStyle: { "font-size": '1.6em' },
                 select: () => weightEditor.open(cy.elements(":selected")),
                 enabled: true
             },

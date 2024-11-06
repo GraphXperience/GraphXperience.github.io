@@ -1,18 +1,18 @@
-import { RESET_COLOR } from "../../constants/colors";
 import { resetCytoscape } from "../context";
 import { resetLocalStorage, setGlobalConfig, setGlobalStyle } from '../extensions/local-storage-extensions';
 import { clear } from "../graph";
-import { getTagColor, setTagColor, rgbStrToHex, validateMinMax } from "../utils";
+import { getTagColor, setTagColor, validateMinMax } from "../utils";
+import { openPopup } from '../popup';
 
-const configEditor = document.getElementById('config-editor');
-const sizeInput = document.getElementById('config-editor-node-size-input');
-const edgeThicknessInput = document.getElementById('config-editor-edge-thickness-input');
-const directInput = document.getElementById('config-editor-direct-input');
-const nodeWeightedInput = document.getElementById('config-editor-node-weighted-input');
-const edgeWeightedInput = document.getElementById('config-editor-edge-weighted-input');
-const resetButton = document.getElementById('config-editor-reset-button');
-const cancelButton = document.getElementById('config-editor-cancel-button');
-const okButton = document.getElementById('config-editor-ok-button');
+const configEditor = document.getElementById('global-config-editor');
+const sizeInput = document.getElementById('gc-node-size-input');
+const edgeThicknessInput = document.getElementById('gc-edge-thickness-input');
+const directInput = document.getElementById('gc-direct-input');
+const nodeWeightedInput = document.getElementById('gc-node-weighted-input');
+const edgeWeightedInput = document.getElementById('gc-edge-weighted-input');
+const resetButton = document.getElementById('gc-reset-button');
+const cancelButton = configEditor.querySelector('.modal-close');
+const okButton = configEditor.querySelector('.modal-confirm');
 
 class GlobalConfigEditor {
     constructor(cy) {
@@ -26,12 +26,24 @@ class GlobalConfigEditor {
             clear();
             resetCytoscape();
 
-            configEditor.style.display = 'none';
+            configEditor.close();
         });
 
-        cancelButton.addEventListener('click', () => { configEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { configEditor.close(); });
 
         okButton.addEventListener('click', () => {
+            if (cy.data('isDirected') !== directInput.checked) {
+                const pairs = new Set();
+                for (const edge of cy.edges()) {
+                    const reverse_edge = `${edge.target().id()}${edge.source().id()}`;
+                    if (pairs.has(reverse_edge)) {
+                        openPopup('Para tornar um grafo direcionado em um não direcionado, remova as arestas bidirecionais que possuem peso.');
+                        return;
+                    }
+                    pairs.add(`${edge.source().id()}${edge.target().id()}`);
+                }
+            }
+
             if (sizeInput.value < 1 || sizeInput.value > 10) {
                 alert('Tamanho do nó deve estar entre 1 e 10.');
                 return;
@@ -58,7 +70,7 @@ class GlobalConfigEditor {
 
             this.cy.style().fromJson(styles.cy);
 
-            setTagColor(styles.tag)
+            setTagColor(styles.tag);
 
             setGlobalStyle(styles);
             setGlobalConfig({
@@ -80,7 +92,7 @@ class GlobalConfigEditor {
 
             this.cy.trigger('save');
 
-            configEditor.style.display = 'none';
+            configEditor.close();
         });
     }
 
@@ -106,7 +118,7 @@ class GlobalConfigEditor {
         nodeWeightedInput.checked = this.cy.data('isNodeWeighted');
         edgeWeightedInput.checked = this.cy.data('isEdgeWeighted');
 
-        configEditor.style.display = 'block';
+        configEditor.showModal();
     }
 }
 

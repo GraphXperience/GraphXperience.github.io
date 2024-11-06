@@ -6,8 +6,8 @@ const weightEditor = document.getElementById('weight-editor');
 
 const newWeightInput = document.getElementById('new-weight-input');
 
-const cancelButton = document.getElementById('weight-editor-cancel-button');
-const okButton = document.getElementById('weight-editor-ok-button');
+const cancelButton = weightEditor.querySelector('.modal-close');
+const okButton = weightEditor.querySelector('.modal-confirm');
 
 
 class WeightEditor {
@@ -16,7 +16,7 @@ class WeightEditor {
 
         newWeightInput.addEventListener('change', (evt) => validateMinMax(evt, 1, Infinity));
 
-        cancelButton.addEventListener('click', () => { weightEditor.style.display = 'none'; });
+        cancelButton.addEventListener('click', () => { weightEditor.close(); });
 
         okButton.addEventListener('click', () => {
             const newValue = parseInt(newWeightInput.value);
@@ -41,7 +41,7 @@ class WeightEditor {
             });
 
             this.cy.trigger('save');
-            weightEditor.style.display = 'none';
+            weightEditor.close();
         });
     }
 
@@ -57,9 +57,10 @@ class WeightEditor {
             newWeightInput.value = 1;
         }
 
-        weightEditor.querySelector('h3').innerText = title;
-        weightEditor.style.display = 'block';
+        weightEditor.querySelector('h1').innerText = title;
+        weightEditor.showModal();
         newWeightInput.focus();
+        newWeightInput.select();
     }
 }
 
