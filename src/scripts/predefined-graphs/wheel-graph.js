@@ -2,9 +2,6 @@ import { getRandomUuid } from '../utils';
 import { getCentralAndOuterPositions } from '../layout-utils';
 
 function createWheelGraph(cy, ur, nodeCount) {
-    cy.elements().remove();
-    cy.trigger('changeIsDirected', false);
-
     let nodes = [];
     let edges = [];
 

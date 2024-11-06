@@ -1,40 +1,30 @@
-import { openPopup } from '../popup';
-
 function bfs(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
-        openPopup('Não há nós selecionados');
-        return [];
+        throw new Error('Não há nós selecionados');
     }
     if (selectedNodes.length > 1) {
-        openPopup('Selecione apenas um nó para iniciar a busca');
-        return [];
+        throw new Error('Selecione apenas um nó para iniciar a busca');
     }
-    const startNode = graph.nodes.find(node => node.id === selectedNodes[0].id);
 
     let visitedNodeIds = new Set();
-    let queue = [startNode];
+    let queue = [selectedNodes[0]];
     let actions = [];
 
-    while (queue.length) {
+    while (queue.length > 0) {
         const currentNode = queue.shift();
 
         visitedNodeIds.add(currentNode.id);
+        actions.push({ elementId: currentNode.id, type: 'animate', color: 'red' });
+        actions.push({ message: 'Visitando o nó ' + currentNode.tag, type: 'print' });
 
-        actions.push({ elementId: currentNode.id, type: 'animate' });
-
-        let neighbors = currentNode.getNeighbors(graph.isDirected);
-        currentNode.outgoingEdges.forEach(edge => actions.push({ elementId: edge.id, type: 'animate' }));
-
-        if (!graph.isDirected) {
-            currentNode.incomingEdges.forEach(edge => actions.push({ elementId: edge.id, type: 'animate' }));
-        }
-
-        neighbors.forEach((neighbor) => {
+        let neighbors = graph.getNeighbors(currentNode);
+        for (let neighbor of neighbors) {
             if (!visitedNodeIds.has(neighbor.id)) {
                 queue.push(neighbor);
+                actions.push({ elementId: graph.getEdge(currentNode, neighbor).id, type: 'animate' });
                 actions.push({ elementId: neighbor.id, type: 'animate', color: '#DBA404' });
             }
-        });
+        }
     }
 
     return actions;
