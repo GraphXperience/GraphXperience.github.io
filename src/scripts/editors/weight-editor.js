@@ -30,17 +30,19 @@ class WeightEditor {
                 setWeight(element, newValue);
 
                 if (element.isNode() && !this.cy.data('isNodeWeighted')) {
+                    this.cy.elements('node[^weight]').forEach(ele => setWeight(ele, 1));
                     this.cy.trigger('changeIsNodeWeighted', true);
                     setGlobalConfig({
-                        isDirected: cy.data('isDirected'),
+                        isDirected: this.cy.data('isDirected'),
                         isNodeWeighted: true,
-                        isEdgeWeighted: cy.data('isNodeWeighted'),
+                        isEdgeWeighted: this.cy.data('isNodeWeighted'),
                     });
                 } else if (element.isEdge() && !this.cy.data('isEdgeWeighted')) {
+                    this.cy.elements('edge[^weight]').forEach(ele => setWeight(ele, 1));
                     this.cy.trigger('changeIsEdgeWeighted', true);
                     setGlobalConfig({
-                        isDirected: cy.data('isDirected'),
-                        isNodeWeighted: cy.data('isNodeWeighted'),
+                        isDirected: this.cy.data('isDirected'),
+                        isNodeWeighted: this.cy.data('isNodeWeighted'),
                         isEdgeWeighted: true
                     });
                 }
