@@ -1,6 +1,6 @@
 import cytoscape from "cytoscape";
-import {RESET_COLOR} from "../../constants/colors";
-import {FULL_VISIBLE_OPACITY, PARTIAL_VISIBLE_OPACITY} from "../../constants/opacity";
+import { RESET_COLOR } from "../../constants/colors";
+import { FULL_VISIBLE_OPACITY, PARTIAL_VISIBLE_OPACITY } from "../../constants/opacity";
 
 function buildStylesheet(globalConfig, globalStyle) {
     const nodeStyle = {
