@@ -2,3 +2,9 @@
 
 /node_modules/
 package-lock.json
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/GraphXperience.github.io.iml
+/.idea/jsLibraryMappings.xml
+/.idea/modules.xml
+/.idea/vcs.xml

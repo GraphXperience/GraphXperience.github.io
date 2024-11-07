@@ -1,6 +1,6 @@
 import { RESET_COLOR } from '../../constants/colors';
 import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
-import { setColor, setTag, setWeight } from '../extensions/element-extensions';
+import { setColor, setSize, setTag, setWeight } from '../extensions/element-extensions';
 import { sleep } from '../utils';
 import { hideAnimationConsole, showAnimationConsole } from './console';
 import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
@@ -46,9 +46,9 @@ function prepare(actions) {
     setOriginalConfig(originalConfig);
     setOriginalElements(cy.elements().map(ele => ({
         id: ele.id(),
-        color: ele.isNode() ? ele.style('background-color') : ele.style('line-color'),
         weight: ele.data('weight'),
-        size: ele.style('width'),
+        overrideColor: ele.data('overrideColor'),
+        overrideSize: ele.data('overrideSize'),
         tag: ele.data('tag'),
     })));
     setPaused(true);
@@ -122,14 +122,10 @@ function resetToOriginal() {
     for (const originalElement of originalElements) {
         const element = cy.$id(originalElement.id);
 
-        setColor(element, originalElement.color);
         setWeight(element, originalElement.weight);
-        element.style('width', originalElement.size);
+        setColor(element, originalElement.overrideColor);
+        setSize(element, originalElement.overrideSize);
         setTag(element, originalElement.tag?.toString());
-
-        if (element.isNode()) {
-            element.style('height', originalElement.size);
-        }
     }
 }
 

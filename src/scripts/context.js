@@ -91,7 +91,7 @@ class Context {
             contextState.cytoscape.data('isNodeWeighted', val);
 
             const styles = contextState.cytoscape.style().json();
-            styles.find(s => s.selector === 'node').style['label'] = val ? 'data(weight)' : '';
+            styles.find(s => s.selector === 'node[weight]').style['label'] = val ? 'data(weight)' : '';
             contextState.cytoscape.style().fromJson(styles);
         });
 
@@ -99,13 +99,13 @@ class Context {
             contextState.cytoscape.data('isEdgeWeighted', val);
 
             const styles = contextState.cytoscape.style().json();
-            styles.find(s => s.selector === 'edge').style['label'] = val ? 'data(weight)' : '';
+            styles.find(s => s.selector === 'edge[weight]').style['label'] = val ? 'data(weight)' : '';
             contextState.cytoscape.style().fromJson(styles);
         });
 
-        contextState.cytoscape.on('afterUndo', (evt, actionName, args) => this.persistGraphData(actionName));
-        contextState.cytoscape.on('afterDo', (evt, actionName, args) => this.persistGraphData(actionName));
-        contextState.cytoscape.on('afterRedo', (evt, actionName, args) => this.persistGraphData(actionName));
+        contextState.cytoscape.on('afterUndo', (evt, actionName) => this.persistGraphData(actionName));
+        contextState.cytoscape.on('afterDo', (evt, actionName) => this.persistGraphData(actionName));
+        contextState.cytoscape.on('afterRedo', (evt, actionName) => this.persistGraphData(actionName));
         contextState.cytoscape.on('layoutstop', () => this.persistGraphData('layoutstop'));
         contextState.cytoscape.on('save', _ => this.persistGraphData());
 
@@ -125,7 +125,7 @@ class Context {
     }
 
     persistGraphData(actionName) {
-        if (actionName == 'animate') {
+        if (actionName === 'animate') {
             return;
         }
 
@@ -137,7 +137,7 @@ class Context {
         const jsonData = createGraphJson(contextState.cytoscape);
 
         sessionStorage.setItem('graph', JSON.stringify(jsonData));
-        sessionStorage.setItem('updatedAt', Date.now());
+        sessionStorage.setItem('updatedAt', Date.now().toString());
     }
 
     reset() {

@@ -63,7 +63,7 @@
     display: none;
 }
 
-#algorithms-section.hide #as-hide-arrow {
+#algorithms-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }
 
@@ -71,7 +71,7 @@
     display: none;
 }
 
-#predefined-graphs-section.hide #as-hide-arrow {
+#predefined-graphs-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }
 
@@ -79,6 +79,6 @@
     display: none;
 }
 
-#custom-algorithms-section.hide #as-hide-arrow {
+#custom-algorithms-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }

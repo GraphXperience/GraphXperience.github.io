@@ -1,5 +1,5 @@
 import { ANIMATED_COLOR } from '../../constants/colors';
-import { setTag } from '../extensions/element-extensions';
+import { setColor, setSize, setTag } from '../extensions/element-extensions';
 import { getRandomUuid } from '../utils';
 
 function setupUndoRedo(cy) {
@@ -43,16 +43,8 @@ function animate({ element, color, size, tag, weight }) {
         duration: 0,
     };
 
-    if (element.isNode()) {
-        animation.style['background-color'] = color ?? ANIMATED_COLOR;
-        animation.style['width'] = size ?? current.size;
-        animation.style['height'] = size ?? current.size;
-    }
-    else {
-        animation.style['line-color'] = color ?? ANIMATED_COLOR;
-        animation.style['target-arrow-color'] = color ?? ANIMATED_COLOR;
-        animation.style['width'] = size ?? current.size;
-    }
+    setColor(element, color ?? ANIMATED_COLOR);
+    setSize(element, size ?? current.size);
 
     element.animate(animation);
 

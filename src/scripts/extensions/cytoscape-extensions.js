@@ -24,6 +24,28 @@ function buildStylesheet(globalConfig, globalStyle) {
         'target-arrow-color': RESET_COLOR,
     };
 
+    const overrideNodeColor = {
+        'background-color': 'data(overrideColor)',
+    };
+
+    const overrideNodeSize = {
+        'height': 'data(overrideSize)',
+        'width': 'data(overrideSize)',
+    };
+
+    const overrideEdgeColor = {
+        'line-color': 'data(overrideColor)',
+        'target-arrow-color': 'data(overrideColor)',
+    };
+
+    const overrideEdgeSize = {
+        'width': 'data(overrideSize)',
+    };
+
+    const weight = {
+        'label': 'data(weight)'
+    }
+
     const selected = {
         'opacity': FULL_VISIBLE_OPACITY
     };
@@ -34,8 +56,6 @@ function buildStylesheet(globalConfig, globalStyle) {
 
     if (globalConfig) {
         edgeStyle['target-arrow-shape'] = globalConfig.isDirected ? 'triangle' : 'none';
-        nodeStyle['label'] = globalConfig.isNodeWeighted ? 'data(weight)' : '';
-        edgeStyle['label'] = globalConfig.isEdgeWeighted ? 'data(weight)' : '';
     }
 
     if (globalStyle) {
@@ -54,7 +74,13 @@ function buildStylesheet(globalConfig, globalStyle) {
 
     return cytoscape.stylesheet()
         .selector('node').style(nodeStyle)
+        .selector('node[weight]').style(weight)
+        .selector('node[overrideColor]').style(overrideNodeColor)
+        .selector('node[overrideSize]').style(overrideNodeSize)
         .selector('edge').style(edgeStyle)
+        .selector('edge[weight]').style(weight)
+        .selector('edge[overrideColor]').style(overrideEdgeColor)
+        .selector('edge[overrideSize]').style(overrideEdgeSize)
         .selector(':selected').style(selected)
         .selector('[?readonly]').style(readonly)
         .selector('core').style({ 'active-bg-size': 0 });
@@ -67,7 +93,8 @@ function createGraphJson(cy) {
             tag: node.data('tag'),
             weight: node.data('weight'),
             position: node.position(),
-            elementColor: node.style('background-color'),
+            overrideColor: node.data('overrideColor'),
+            overrideSize: node.data('overrideSize'),
             size: node.style('width')
         })),
         edges: cy.edges().map(edge => ({
@@ -76,7 +103,8 @@ function createGraphJson(cy) {
             weight: edge.data('weight'),
             source: edge.source().id(),
             target: edge.target().id(),
-            elementColor: edge.style('line-color'),
+            overrideColor: edge.data('overrideColor'),
+            overrideSize: edge.data('overrideSize'),
             size: edge.style('width')
         }))
     };
@@ -96,13 +124,10 @@ function getBatchFromJson(json) {
                 id: node.id,
                 tag: node.tag,
                 weight: node.weight,
+                overrideColor: node.overrideColor,
+                overrideSize: node.overrideSize
             },
-            position: node.position,
-            style: {
-                'background-color': rgbStrToHex(node.elementColor),
-                'height': node.size,
-                'width': node.size
-            }
+            position: node.position
         }
     }));
     data.edges.forEach(edge => batch.push({
@@ -115,11 +140,8 @@ function getBatchFromJson(json) {
                 target: edge.target,
                 tag: edge.tag,
                 weight: edge.weight,
-            },
-            style: {
-                'line-color': edge.elementColor,
-                'target-arrow-color': edge.elementColor,
-                'width': edge.size
+                overrideColor: edge.overrideColor,
+                overrideSize: edge.overrideSize
             }
         }
     }));
