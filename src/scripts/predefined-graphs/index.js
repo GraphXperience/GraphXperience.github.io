@@ -9,8 +9,8 @@ import { createPetersenGraph } from './petersen-graph.js';
 import { getCytoscape, getUndoRedo } from '../context.js';
 import { removeTag } from '../extensions/element-extensions.js';
 
-var cy = getCytoscape();
-var ur = getUndoRedo();
+const cy = getCytoscape();
+const ur = getUndoRedo();
 
 const graphCreationFunctions = {
     'complete': createCompleteGraph,

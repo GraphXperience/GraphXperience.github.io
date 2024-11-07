@@ -3,13 +3,12 @@ import { setColor, setSize, setTag } from '../extensions/element-extensions';
 import { getRandomUuid } from '../utils';
 
 function setupUndoRedo(cy) {
-    var options = {
+    const options = {
         isDebug: false,
         actions: {},
         undoableDrag: true,
-        stackSizeLimit: undefined,
-        ready: function () { }
-    }
+        stackSizeLimit: undefined
+    };
 
     const ur = cy.undoRedo(options);
 
@@ -29,11 +28,11 @@ function animate({ element, color, size, tag, weight }) {
         weight: element.data('weight'),
     };
 
-    if (weight != undefined) {
+    if (weight !== undefined) {
         element.data('weight', weight);
     }
 
-    if (tag != undefined) {
+    if (tag !== undefined) {
         current.tag = current.tag ?? '';
         setTag(element, tag.toString());
     }
@@ -52,6 +51,7 @@ function animate({ element, color, size, tag, weight }) {
 }
 
 const printConsole = document.getElementById('ac-content');
+
 function print({ message, color }) {
     const newMessage = document.createElement('p');
     newMessage.textContent = message;
@@ -77,7 +77,7 @@ function revertPrint({ element }) {
 }
 
 function handleEdgeHandlesCompletion(cy, ur) {
-    cy.on('ehcomplete', (event, sourceNode, targetNode, addedEdge) => {
+    cy.on('ehcomplete', (event, sourceNode, targetNode) => {
         cy.edges().slice(-2).remove();
         cy.nodes().slice(-1).remove();
 

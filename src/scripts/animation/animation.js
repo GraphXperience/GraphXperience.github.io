@@ -1,10 +1,10 @@
 import { RESET_COLOR } from '../../constants/colors';
-import { getCytoscape, getUndoRedo, getEdgeHandles } from '../context';
+import { getCytoscape, getEdgeHandles, getUndoRedo } from '../context';
 import { setColor, setSize, setTag, setWeight } from '../extensions/element-extensions';
 import { sleep } from '../utils';
 import { hideAnimationConsole, showAnimationConsole } from './console';
-import { getCurrentIndex, getEndIndex, getActions, getOriginalElements, getPaused, resetAnimation, setCurrentIndex, setEndIndex, setActions, setOriginalElements, setPaused, setUndoRedoStack, getUndoRedoStack, getOriginalConfig, setOriginalConfig } from './context';
-import { showAnimationPanel, closeAnimationPanel, showPlayIcon, blockAnimationButtons, unblockAnimationButtons, setAnimationCounter } from './panel';
+import { getActions, getCurrentIndex, getEndIndex, getOriginalConfig, getOriginalElements, getPaused, getUndoRedoStack, resetAnimation, setActions, setCurrentIndex, setEndIndex, setOriginalConfig, setOriginalElements, setPaused, setUndoRedoStack } from './context';
+import { blockAnimationButtons, closeAnimationPanel, setAnimationCounter, showAnimationPanel, showPlayIcon, unblockAnimationButtons } from './panel';
 import { validate } from './validate';
 
 const cy = getCytoscape(), ur = getUndoRedo(), eh = getEdgeHandles();
@@ -214,9 +214,7 @@ function nextAnimation(actions = getActions()) {
 
 function getCurrentDurationMultiplier() {
     const speed = cy.data('sliderSpeed');
-    const durationMultiplier = speed != 0 ? 1 / speed : 0;
-
-    return durationMultiplier;
+    return speed != 0 ? 1 / speed : 0;
 }
 
 async function previousAnimation(currentIndex = getCurrentIndex()) {

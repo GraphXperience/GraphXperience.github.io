@@ -240,7 +240,7 @@ function openInfoWindow(type, title = '', messages = []) {
 
     const content = document.createElement('div');
     content.classList.add('modal-section');
-    content.dataset.fdColumn = true;
+    content.dataset.fdColumn = 'true';
     for (const message of messages) {
         const paragraph = document.createElement('p');
         paragraph.textContent = message;

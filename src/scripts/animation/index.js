@@ -13,7 +13,7 @@ import {
 import { setupAnimationConsole } from "./console";
 import { showPlayIcon, showPauseIcon, blockAnimationButtons, unblockAnimationButtons } from "./panel";
 
-var cy = getCytoscape();
+const cy = getCytoscape();
 
 function setupAnimationButtons() {
     const closeButton = document.getElementById('ac-close-button');
@@ -40,22 +40,22 @@ function setupAnimationButtons() {
     setupAnimationConsole();
 }
 
-function onCloseClick(event) {
+function onCloseClick() {
     endAnimation();
     closeAnimation();
 }
 
-async function onGoToBeginClick(event) {
+async function onGoToBeginClick() {
     blockAnimationButtons(true);
     await goToStart();
     unblockAnimationButtons(true);
 }
 
-async function onPreviousClick(event) {
+async function onPreviousClick() {
     await previousAnimation();
 }
 
-async function onPlayPauseClick(event) {
+async function onPlayPauseClick() {
     const playPauseButtonImg = document.getElementById('ac-play-pause-img');
 
     if (playPauseButtonImg.textContent === 'play_circle') {
@@ -68,17 +68,17 @@ async function onPlayPauseClick(event) {
     pauseAnimation();
 }
 
-function onNextClick(event) {
+function onNextClick() {
     nextAnimation();
 }
 
-async function onGoToEndClick(event) {
+async function onGoToEndClick() {
     blockAnimationButtons(true);
     await goToEnd();
     unblockAnimationButtons(true);
 }
 
-function onSliderInput(event) {
+function onSliderInput() {
     const speedDisplay = document.getElementById('ac-slider-speed-display');
     const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 

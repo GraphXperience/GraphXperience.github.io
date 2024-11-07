@@ -34,9 +34,7 @@ export class Graph {
 
     getEdge(sourceNode, targetNode) {
         const nodeEdges = this.getEdges(sourceNode);
-		const edge = nodeEdges.find(e => e.targetNode.id === targetNode.id || e.sourceNode.id === targetNode.id);
-
-		return edge;
+        return nodeEdges.find(e => e.targetNode.id === targetNode.id || e.sourceNode.id === targetNode.id);
     }
 
     getNeighbors(node) {

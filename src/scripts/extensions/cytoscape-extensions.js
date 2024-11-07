@@ -1,7 +1,6 @@
 import cytoscape from "cytoscape";
-import { RESET_COLOR } from "../../constants/colors";
-import { FULL_VISIBLE_OPACITY, PARTIAL_VISIBLE_OPACITY } from "../../constants/opacity";
-import { rgbStrToHex } from "../utils";
+import {RESET_COLOR} from "../../constants/colors";
+import {FULL_VISIBLE_OPACITY, PARTIAL_VISIBLE_OPACITY} from "../../constants/opacity";
 
 function buildStylesheet(globalConfig, globalStyle) {
     const nodeStyle = {
@@ -87,7 +86,7 @@ function buildStylesheet(globalConfig, globalStyle) {
 }
 
 function createGraphJson(cy) {
-    const jsonData = {
+    return {
         nodes: cy.nodes().map(node => ({
             id: node.id(),
             tag: node.data('tag'),
@@ -108,8 +107,6 @@ function createGraphJson(cy) {
             size: edge.style('width')
         }))
     };
-
-    return jsonData;
 }
 
 function getBatchFromJson(json) {

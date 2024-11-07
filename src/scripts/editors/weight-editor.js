@@ -1,5 +1,5 @@
 import { setWeight } from '../extensions/element-extensions';
-import { getGlobalConfig, setGlobalConfig } from '../extensions/local-storage-extensions';
+import { setGlobalConfig } from '../extensions/local-storage-extensions';
 import { validateMinMax } from '../utils';
 
 const weightEditor = document.getElementById('weight-editor');
@@ -55,7 +55,7 @@ class WeightEditor {
 
     open(elements) {
         this.elementsToEdit = elements;
-        let title = '';
+        let title;
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Peso ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;

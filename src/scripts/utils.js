@@ -24,9 +24,7 @@ function rgbStrToHex(rgbStr) {
     const g = parseInt(match[1], 10);
     const b = parseInt(match[2], 10);
 
-    const hexStr = rgbToHex(r, g, b);
-
-    return hexStr;
+    return rgbToHex(r, g, b);
 }
 
 /**

@@ -8,9 +8,9 @@ function checkCycles(graph) {
     let actions = [];
     let stopAt = null;
 
-    if (graph.isDirected && graph.nodes.some(node => detectCyclesDirected(graph))) {
+    if (graph.isDirected && graph.nodes.some(() => detectCyclesDirected(graph))) {
         return actions;
-    } else if (graph.nodes.some(node => detectCyclesUndirected(graph))) {
+    } else if (graph.nodes.some(() => detectCyclesUndirected(graph))) {
         return actions;
     }
 

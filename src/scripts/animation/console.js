@@ -6,7 +6,7 @@ const consoleResizer = document.getElementById('ac-resizer');
 let x, w;
 
 function setupAnimationConsole() {
-    toggle.addEventListener('click', (evt) => {
+    toggle.addEventListener('click', () => {
         animationConsole.classList.toggle('-active');
         toggle.classList.toggle('-active');
     });
@@ -30,7 +30,7 @@ function handleMouseMove(event) {
     }
 }
 
-function handleMouseUp(event) {
+function handleMouseUp() {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
 }

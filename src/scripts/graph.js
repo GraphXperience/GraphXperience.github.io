@@ -2,8 +2,8 @@ import { getCytoscape, getUndoRedo } from "./context";
 import { removeTag, setTag } from "./extensions/element-extensions";
 import { getRandomUuid } from "./utils";
 
-var cy = getCytoscape();
-var ur = getUndoRedo();
+const cy = getCytoscape();
+const ur = getUndoRedo();
 
 function clear() {
     cy.elements().forEach(element => removeTag(element));
@@ -19,14 +19,14 @@ function connectNodes(nodes) {
     let actions = [];
     const nodeIds = nodes.map(node => node.id());
     for (let i = 0; i < nodeIds.length - 1; i++) {
-        var sourceNodeId = nodeIds[i];
-        var targetNodeId = nodeIds[i + 1];
+        const sourceNodeId = nodeIds[i];
+        const targetNodeId = nodeIds[i + 1];
 
         if (!cy.data('isDirected') && !cy.edges('[source="' + targetNodeId + '"][target="' + sourceNodeId + '"]').empty()) {
             continue;
         }
 
-        var existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
+        const existingEdge = cy.edges('[source="' + sourceNodeId + '"][target="' + targetNodeId + '"]');
         if (existingEdge.empty()) {
             const newEdgeId = getRandomUuid();
 

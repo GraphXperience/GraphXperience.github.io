@@ -24,7 +24,7 @@ class ColorEditor {
 
     open(elements) {
         this.elementsToEdit = elements;
-        let title = '';
+        let title;
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Cor ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;

@@ -1,12 +1,10 @@
 function getStronglyConnectedComponents(graph) {
     if (graph.nodes.length === 0) {
-        openPopup('O grafo está vazio.');
-        return;
+        throw new Error('O grafo está vazio.');
     }
 
     let actions = [];
     let stack = [];
-    let connectedComponents = [];
     let index = 0;
     let indexMap = new Map();
     let lowLinkMap = new Map();
@@ -53,8 +51,6 @@ function getStronglyConnectedComponents(graph) {
             component.forEach(nodeId => {
                 actions.push({ elementId: nodeId, type: 'animate', color: componentColor });
             });
-
-            connectedComponents.push(component);
         }
     }
 }
