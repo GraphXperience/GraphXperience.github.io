@@ -31,12 +31,18 @@ class WeightEditor {
 
                 if (element.isNode() && !this.cy.data('isNodeWeighted')) {
                     this.cy.trigger('changeIsNodeWeighted', true);
-                    const globalConfig = getGlobalConfig();
-                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: true, isEdgeWeighted: globalConfig.isEdgeWeighted });
+                    setGlobalConfig({
+                        isDirected: cy.data('isDirected'),
+                        isNodeWeighted: true,
+                        isEdgeWeighted: cy.data('isNodeWeighted'),
+                    });
                 } else if (element.isEdge() && !this.cy.data('isEdgeWeighted')) {
                     this.cy.trigger('changeIsEdgeWeighted', true);
-                    const globalConfig = getGlobalConfig();
-                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: globalConfig.isNodeWeighted, isEdgeWeighted: true });
+                    setGlobalConfig({
+                        isDirected: cy.data('isDirected'),
+                        isNodeWeighted: cy.data('isNodeWeighted'),
+                        isEdgeWeighted: true
+                    });
                 }
             });
 
