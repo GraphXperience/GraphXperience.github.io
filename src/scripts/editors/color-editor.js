@@ -13,7 +13,7 @@ class ColorEditor {
         cancelButton.addEventListener('click', () => { colorEditor.close(); });
 
         okButton.addEventListener('click', () => {
-            const newColor = cy.data('alwan-ce').getColor().hex;
+            const newColor = cy.data('alwan-ce').getColor().rgb;
 
             this.elementsToEdit.forEach(element => setColor(element, newColor));
 
