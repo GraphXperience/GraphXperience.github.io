@@ -13,11 +13,11 @@ import { run } from './algorithms';
 import { getGlobalConfigEditor } from './editors/global-config-editor';
 import { isAnyModalOpened, toggleSideBarSection } from './utils';
 
-var mousePosition = { x: 0, y: 0 };
+const mousePosition = {x: 0, y: 0};
 
-var cy = getCytoscape();
-var eh = getEdgeHandles();
-var ur = getUndoRedo();
+const cy = getCytoscape();
+const eh = getEdgeHandles();
+const ur = getUndoRedo();
 
 handleSlideSpeedDisplayInput();
 handleSelectByRightClick();

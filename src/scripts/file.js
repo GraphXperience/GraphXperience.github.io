@@ -2,8 +2,8 @@ import { getCytoscape, getUndoRedo } from './context';
 import { getBatchFromJson, createGraphJson } from './extensions/cytoscape-extensions';
 import { setTag } from './extensions/element-extensions';
 
-var cy = getCytoscape();
-var ur = getUndoRedo();
+const cy = getCytoscape();
+const ur = getUndoRedo();
 
 function loadGraphJson() {
     const inputElement = document.createElement('input');

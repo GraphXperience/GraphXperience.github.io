@@ -1,6 +1,6 @@
 import { getCustomAlgorithms, setCustomAlgorithms, setCurrentFile } from './context.js';
 import { getCytoscape } from '../context.js';
-import { startAnimation } from '../animation/animation.js';
+import { startAnimation } from '../animation';
 import { openPopup } from '../popup.js';
 import { validateCustomAlgorithm } from './validate.js';
 import { openCustomAlgorithmsModal } from './custom-algorithms-modal.js';

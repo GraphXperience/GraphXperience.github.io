@@ -31,9 +31,9 @@
 
 .side-bar.active {
     left: 0;
-    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .side-bar-section {
@@ -63,7 +63,7 @@
     display: none;
 }
 
-#algorithms-section.hide #as-hide-arrow {
+#algorithms-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }
 
@@ -71,7 +71,7 @@
     display: none;
 }
 
-#predefined-graphs-section.hide #as-hide-arrow {
+#predefined-graphs-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }
 
@@ -79,6 +79,6 @@
     display: none;
 }
 
-#custom-algorithms-section.hide #as-hide-arrow {
+#custom-algorithms-section.hide .as-hide-arrow {
     transform: rotateX(180deg);
 }

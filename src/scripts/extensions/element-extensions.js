@@ -14,16 +14,14 @@ function removeTag(element) {
 /**
  * Set the element color
  * @param {*} element Node or Edge element
- * @param {string} color Color in Hex (ex: #FFFFFF)
+ * @param {string} color Color
  */
 function setColor(element, color) {
-    if (element.isNode()) {
-        element.style('background-color', color);
+    if (color === undefined) {
+        element.removeData('overrideColor');
+        return;
     }
-    if (element.isEdge()) {
-        element.style('line-color', color);
-        element.style('target-arrow-color', color);
-    }
+    element.data('overrideColor', color);
 }
 
 /**
@@ -32,12 +30,11 @@ function setColor(element, color) {
  * @param {number} size Size of the node or edge
  */
 function setSize(element, size) {
-    if (element.isNode()) {
-        element.style('width', size * 10);
-        element.style('height', size * 10);
-    } else {
-        element.style('width', size);
+    if (size === undefined) {
+        element.removeData('overrideSize');
+        return;
     }
+    element.data('overrideSize', size);
 }
 
 /**

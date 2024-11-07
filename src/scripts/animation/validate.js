@@ -59,7 +59,6 @@ function validate(actions) {
             }
             if (min && max && (action[prop] < min || action[prop] > max)) {
                 errors.push(`actions[${index}].${prop} possui um valor invalido e deve ser maior que ${min} e menor que ${max}.`);
-                continue;
             }
         }
 

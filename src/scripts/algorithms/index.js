@@ -9,7 +9,7 @@ import { getStronglyConnectedComponents } from "./getStronglyConnectedComponents
 import { getShortestPath } from "./getShortestPath";
 import { openPopup } from "../popup";
 
-var cy = getCytoscape();
+const cy = getCytoscape();
 
 const algorithms = {
     'bfs': bfs,

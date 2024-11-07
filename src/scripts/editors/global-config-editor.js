@@ -58,16 +58,23 @@ class GlobalConfigEditor {
                 cy: this.cy.style().json(),
                 tag: this.cy.data('alwan-ce-tag').getColor().hex
             };
+
             const nodeStyle = styles.cy.find(x => x.selector === 'node');
-            nodeStyle.style['background-color'] = this.cy.data('alwan-ce-node').getColor().rgb;
+            if (nodeStyle.style['background-color'] !== this.cy.data('alwan-ce-node').getColor().rgb.replaceAll(' ', '')) {
+                nodeStyle.style['background-color'] = this.cy.data('alwan-ce-node').getColor().rgb;
+                cy.nodes().removeData('overrideColor');
+            }
             nodeStyle.style['height'] = sizeInput.value * 10;
             nodeStyle.style['width'] = sizeInput.value * 10;
 
             const edgeStyle = styles.cy.find(x => x.selector === 'edge');
-            edgeStyle.style['line-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
-            edgeStyle.style['target-arrow-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
+            if (edgeStyle.style['line-color'] !== this.cy.data('alwan-ce-edge').getColor().rgb.replaceAll(' ', '')) {
+                edgeStyle.style['line-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
+                edgeStyle.style['target-arrow-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
+                cy.nodes().removeData('overrideColor');
+            }   
             edgeStyle.style['width'] = edgeThicknessInput.value;
-
+            
             this.cy.style().fromJson(styles.cy);
 
             setTagColor(styles.tag);

@@ -1,5 +1,4 @@
 const ENTER_KEY_CODE = 13;
-const ESC_KEY_CODE = 27;
 const DELETE_KEY_CODE = 46;
 const A_KEY_CODE = 65;
 const C_KEY_CODE = 67;
@@ -13,7 +12,6 @@ const Z_KEY_CODE = 90;
 
 export {
     ENTER_KEY_CODE,
-    ESC_KEY_CODE,
     DELETE_KEY_CODE,
     A_KEY_CODE,
     C_KEY_CODE,

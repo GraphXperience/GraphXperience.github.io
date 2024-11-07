@@ -7,7 +7,7 @@ function setupPopper() {
 }
 
 function popperFactory(ref, content, opts) {
-    const popper = createPopper(ref, content, {
+    return createPopper(ref, content, {
         placement: opts.placement || 'bottom',
         modifiers: [
             {
@@ -30,8 +30,6 @@ function popperFactory(ref, content, opts) {
             },
         ],
     });
-
-    return popper;
 }
 
 export {

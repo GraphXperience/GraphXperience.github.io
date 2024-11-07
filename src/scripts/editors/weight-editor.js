@@ -1,5 +1,5 @@
 import { setWeight } from '../extensions/element-extensions';
-import { getGlobalConfig, setGlobalConfig } from '../extensions/local-storage-extensions';
+import { setGlobalConfig } from '../extensions/local-storage-extensions';
 import { validateMinMax } from '../utils';
 
 const weightEditor = document.getElementById('weight-editor');
@@ -30,13 +30,21 @@ class WeightEditor {
                 setWeight(element, newValue);
 
                 if (element.isNode() && !this.cy.data('isNodeWeighted')) {
+                    this.cy.elements('node[^weight]').forEach(ele => setWeight(ele, 1));
                     this.cy.trigger('changeIsNodeWeighted', true);
-                    const globalConfig = getGlobalConfig();
-                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: true, isEdgeWeighted: globalConfig.isEdgeWeighted });
+                    setGlobalConfig({
+                        isDirected: this.cy.data('isDirected'),
+                        isNodeWeighted: true,
+                        isEdgeWeighted: this.cy.data('isNodeWeighted'),
+                    });
                 } else if (element.isEdge() && !this.cy.data('isEdgeWeighted')) {
+                    this.cy.elements('edge[^weight]').forEach(ele => setWeight(ele, 1));
                     this.cy.trigger('changeIsEdgeWeighted', true);
-                    const globalConfig = getGlobalConfig();
-                    setGlobalConfig({ isDirected: globalConfig.isDirected, isNodeWeighted: globalConfig.isNodeWeighted, isEdgeWeighted: true });
+                    setGlobalConfig({
+                        isDirected: this.cy.data('isDirected'),
+                        isNodeWeighted: this.cy.data('isNodeWeighted'),
+                        isEdgeWeighted: true
+                    });
                 }
             });
 
@@ -47,7 +55,7 @@ class WeightEditor {
 
     open(elements) {
         this.elementsToEdit = elements;
-        let title = '';
+        let title;
 
         if (this.elementsToEdit.size() === 1) {
             title = `Editar Peso ${this.elementsToEdit[0].isNode() ? 'do Nó' : 'da Aresta'}`;

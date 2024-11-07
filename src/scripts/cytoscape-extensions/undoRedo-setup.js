@@ -1,15 +1,14 @@
 import { ANIMATED_COLOR } from '../../constants/colors';
-import { setTag } from '../extensions/element-extensions';
+import { setColor, setSize, setTag } from '../extensions/element-extensions';
 import { getRandomUuid } from '../utils';
 
 function setupUndoRedo(cy) {
-    var options = {
+    const options = {
         isDebug: false,
         actions: {},
         undoableDrag: true,
-        stackSizeLimit: undefined,
-        ready: function () { }
-    }
+        stackSizeLimit: undefined
+    };
 
     const ur = cy.undoRedo(options);
 
@@ -29,11 +28,11 @@ function animate({ element, color, size, tag, weight }) {
         weight: element.data('weight'),
     };
 
-    if (weight != undefined) {
+    if (weight !== undefined) {
         element.data('weight', weight);
     }
 
-    if (tag != undefined) {
+    if (tag !== undefined) {
         current.tag = current.tag ?? '';
         setTag(element, tag.toString());
     }
@@ -43,16 +42,8 @@ function animate({ element, color, size, tag, weight }) {
         duration: 0,
     };
 
-    if (element.isNode()) {
-        animation.style['background-color'] = color ?? ANIMATED_COLOR;
-        animation.style['width'] = size ?? current.size;
-        animation.style['height'] = size ?? current.size;
-    }
-    else {
-        animation.style['line-color'] = color ?? ANIMATED_COLOR;
-        animation.style['target-arrow-color'] = color ?? ANIMATED_COLOR;
-        animation.style['width'] = size ?? current.size;
-    }
+    setColor(element, color ?? ANIMATED_COLOR);
+    setSize(element, size ?? current.size);
 
     element.animate(animation);
 
@@ -60,6 +51,7 @@ function animate({ element, color, size, tag, weight }) {
 }
 
 const printConsole = document.getElementById('ac-content');
+
 function print({ message, color }) {
     const newMessage = document.createElement('p');
     newMessage.textContent = message;
@@ -85,7 +77,7 @@ function revertPrint({ element }) {
 }
 
 function handleEdgeHandlesCompletion(cy, ur) {
-    cy.on('ehcomplete', (event, sourceNode, targetNode, addedEdge) => {
+    cy.on('ehcomplete', (event, sourceNode, targetNode) => {
         cy.edges().slice(-2).remove();
         cy.nodes().slice(-1).remove();
 
