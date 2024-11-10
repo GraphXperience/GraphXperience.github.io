@@ -6,7 +6,7 @@ const cy = getCytoscape();
 const ur = getUndoRedo();
 
 function clear() {
-    cy.elements().forEach(element => removeTag(element));
+    cy.elements().forEach(removeTag);
     cy.elements().remove();
     ur.reset();
 }

@@ -1,6 +1,7 @@
 import { getCytoscape, getUndoRedo } from './context';
 import { getBatchFromJson, createGraphJson } from './extensions/cytoscape-extensions';
 import { setTag } from './extensions/element-extensions';
+import { clear } from './graph';
 
 const cy = getCytoscape();
 const ur = getUndoRedo();
@@ -18,7 +19,8 @@ function loadGraphJson() {
             const reader = new FileReader();
 
             reader.onload = e => {
-                cy.elements().remove();
+                clear();
+
                 const graphData = JSON.parse(e.target.result);
 
                 if (graphData.isDirected !== cy.data('isDirected'))
