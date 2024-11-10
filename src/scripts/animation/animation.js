@@ -38,6 +38,10 @@ function prepare(actions) {
         cy.trigger('changeIsEdgeWeighted', true);
     }
 
+    if (actions.some(action => action.type === 'print')) {
+        document.getElementById('animation-console-toggle').click();
+    }
+
     resetAnimation();
 
     setCurrentIndex(0);
