@@ -100,13 +100,25 @@ function updateCustomAlgorithmButton(customAlgorithm) {
     }
 }
 
-function openCustomAlgorithmsModal(existentCustomAlgorithm) {
+function openCustomAlgorithmsModal(existentCustomAlgorithm, fileContent) {
     if (existentCustomAlgorithm) {
         setCurrentFile({
             ...existentCustomAlgorithm,
             isEditing: true
         });
         descriptionInput.value = existentCustomAlgorithm.description;
+    }
+
+    if (fileContent) {
+        const lines = fileContent.replaceAll('\r', '').split('\n');
+        let descriptionText = '';
+        let i = 0;
+
+        while (lines[i].startsWith('//')) {
+            descriptionText += lines[i].replace('//', '') + '\n';
+            i++;
+        }
+        descriptionInput.value = descriptionText;
     }
 
     modal.showModal();

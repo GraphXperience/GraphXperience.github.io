@@ -106,7 +106,7 @@ function promptCustomAlgorithmsSelection() {
                 isEditing: false
             });
 
-            openCustomAlgorithmsModal();
+            openCustomAlgorithmsModal(null, fileContent);
         });
 
         reader.readAsText(file);

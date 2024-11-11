@@ -40,7 +40,7 @@ function setupCustomAlgorithmsButtons() {
             case 'edit':
                 customAlgorithmListItem = sideBarButton.parentNode;
                 customAlgorithm = getCustomAlgorithms().find(alg => alg.id === customAlgorithmListItem.dataset.id.replace('li-algorithm-', ''));
-                openCustomAlgorithmsModal(customAlgorithm);
+                openCustomAlgorithmsModal(customAlgorithm, null);
                 break;
         }
     });
