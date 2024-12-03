@@ -41,16 +41,16 @@ function buildStylesheet(globalConfig, globalStyle) {
         'width': 'data(overrideSize)',
     };
 
-    const weight = {
-        'label': 'data(weight)'
-    }
-
     const selected = {
         'opacity': FULL_VISIBLE_OPACITY
     };
 
     const readonly = {
         'events': 'no'
+    };
+
+    const getLabelStyle = (shouldDisplayLabel) => {
+        return shouldDisplayLabel ? { 'label': 'data(weight)' } : { 'label': '' };
     };
 
     if (globalConfig) {
@@ -71,18 +71,20 @@ function buildStylesheet(globalConfig, globalStyle) {
         }
     }
 
-    return cytoscape.stylesheet()
+    let stylesheet = cytoscape.stylesheet()
         .selector('node').style(nodeStyle)
-        .selector('node[weight]').style(weight)
+        .selector('node[weight]').style(getLabelStyle(globalConfig?.isNodeWeighted))
         .selector('node[overrideColor]').style(overrideNodeColor)
         .selector('node[overrideSize]').style(overrideNodeSize)
         .selector('edge').style(edgeStyle)
-        .selector('edge[weight]').style(weight)
+        .selector('edge[weight]').style(getLabelStyle(globalConfig?.isEdgeWeighted))
         .selector('edge[overrideColor]').style(overrideEdgeColor)
         .selector('edge[overrideSize]').style(overrideEdgeSize)
         .selector(':selected').style(selected)
         .selector('[?readonly]').style(readonly)
         .selector('core').style({ 'active-bg-size': 0 });
+
+    return stylesheet;
 }
 
 function createGraphJson(cy) {
