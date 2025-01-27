@@ -126,7 +126,7 @@ para o grafo todo, como:
 - **Dimensões/Espessuras**: os nós e arestas podem ter suas dimensões alteradas. Os valores são sempre de 1 a 10, onde 10 é o tamanho máximo e 1 é o tamanho mínimo. No caso de arestas, a dimensão está relacionada à espessura da aresta. No caso de nós, a dimensão está relacionada ao diâmetro do nó.
 
 ## Editor de Configuração Global
-Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas no cache (sessionStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
+Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas em um armazenamento temporário local (localStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
 - **Cor dos nós**: altera a cor global dos nós.
 - **Cor das arestas**: altera a cor global das arestas.
 - **Cor das tags**: altera a cor global da tags, caso algum elemento a possua. A cor será aplicada tanto para tags de nós quanto para tags de arestas.
@@ -135,7 +135,7 @@ Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbol
 - **Grafo direcionado?**: quando marcado, torna o grafo direcionado.
 - **Peso nos nós?**: quando marcado, mostra um "label" de peso para todos os nós (por padrão, o peso é 1). Quando desmarcado, os nós tem todos os seus pesos resetados para 1 e esse "label" fica oculto.
 - **Peso nas arestas?**: quando marcado, mostra um "label" de peso para todas as arestas (por padrão, o peso é 1). Quando desmarcado, as arestas tem todos os seus pesos resetados para 1 e esse "label" fica oculto.
-- **Resetar aplicação**: botão que limpa o cache de configuraçõa global, resetando as opções para o *padrão*. O padrão é: cor dos nós cinza `#808080`, cor das arestas cinza `#808080`, cor das tags azul `#04364A`, tamanho dos nós *4*, tamanho das arestas *4*, grafo direcionado, sem peso nos nós, sem peso nas arestas.
+- **Resetar aplicação**: botão que limpa o armazenamento local de configuração global - resetando as opções para o *padrão* - e remove todos os algoritmos customizados importados. A configuração global padrão é: cor dos nós cinza `#808080`, cor das arestas cinza `#808080`, cor das tags azul `#04364A`, tamanho dos nós *4*, tamanho das arestas *4*, grafo direcionado, sem peso nos nós, sem peso nas arestas.
 
 Não se esqueça de clicar em *Ok* para salvar as alterações ou em *Cancelar* para desfazer as alterações.
 

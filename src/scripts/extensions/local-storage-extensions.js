@@ -27,6 +27,7 @@ function setGlobalConfig(config) {
 function resetLocalStorage() {
     localStorage.removeItem('global-config');
     localStorage.removeItem('global-style');
+    localStorage.removeItem('custom-algorithms');
 }
 
 export {
