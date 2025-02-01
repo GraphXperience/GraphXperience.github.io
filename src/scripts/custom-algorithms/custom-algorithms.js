@@ -125,9 +125,24 @@ function clearCustomAlgorithms() {
     });
 }
 
+function downloadCustomAlgorithm(customAlgorithm) {
+    if (customAlgorithm && customAlgorithm.fileContent) {
+        const blob = new Blob([customAlgorithm.fileContent], { type: 'application/javascript' });
+
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+    
+        a.style.display = 'none';
+        a.href = blobUrl;
+        a.download = `${customAlgorithm.name}.js`;
+        a.click();
+    }    
+}
+
 export {
     runCustomAlgorithm,
     removeCustomAlgorithm,
     promptCustomAlgorithmsSelection,
     clearCustomAlgorithms,
+    downloadCustomAlgorithm,
 };
