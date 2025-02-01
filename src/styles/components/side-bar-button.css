@@ -8,6 +8,8 @@
     padding: 0.4em;
     width: 100%;
 
+    overflow-wrap: anywhere;
+
     transition: background 0.3s ease-in-out;
 }
 

@@ -55,9 +55,13 @@
 .modal-section {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     gap: 5em;
+}
+
+.modal-section[data-jc-space-around] {
+    justify-content: space-around;
 }
 
 .modal-section[data-fd-column] {
