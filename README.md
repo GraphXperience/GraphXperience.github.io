@@ -45,7 +45,7 @@ npm run start
 - **D**: Desconecta os nós selecionados.
 - **Del**: Remove os elementos selecionados.
 - **Botão direito do mouse**: Abre um menu circular nos elementos selecionados para personalizá-los
-- **Botão esquerdo do mouse**: Seleciona um elemento
+- **Botão esquerdo do mouse**: Seleciona um elemento (OBS: segurar o botão esquerdo abre um "menu circular" para editar diferentes propriedades do elemento)
 
 # Funcionalidades Principais
 Este projeto permite que o usuário:
@@ -60,33 +60,35 @@ Este projeto permite que o usuário:
 
 ## Menu Superior
 O menu superior oferece várias opções para manipular o grafo, de maneira parecida com o que pode ser feito pelo teclado. Aqui estão os botões disponíveis:
-- **Adicionar Nó**: Adiciona um nó na posição do cursor.
-- **Remover Nó**: Remove os nós selecionados.
-- **Remover Aresta**: Remove as arestas selecionadas.
-- **Conectar Nós**: Conecta dois nós selecionados.
-- **Desconectar Nós**: Remove as arestas entre dois nós conectados.
-- **Limpar Grafo**: Remove todos os elementos do grafo.
-- **Carregar Grafo**: Importa um grafo em formato JSON.
-- **Salvar Grafo (JSON)**: Exporta o grafo atual (nos formatos JSON, JPEG ou PNG).
-- **Editor de Configurações Globais** <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">: Abre um editor para customizar as configurações globais do grafo.
+- **Adicionar Nós** <img src="src/assets/add_circle.svg" alt="Símbolo de mais dentro de um círculo" width="20" height="20">: Adiciona um nó na posição do cursor.
+- **Remover Elementos Selecionados** <img src="src/assets/remove.svg" alt="Símbolo de menos" width="20" height="20">: Remove os elementos selecionados.
+- **Conectar Nós Selecionados** <img src="src/assets/conversion_path.svg" alt="Símbolo de caminho entre dois vértices" width="20" height="20">: Conecta nós selecionados.
+- **Desconectar Nós Selecionados** <img src="src/assets/conversion_path_off.svg" alt="Símbolo de caminho entre dois vértices com um risco" width="20" height="20">: Remove as arestas conectadas aos nós selecionados.
+- **Modo Desenho** <img src="src/assets/rebase_edit.svg" alt="Símbolo de nós conectados com um símbolo de lápis próximo" width="20" height="20">: Ativa o "modo desenho", facilitando a criação de arestas
+- **Limpar Grafo** <img src="src/assets/delete.svg" alt="Símbolo de lixeira" width="20" height="20">: Remove todos os elementos do grafo.
+- **Adicionar Tag nos Nós** <img src="src/assets/new_label.svg" alt="Símbolo de tag com um sinal de mais" width="20" height="20">: Adiciona tags de 0 a "n-1" para os "n" vértices do grafo.
+- **Upload do Grafo por Arquivo JSON** <img src="src/assets/upload_file.svg" alt="Símbolo de folha com uma seta para cima dentro" width="20" height="20">: Importa um grafo em formato JSON.
+- **Download do Grafo** <img src="src/assets/download.svg" alt="Símbolo de seta para baixo" width="20" height="20">: Exporta o grafo atual (nos formatos JSON, JPEG ou PNG).
+- **Editor de Configurações Globais** <img src="src/assets/settings.svg" alt="Símbolo de engrenagem" width="20" height="20">: Abre um editor para customizar as configurações globais do grafo.
 - **GitHub** <img src="src/assets/github.svg" alt="Símbolo do GitHub: uma silhueta de um gato" width="20" height="20">: Ícone que leva à página oficial do projeto no GitHub, onde é possível visualizar essa documentação.
 - **Informações Gerais** <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">: Acessa informações sobre a interface, como as dicas de teclas de atalho
 
 ## Menu Lateral da Esquerda
 O menu lateral da esquerda inicialmente está escondido, mas pode ser aberto ao clicar no "botão hamburguer" (com as três linhas horizontais paralelas). Nele, é possível acessar:
-- **Algoritmos**: Aqui o usuário pode executar algoritmos já implementados (ex: BFS, DFS, checar ciclos, obter componentes conexas, obter componentes fortemente-conexas, obter caminho mínimo entre dois nós). Há botões informativos ao lado de cada algoritmo para explicar como ele funciona e sua complexidade de tempo-espaço (Big O).
-- **Grafos Predefinidos**: Aqui o usuário pode criar grafos predefinidos a partir de algum input, como grafo regular, grafo completo, grafo estrela, grafo roda, grafo bipartido, grafo bipartido completo, grafo árvore binária, grafo de Pertersen.
+- **Testar Algoritmo**: Aqui o usuário pode executar algoritmos predefinidos já implementados (ex: BFS, DFS, checar ciclos, obter componentes conexas, obter componentes fortemente-conexas, obter caminho mínimo entre dois nós). Há botões informativos ao lado de cada algoritmo para explicar como ele funciona e sua complexidade de tempo-espaço (Big O).
+- **Criar Grafo Predefinido**: Aqui o usuário pode criar grafos predefinidos a partir de algum input, como grafo regular, grafo completo, grafo estrela, grafo roda, grafo bipartido, grafo bipartido completo, grafo árvore binária, grafo de Pertersen.
 O input pode ser, por exemplo, o número "n" de nós: varia conforme o grafo predefinido. Há um botão de informação para cada tipo de grafo explicando sua definição.
 - **Algoritmos Personalizados**: Aqui o usuário pode *limpar* algoritmos já carregados ou *adicionar algoritmo* direto do diretório local. Há um botão de informação explicando
 como deve ser o arquivo importado.
 
 ## Algoritmos Predefinidos
-Existem algoritmos predefinidos já disponíveis. É possível abrir as informações do algoritmo através do ícone <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20"> ou acessar a página do arquivo .js desse algoritmo no botão *</>*. Os algoritmos disponíveis são:
+Existem algoritmos predefinidos já disponíveis. É possível abrir as informações do algoritmo através do ícone <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20"> ou acessar a página do arquivo .js desse algoritmo no botão <img src="src/assets/code.svg" alt="Ícone de código (i)" width="20" height="20">. Os algoritmos disponíveis são:
 - **Busca em Largura (BFS)**: Explora o grafo começando de um nó raiz e se expandindo para os vizinhos.
 - **Busca em Profundidade (DFS)**: Explora o grafo de maneira recursiva, descendo profundamente pelos caminhos do grafo e voltando em backtracking.
-- **Detecção de Ciclos**: Verifica se o grafo contém ciclos.
-- **Componentes Conectados**: Identifica as diferentes componentes conectadas do grafo.
-- **Componentes Fortemente Conectados**: Encontra os subconjuntos de nós em que cada nó é acessível a partir de todos os outros.
+- **Checar ciclos**: Verifica se o grafo contém ciclos.
+- **Obter componentes conexas**: Identifica as diferentes componentes conectadas do grafo.
+- **Obter componentes fortemente-conexas**: Encontra os subconjuntos de nós em que cada nó é acessível a partir de todos os outros.
+- **Obter caminho mais curto entre dois nós**: Encontra o caminho mais curto entre dois nós selecionados usando o algoritmo de Dijkstra.
 
 ## Animações
 Esta aplicação permite visualizar a execução dos algoritmos através de *animações*, que são
@@ -100,33 +102,34 @@ Durante a execução da animação, um novo botão surge no canto superior direi
 
 ## Algoritmos Personalizados
 É possível importar algoritmos customizados para o projeto. Para adicionar um novo algoritmo:
-1. Abra o menu lateral à esquerda, clicando no "botão hamburguer" (três barras paralelas horizontais)
+1. Abra o menu lateral à esquerda, clicando no "botão hamburguer" <img src="src/assets/menu.svg" alt="Ícone de informação (i)" width="20" height="20">
 2. Role a barra de rolagem para baixo até chegar na seção *Algoritmos Personalizados*
 3. Clique em *Adicionar Algoritmo*
 4. Selecione o arquivo com extensão .js presente em seu diretório local.
-> Além da extensão precisar ser .js, é importante que a função principal se chame *customAlgorithm* e que contenha o parâmetro *Graph* obrigatório. Ela também pode ter o parâmetro *selectedNodes* opcional.
+> Além da extensão precisar ser .js, é importante que a função principal se chame *customAlgorithm*. Ela pode conter os parâmetros *graph* e *selectedNodes*, onde *graph* é uma instância da classe *Graph* e *selectedNodes* é uma lista de *Node* selecionado.
 5. Após selecionar um arquivo válido, abrirá um modal de *Detalhes do Algoritmo*.
 Digite obrigatoriamente um nome e opcionalmente uma descrição e então clique em *Ok*.
 > Caso já exista um algoritmo de mesmo nome, será aberto um modal de confirmação se o usuário deseja substituir o algoritmo existente pelo novo. Clique em *Sim* se quiser, ou em *Não* para voltar ao modal de *Detalhes do Algoritmo*.
 
 Algoritmos importados passam a fazer parte da lista de algoritmos na seção de *Algoritmos Personalizados*.
 Você pode:
-- *Deletar*, clicando no <img src="src/assets/close.svg" alt="Ícone de deleção (X)" width="20" height="20">
-- *Editar*, clicando no <img src="src/assets/edit.svg" alt="Ícone de edição (lápis)" width="20" height="20"> 
 - *Ver informações*, clicando no <img src="src/assets/info.svg" alt="Ícone de informação (i)" width="20" height="20">
+- *Editar*, clicando no <img src="src/assets/edit.svg" alt="Símbolo de edição (lápis)" width="20" height="20"> 
+- *Deletar*, clicando no <img src="src/assets/delete.svg" alt="Símbolo de lixeira" width="20" height="20">
+- *Baixar*, clicando no <img src="src/assets/download.svg" alt="Símbolo de seta para baixo" width="20" height="20">
 
 Caso queira limpar todos os algoritmos customizados, utilize o botão *Limpar Algoritmos Customizados*
 
 ## Personalização dos Grafos
 A interface permite diversas personalizações nos vértices e arestas do grafo, fora configurações globais
 para o grafo todo, como:
-- **Cores**: as cores dos nós e arestas podem ser individualmente alterados ou globalmente alterados com o *editor de configuração global* <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
-- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">
+- **Cores**: as cores dos nós e arestas podem ser individualmente alterados ou globalmente alterados com o *editor de configuração global* <img src="src/assets/settings.svg" alt="Símbolo de engrenagem" width="20" height="20">
+- **Pesos**: os grafos por padrão não tem peso, mas caso um nó tenha seu peso alterado, os nós passam a mostrar seu peso (lembrando que por padrão todos tem peso 1). O mesmo vale para as arestas. Você pode desabilitar o peso (setando todos para 1 e desabilitando a visualização dos pesos) através do *editor de configuração global* <img src="src/assets/settings.svg" alt="Símbolo de engrenagem" width="20" height="20">
 - **Tags**: as tags servem para setar um *label* aos nós e arestas, facilitando na visualização de algoritmos.
 - **Dimensões/Espessuras**: os nós e arestas podem ter suas dimensões alteradas. Os valores são sempre de 1 a 10, onde 10 é o tamanho máximo e 1 é o tamanho mínimo. No caso de arestas, a dimensão está relacionada à espessura da aresta. No caso de nós, a dimensão está relacionada ao diâmetro do nó.
 
 ## Editor de Configuração Global
-Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbolo de engrenagem com um rolo de pincel" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas em um armazenamento temporário local (localStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
+Representando pelo símbolo <img src="src/assets/settings.svg" alt="Símbolo de engrenagem" width="20" height="20">, abre um modal que permite editar configurações globais da interface, servindo tanto para os elementos existentes quanto para os elementos novos que forem criados. As opções ficam salvas em um armazenamento temporário local (localStorage), mas podem ser resetadas no botão *Resetar aplicação*. Segue a descrição das opções:
 - **Cor dos nós**: altera a cor global dos nós.
 - **Cor das arestas**: altera a cor global das arestas.
 - **Cor das tags**: altera a cor global da tags, caso algum elemento a possua. A cor será aplicada tanto para tags de nós quanto para tags de arestas.
@@ -135,7 +138,7 @@ Representando pelo símbolo <img src="src/assets/configuration.svg" alt="Símbol
 - **Grafo direcionado?**: quando marcado, torna o grafo direcionado.
 - **Peso nos nós?**: quando marcado, mostra um "label" de peso para todos os nós (por padrão, o peso é 1). Quando desmarcado, os nós tem todos os seus pesos resetados para 1 e esse "label" fica oculto.
 - **Peso nas arestas?**: quando marcado, mostra um "label" de peso para todas as arestas (por padrão, o peso é 1). Quando desmarcado, as arestas tem todos os seus pesos resetados para 1 e esse "label" fica oculto.
-- **Resetar aplicação**: botão que limpa o armazenamento local de configuração global - resetando as opções para o *padrão* - e remove todos os algoritmos customizados importados. A configuração global padrão é: cor dos nós cinza `#808080`, cor das arestas cinza `#808080`, cor das tags azul `#04364A`, tamanho dos nós *4*, tamanho das arestas *4*, grafo direcionado, sem peso nos nós, sem peso nas arestas.
+- **Resetar aplicação** <img src="src/assets/reset_settings.svg" alt="Ícone de seta voltando indicando reset" width="20" height="20">: botão que limpa o armazenamento local de configuração global - resetando as opções para o *padrão* - e remove todos os algoritmos customizados importados. A configuração global padrão é: cor dos nós cinza `#808080`, cor das arestas cinza `#808080`, cor das tags azul `#04364A`, tamanho dos nós *4*, tamanho das arestas *4*, grafo direcionado, sem peso nos nós, sem peso nas arestas.
 
 Não se esqueça de clicar em *Ok* para salvar as alterações ou em *Cancelar* para desfazer as alterações.
 
