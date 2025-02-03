@@ -77,13 +77,16 @@ function openInfoWindow(type, title = '', messages = []) {
         case 'get-shortest-path':
             title = 'Obter o caminho mais curto entre dois nós'
             messages.push(`
-                Descrição: Esse algoritmo utiliza o algoritmo de Dijkstra para encontrar o caminho mais curto entre dois nós específicos
-                em um grafo. Ele considera as arestas do grafo como tendo um custo. Partindo do nó inicial (fonte), ele expande sistematicamente para
-                os nós vizinhos e atualiza continuamente as distâncias mais curtas conhecidas até encontrar o nó de destino ou completar a exploração dos
-                nós alcançáveis. É usada uma fila de prioridade para escolher sempre o nó com a menor distância conhecida em cada passo. Quando um caminho mais curto é encontrado,
-                suas distâncias são atualizadas. Ao final, através de um mapa de predecessores de cada nó, ele reconstrói o caminho mais curto do nó fonte ao nó destino em ordem sequencial.
+                Descrição: Esse algoritmo utiliza o algoritmo de Dijkstra para encontrar o caminho mais curto
+                entre dois nós específicos em um grafo. Ele considera as arestas do grafo como tendo um custo.
+                Partindo do nó inicial (fonte), ele expande sistematicamente para os nós vizinhos e atualiza 
+                continuamente as distâncias mais curtas conhecidas até encontrar o nó de destino ou completar
+                a exploração dos nós alcançáveis. É usada uma fila de prioridade para escolher sempre o nó com
+                a menor distância conhecida em cada passo. Quando um caminho mais curto é encontrado, suas distâncias
+                são atualizadas. Ao final, através de um mapa de predecessores de cada nó, ele reconstrói o caminho
+                mais curto do nó fonte ao nó destino em ordem sequencial.
             `);
-            messages.push('Complexidade de Tempo: O(|V| log |V| + |E|')
+            messages.push('Complexidade de Tempo: O(|V| log |V| + |E|)')
             messages.push('Complexidade de espaço: O(|V|)');
             messages.push('onde V é o conjunto de vértices e E é o conjunto de arestas do grafo.');
             break;
@@ -103,25 +106,44 @@ function openInfoWindow(type, title = '', messages = []) {
             title = 'Algoritmos Personalizados';
             messages.push(`
                 Clique em 'Adicionar Algoritmo' para selecionar um arquivo .js com uma função javascript para manipular o grafo na tela.
-                O input da função deve ser um 'Grafo', onde 'Grafo' é um objeto Javascript com uma lista de 'Nodes', uma lista de 'Edges' e um booleano 'isDirected'
+                Ele deve conter uma função 'customAlgorithm', que pode ter dois parâmetros: graph (uma instância de 'Graph') e selectedNodes (uma lista de 'Node').
+            `);
+            messages.push(`
+                O primeiro parâmetro é uma instância de 'Grafo', onde 'Grafo' é um objeto Javascript com uma lista de 'Nodes', uma lista de 'Edges' e um booleano 'isDirected'
                 que diz se o grafo é ou não direcionado.
             `);
             messages.push(`
-                Cada 'Node' é um objeto Javascript com atributos 'id', 'weight', 'outgoingEdges' e 'incomingEdges'.
-                O 'id' é o Guid do objeto Cytoscape; o 'weight' é o peso do nó; o 'outgoingEdges' é uma lista de arestas
-                de saída e o 'incomingEdges' é uma lista de arestas de entrada.
-                Os nós possuem o método 'getNeighbors(isDirected)', que retorna a lista dos nós vizinhos. Se 'isDirected' for 'true',
+                O segundo parâmetro é uma lista de 'Node' selecionados na tela, que pode ser útil para algoritmos de busca, por exemplo.
+            `);
+            messages.push(`
+                Um 'Grafo' possui os métodos:
+            `);                
+            messages.push(`
+                - 'getNeighbors(node)': retorna a lista dos nós vizinhos a um determinado 'Nó' . Se 'isDirected' for 'true',
                 traz todos nós tanto conectados a arestas de entrada quanto de saída. Se for 'false', traz apenas os vizinhos conectados às arestas
                 de saída.
             `);
             messages.push(`
-                Cada 'Edge' é um objeto Javascript com atributos 'id', 'sourceNode', 'targetNode' e 'weight'.
-                O 'id' é o Guid do objeto Cytoscape; o 'weight' é o peso da aresta; o 'sourceNode' é o nó
+                - 'getEdges(node)': retorna todas as arestas ligadas a um nó; tanto as de entrada quanto as de saída.
+            `);
+            messages.push(`
+                - 'getEdge(sourceNode, targetNode)': retorna a aresta que conecta dois nós passados como parâmetros. Caso não haja, retorna undefined.
+            `);
+            messages.push(`
+                Cada 'Node' é um objeto Javascript com atributos 'id', 'weight', 'tag', 'outgoingEdges' e 'incomingEdges'.
+                O 'id' é o Guid do objeto Cytoscape; o 'weight' é o peso do nó; o 'tag' é o tag do nó; o 'outgoingEdges' é uma lista de arestas
+                de saída e o 'incomingEdges' é uma lista de arestas de entrada.
+
+            `);
+            messages.push(`
+                Cada 'Edge' é um objeto Javascript com atributos 'id', 'sourceNode', 'targetNode', 'weight' e 'tag'.
+                O 'id' é o Guid do objeto Cytoscape; o 'weight' é o peso da aresta; o 'tag' é o tag da aresta; o 'sourceNode' é o nó
                 fonte e o 'targetNode' é o nó de saída.
             `);
             messages.push(`
                 Os algoritmos adicionados ficarão guardados em memória e listados no menu lateral na seção 'Algoritmos Personalizados'.
-                Se quiser economizar memória, você pode clicar no 'X' ao lado do algoritmo para removê-lo da lista.
+                Se quiser remover algoritmos importados, você pode clicar no 'X' ao lado do algoritmo ou no botão 'Limpar'
+                para deletar todos os algoritmos importados.
             `);
             messages.push(`
                 O retorno da função deve ser uma lista de 'actions', onde cada action é um objeto Javascript com os seguintes parâmetros:
@@ -255,6 +277,7 @@ function openInfoWindow(type, title = '', messages = []) {
 function createCloseButton() {
     const div = document.createElement('div');
     div.classList.add('modal-section');
+    div.dataset.jcSpaceAround = 'true';
     
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Fechar';
