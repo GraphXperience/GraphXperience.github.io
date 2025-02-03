@@ -1,31 +1,34 @@
 import { getRandomUuid } from '../utils';
 
 function createCompleteBipartiteGraph(cy, ur, nodeCount, nodeCount2) {
-    let nodes = [];
-    let nodes2 = [];
+    let largerPartitionNodes = [];
+    let smallerPartitionNodes = [];
     let edges = [];
 
-    for (let i = 0; i < nodeCount; i++) {
-        nodes.push({ data: { id: getRandomUuid() } });
+    let largerPartitionCount = Math.max(nodeCount, nodeCount2);
+    let smallerPartitionCount = Math.min(nodeCount, nodeCount2);
+
+    for (let i = 0; i < largerPartitionCount; i++) {
+        largerPartitionNodes.push({ data: { id: getRandomUuid() } });
     }
 
-    ur.do('add', nodes);
+    ur.do('add', largerPartitionNodes);
 
-    for (let i = 0; i < nodeCount2; i++) {
-        nodes2.push({ data: { id: getRandomUuid() } });
+    for (let i = 0; i < smallerPartitionCount; i++) {
+        smallerPartitionNodes.push({ data: { id: getRandomUuid() } });
     }
 
-    ur.do('add', nodes2);
+    ur.do('add', smallerPartitionNodes);
 
-    for (let i = 0; i < nodeCount; i++) {
-        for (let j = 0; j < nodeCount2; j++) {
-            edges.push({ data: { id: getRandomUuid(), source: nodes[i].data.id, target: nodes2[j].data.id } });
+    for (let i = 0; i < largerPartitionCount; i++) {
+        for (let j = 0; j < smallerPartitionCount; j++) {
+            edges.push({ data: { id: getRandomUuid(), source: largerPartitionNodes[i].data.id, target: smallerPartitionNodes[j].data.id } });
         }
     }
 
     ur.do('add', edges);
 
-    cy.layout({ name: 'grid', rows: 2, columns: Math.max(nodeCount, nodeCount2) }).run();    
+    cy.layout({ name: 'grid', rows: 2, columns: largerPartitionCount }).run();    
 }
 
 export {
