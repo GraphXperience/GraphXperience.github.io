@@ -60,17 +60,6 @@ function runCustomAlgorithm(customAlgorithm) {
     fileReader.readAsText(blob);
 }
 
-function removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem) {
-    let currentAlgorithms = getCustomAlgorithms();
-    currentAlgorithms.splice(customAlgorithmIndex, 1);
-
-    setCustomAlgorithms(currentAlgorithms);
-
-    if (customAlgorithmListItem) {
-        customAlgorithmListItem.remove();
-    }
-}
-
 function promptCustomAlgorithmsSelection() {
     const fileInput = document.createElement('input');
 
@@ -141,7 +130,6 @@ function downloadCustomAlgorithm(customAlgorithm) {
 
 export {
     runCustomAlgorithm,
-    removeCustomAlgorithm,
     promptCustomAlgorithmsSelection,
     clearCustomAlgorithms,
     downloadCustomAlgorithm,

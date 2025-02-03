@@ -1,7 +1,7 @@
 import { getCustomAlgorithms } from './context.js';
-import { openCustomAlgorithmsModal, setupCustomAlgorithmsModal } from './custom-algorithms-modal.js';
+import { openCustomAlgorithmsModal, setupCustomAlgorithmsModal, removeCustomAlgorithm } from './custom-algorithms-modal.js';
 import { setupConfirmOverwriteModal } from './overwrite-modal.js';
-import { removeCustomAlgorithm, runCustomAlgorithm, downloadCustomAlgorithm } from './custom-algorithms.js';
+import { runCustomAlgorithm, downloadCustomAlgorithm } from './custom-algorithms.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
 import { openInfoWindow } from '../info-window.js';
 

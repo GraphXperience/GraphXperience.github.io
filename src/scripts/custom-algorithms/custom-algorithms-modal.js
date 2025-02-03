@@ -1,7 +1,6 @@
 import { getCustomAlgorithms, setCustomAlgorithms, getCurrentFile, setCurrentFile } from './context.js';
 import { createCustomAlgorithmButton } from './button-builder.js';
 import { openConfirmOverwriteModal } from './overwrite-modal.js';
-import { removeCustomAlgorithm } from './custom-algorithms.js';
 
 const section = document.getElementById('custom-algorithms-section');
 const modal = document.getElementById('custom-algorithms-modal');
@@ -68,6 +67,17 @@ function upsertCustomAlgorithm(newCustomAlgorithm) {
 
 }
 
+function removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem) {
+    let currentAlgorithms = getCustomAlgorithms();
+    currentAlgorithms.splice(customAlgorithmIndex, 1);
+
+    setCustomAlgorithms(currentAlgorithms);
+
+    if (customAlgorithmListItem) {
+        customAlgorithmListItem.remove();
+    }
+}
+
 function saveAlgorithm(customAlgorithms, newCustomAlgorithm) {
     let existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.id === newCustomAlgorithm.id);
 
@@ -130,4 +140,5 @@ function openCustomAlgorithmsModal(existentCustomAlgorithm, fileContent) {
 export {
     setupCustomAlgorithmsModal,
     openCustomAlgorithmsModal,
+    removeCustomAlgorithm
 };
