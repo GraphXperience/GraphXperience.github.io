@@ -33,10 +33,19 @@ function createCustomAlgorithmButton(customAlgorithm) {
     deleteButton.dataset.name = customAlgorithm.name;
     deleteButton.dataset.description = customAlgorithm.description;
 
+    const downloadButton = document.createElement('span');
+    downloadButton.classList.add("material-symbols-outlined");
+    downloadButton.classList.add("icon-button");
+    downloadButton.textContent = "download";
+    downloadButton.dataset.type = 'download';
+    downloadButton.dataset.name = customAlgorithm.name;
+    downloadButton.dataset.description = customAlgorithm.description;
+
     listItem.appendChild(customAlgorithmButton);
     listItem.appendChild(infoButton);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
+    listItem.appendChild(downloadButton);
 
     return listItem;
 }
