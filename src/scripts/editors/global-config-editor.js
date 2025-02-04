@@ -64,16 +64,23 @@ class GlobalConfigEditor {
                 nodeStyle.style['background-color'] = this.cy.data('alwan-ce-node').getColor().rgb;
                 cy.nodes().removeData('overrideColor');
             }
-            nodeStyle.style['height'] = sizeInput.value * 10;
-            nodeStyle.style['width'] = sizeInput.value * 10;
+            if (nodeStyle.style['height'] !== sizeInput.value * 10) {
+                nodeStyle.style['height'] = sizeInput.value * 10;
+                nodeStyle.style['width'] = sizeInput.value * 10;
+                cy.nodes().removeData('overrideSize');
+            }
+            
 
             const edgeStyle = styles.cy.find(x => x.selector === 'edge');
             if (edgeStyle.style['line-color'] !== this.cy.data('alwan-ce-edge').getColor().rgb.replaceAll(' ', '')) {
                 edgeStyle.style['line-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
                 edgeStyle.style['target-arrow-color'] = this.cy.data('alwan-ce-edge').getColor().rgb;
-                cy.nodes().removeData('overrideColor');
-            }   
-            edgeStyle.style['width'] = edgeThicknessInput.value;
+                cy.edges().removeData('overrideColor');
+            }
+            if (edgeStyle.style['width'] !== edgeThicknessInput.value) {
+                edgeStyle.style['width'] = edgeThicknessInput.value;
+                cy.edges().removeData('overrideSize');
+            }
             
             this.cy.style().fromJson(styles.cy);
 
