@@ -60,7 +60,7 @@ function buildJsonData() {
     jsonData.isNodeWeighted = cy.data('isNodeWeighted');
     jsonData.isEdgeWeighted = cy.data('isEdgeWeighted');
 
-    return JSON.stringify(jsonData);
+    return JSON.stringify(jsonData, null, 4);
 }
 
 function saveGraphJpeg() {
