@@ -25,7 +25,11 @@ class SizeEditor {
             }
 
             this.elementsToEdit.forEach(element => {
-                setSize(element, size);
+                if (element.isNode()) {
+                    setSize(element, size * 10);
+                } else {
+                    setSize(element, size);
+                }
             });
 
             this.cy.trigger('save');
