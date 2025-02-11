@@ -21,6 +21,10 @@ function buildStylesheet(globalConfig, globalStyle) {
         'opacity': PARTIAL_VISIBLE_OPACITY,
         'line-color': RESET_COLOR,
         'target-arrow-color': RESET_COLOR,
+        'text-background-color': '#FFFFFF',
+        'text-background-opacity': 1,
+        'text-background-shape': 'round-rectangle',
+        'text-background-padding': '2.5px',
     };
 
     const overrideNodeColor = {
