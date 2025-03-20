@@ -92,15 +92,22 @@ function openInfoWindow(type, title = '', messages = []) {
             break;
         case 'global-info':
             title = 'Informações Gerais';
-            messages.push('Teclas Importantes:');
-            messages.push('- N: Criar nó na posição do cursor');
-            messages.push('- S: Conectar nós selecionados');
-            messages.push('- D: Desconectar nós selecionados');
-            messages.push('- E: Ativar/Desativar modo desenho');
-            messages.push('- DEL: Deletar elementos selecionados');
-            messages.push('- ESC: Fechar janelas/menus');
-            messages.push('- CTRL + Y: Refazer');
-            messages.push('- CTRL + Z: Desfazer');
+            messages.push('Teclas de atalho');
+            messages.push('- Enter: Confirma ações de modais abertos.');
+            messages.push('- Esc: Fecha modais.');
+            messages.push('- Ctrl + A: Seleciona todos os elementos do grafo.');
+            messages.push('- Ctrl + C: Copia os elementos selecionados.');
+            messages.push('- Ctrl + V: Cola os elementos copiados.');
+            messages.push('- Ctrl + Z: Desfaz a última ação.');
+            messages.push('- Ctrl + Y: Refaz a última ação.');
+            messages.push('- E: Ativa/Desativa o modo desenho, no qual é possível clicar e arrastar de um nó para o outro para criar uma nova aresta.');
+            messages.push('- N: Adiciona um novo nó no local do cursor do mouse.');
+            messages.push('- S: Conecta os nós selecionados.');
+            messages.push('- D: Desconecta os nós selecionados.');
+            messages.push('- Del: Remove os elementos selecionados.');
+            messages.push('- Botão direito do mouse: Abre um menu circular nos elementos selecionados para personalizá-los');
+            messages.push('- Botão esquerdo do mouse: Seleciona um elemento. Segurando o CTRL, seleciona múltiplos elementos. Arrastando-o em uma área em branco cria um retângulo de seleção.');
+            messages.push('Para mais informações, clique no botão "Link para a documentação do trabalho"');
             break;
         case 'custom-algorithms':
             title = 'Algoritmos Personalizados';
@@ -113,7 +120,7 @@ function openInfoWindow(type, title = '', messages = []) {
                 que diz se o grafo é ou não direcionado.
             `);
             messages.push(`
-                O segundo parâmetro é uma lista de 'Node' selecionados na tela, que pode ser útil para algoritmos de busca, por exemplo.
+                O segundo parâmetro é uma lista de 'Node' selecionados na tela.
             `);
             messages.push(`
                 Um 'Grafo' possui os métodos:
@@ -153,9 +160,10 @@ function openInfoWindow(type, title = '', messages = []) {
             messages.push(`
                 O 'type' pode ser 'animate' ou 'print'. Indica como funcionará a animação.
                 Se for 'animate', precisa conter o 'elementId' de cada objeto animado.
-                Esse objeto terá por padrão sua cor mudada para vermelho, porém pode ser opcionalmente modificada para outras cores.
+                Esse objeto terá por padrão sua cor mudada para vermelho, porém pode ser opcionalmente modificada para outras cores ('color').
+                É também possível modificar o peso pelo 'weight', o 'tag' e a espessura pelo 'size'.
                 Se for 'print', precisa conter a 'message' a ser printada na tela para cada objeto.
-                O texto dessa mensagem terá por padrão sua cor vermelha, porém pode ser opcionalmente modificada para outras cores.
+                O texto dessa mensagem terá por padrão sua cor vermelha, porém pode ser opcionalmente modificada para outras cores ('color').
             `);
             break;
         case 'custom-algorithm':

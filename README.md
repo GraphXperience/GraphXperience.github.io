@@ -39,13 +39,13 @@ npm run start
 - **Ctrl + V**: Cola os elementos copiados.
 - **Ctrl + Z**: Desfaz a última ação.
 - **Ctrl + Y**: Refaz a última ação.
-- **E**: Entra no modo desenho, onde é possível clicar e arrastar de um nó para o outro para criar uma nova aresta.
+- **E**: Ativa/Desativa o modo desenho, no qual é possível clicar e arrastar de um nó para o outro para criar uma nova aresta.
 - **N**: Adiciona um novo nó no local do cursor do mouse.
 - **S**: Conecta os nós selecionados.
 - **D**: Desconecta os nós selecionados.
 - **Del**: Remove os elementos selecionados.
 - **Botão direito do mouse**: Abre um menu circular nos elementos selecionados para personalizá-los
-- **Botão esquerdo do mouse**: Seleciona um elemento (OBS: segurar o botão esquerdo abre um "menu circular" para editar diferentes propriedades do elemento)
+- **Botão esquerdo do mouse**: Seleciona um elemento. Segurando o CTRL, seleciona múltiplos elementos. Arrastando-o em uma área em branco cria um retângulo de seleção.
 
 # Funcionalidades Principais
 Este projeto permite que o usuário:

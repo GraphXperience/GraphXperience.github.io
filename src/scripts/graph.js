@@ -8,6 +8,7 @@ const ur = getUndoRedo();
 function clear() {
     cy.elements().forEach(removeTag);
     cy.elements().remove();
+    cy.data('selectedNodeIds').clear();
     ur.reset();
 }
 
@@ -90,12 +91,15 @@ function generateNodeTags() {
 
 function removeElement(element) {
     removeTag(element);
-
+    cy.data('selectedNodeIds').delete(element.id());
     ur.do('remove', element);
 }
 
 function removeElements(elements) {
-    elements.forEach(element => removeTag(element));
+    elements.forEach(element => { 
+        removeTag(element);
+        cy.data('selectedNodeIds').delete(element.id());
+    });
     ur.do('remove', elements);
 }
 
