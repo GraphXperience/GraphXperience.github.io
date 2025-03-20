@@ -93,21 +93,18 @@ function openInfoWindow(type, title = '', messages = []) {
         case 'global-info':
             title = 'Informações Gerais';
             messages.push('Teclas de atalho');
-            messages.push('- Enter: Confirma ações de modais abertos.');
-            messages.push('- Esc: Fecha modais.');
+            messages.push('- E: Ativa/Desativa o modo desenho.');
+            messages.push('- N: Adiciona um novo nó no local do cursor do mouse.');
+            messages.push('- S: Conecta os nós selecionados.');
+            messages.push('- D: Desconecta os nós selecionados.');
             messages.push('- Ctrl + A: Seleciona todos os elementos do grafo.');
             messages.push('- Ctrl + C: Copia os elementos selecionados.');
             messages.push('- Ctrl + V: Cola os elementos copiados.');
             messages.push('- Ctrl + Z: Desfaz a última ação.');
             messages.push('- Ctrl + Y: Refaz a última ação.');
-            messages.push('- E: Ativa/Desativa o modo desenho, no qual é possível clicar e arrastar de um nó para o outro para criar uma nova aresta.');
-            messages.push('- N: Adiciona um novo nó no local do cursor do mouse.');
-            messages.push('- S: Conecta os nós selecionados.');
-            messages.push('- D: Desconecta os nós selecionados.');
             messages.push('- Del: Remove os elementos selecionados.');
-            messages.push('- Botão direito do mouse: Abre um menu circular nos elementos selecionados para personalizá-los');
-            messages.push('- Botão esquerdo do mouse: Seleciona um elemento. Segurando o CTRL, seleciona múltiplos elementos. Arrastando-o em uma área em branco cria um retângulo de seleção.');
-            messages.push('Para mais informações, clique no botão "Link para a documentação do trabalho"');
+            messages.push('- Botão direito do mouse: Abre um menu circular de personalização.');
+            messages.push('Para mais informações, acesse o repositório do GitHub.');
             break;
         case 'custom-algorithms':
             title = 'Algoritmos Personalizados';
