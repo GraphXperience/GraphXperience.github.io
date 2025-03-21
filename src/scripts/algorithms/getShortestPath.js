@@ -39,8 +39,8 @@ function getShortestPath(graph, selectedNodes) {
             break;
         }
 
-        for (const edge of graph.getEdges(node)) {
-            const neighbor = edge.targetNode.id === nodeId ? edge.sourceNode : edge.targetNode;
+        for (const neighbor of graph.getNeighbors(node)) {
+            const edge = graph.getEdge(node, neighbor);
             const weight = edge.weight;
             const currentDistance = distances.get(neighbor.id);
             const newDistance = distance + weight;
