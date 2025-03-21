@@ -50,7 +50,7 @@ function getShortestPath(graph, selectedNodes) {
                 previous.set(neighbor.id, node);
 
                 priorityQueue.push({ nodeId: neighbor.id, distance: newDistance });
-            }            
+            }
         }
     }
 
