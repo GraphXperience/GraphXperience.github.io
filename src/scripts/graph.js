@@ -89,17 +89,17 @@ function generateNodeTags() {
     cy.nodes().forEach((node, i) => setTag(node, i.toString()));
 }
 
-function removeElement(element) {
-    removeTag(element);
-    cy.data('selectedNodeIds').delete(element.id());
-    ur.do('remove', element);
-}
-
 function removeElements(elements) {
     elements.forEach(element => { 
         removeTag(element);
+
+        if (element.isNode()) {
+            element.connectedEdges().forEach(removeTag);
+        }
+
         cy.data('selectedNodeIds').delete(element.id());
     });
+
     ur.do('remove', elements);
 }
 
@@ -127,7 +127,6 @@ export {
     disconnectEdges,
     generateEdgeTags,
     generateNodeTags,
-    removeElement,
     removeElements,
     removeBidirectionalEdges
 }
