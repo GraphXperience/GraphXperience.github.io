@@ -95,7 +95,7 @@ function saveAlgorithm(customAlgorithms, newCustomAlgorithm) {
 
 function updateCustomAlgorithmButton(customAlgorithm) {
     const listItem = document.querySelector(`[data-id="li-algorithm-${customAlgorithm.id}"]`);
-    
+
     if (listItem) {
         const elements = listItem.querySelectorAll('button, span');
 
