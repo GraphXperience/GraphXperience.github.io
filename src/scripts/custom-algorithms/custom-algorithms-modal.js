@@ -80,7 +80,7 @@ function removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem) {
 
 function saveAlgorithm(customAlgorithms, newCustomAlgorithm) {
     let existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.id === newCustomAlgorithm.id);
-    
+
     if (existingAlgorithmIndex !== -1) {
         customAlgorithms[existingAlgorithmIndex] = newCustomAlgorithm;
         updateCustomAlgorithmButton(newCustomAlgorithm);
