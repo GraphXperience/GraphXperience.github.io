@@ -80,7 +80,7 @@ function removeCustomAlgorithm(customAlgorithmIndex, customAlgorithmListItem) {
 
 function saveAlgorithm(customAlgorithms, newCustomAlgorithm) {
     let existingAlgorithmIndex = customAlgorithms.findIndex(alg => alg.id === newCustomAlgorithm.id);
-
+    
     if (existingAlgorithmIndex !== -1) {
         customAlgorithms[existingAlgorithmIndex] = newCustomAlgorithm;
         updateCustomAlgorithmButton(newCustomAlgorithm);
@@ -97,15 +97,15 @@ function updateCustomAlgorithmButton(customAlgorithm) {
     const listItem = document.querySelector(`[data-id="li-algorithm-${customAlgorithm.id}"]`);
     
     if (listItem) {
-        const buttons = listItem.querySelectorAll('button, img');
+        const elements = listItem.querySelectorAll('button, span');
 
-        buttons.forEach(button => {
-            if (button.dataset.type === 'algorithm') {
-                button.textContent = customAlgorithm.name;
+        elements.forEach(element => {
+            if (element.dataset.type === 'algorithm') {
+                element.textContent = customAlgorithm.name;
             }
     
-            button.dataset.name = customAlgorithm.name;
-            button.dataset.description = customAlgorithm.description;
+            element.dataset.name = customAlgorithm.name;
+            element.dataset.description = customAlgorithm.description;
         });
     }
 }
