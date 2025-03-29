@@ -25,6 +25,7 @@ class GlobalConfigEditor {
             resetLocalStorage();
             clear();
             resetCytoscape();
+            setTagColor('#176B87');
 
             configEditor.close();
         });
