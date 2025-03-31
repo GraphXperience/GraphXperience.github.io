@@ -103,7 +103,7 @@ function updateCustomAlgorithmButton(customAlgorithm) {
             if (element.dataset.type === 'algorithm') {
                 element.textContent = customAlgorithm.name;
             }
-    
+
             element.dataset.name = customAlgorithm.name;
             element.dataset.description = customAlgorithm.description;
         });
