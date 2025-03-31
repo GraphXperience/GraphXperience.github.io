@@ -95,17 +95,17 @@ function saveAlgorithm(customAlgorithms, newCustomAlgorithm) {
 
 function updateCustomAlgorithmButton(customAlgorithm) {
     const listItem = document.querySelector(`[data-id="li-algorithm-${customAlgorithm.id}"]`);
-    
-    if (listItem) {
-        const buttons = listItem.querySelectorAll('button, img');
 
-        buttons.forEach(button => {
-            if (button.dataset.type === 'algorithm') {
-                button.textContent = customAlgorithm.name;
+    if (listItem) {
+        const elements = listItem.querySelectorAll('button, span');
+
+        elements.forEach(element => {
+            if (element.dataset.type === 'algorithm') {
+                element.textContent = customAlgorithm.name;
             }
     
-            button.dataset.name = customAlgorithm.name;
-            button.dataset.description = customAlgorithm.description;
+            element.dataset.name = customAlgorithm.name;
+            element.dataset.description = customAlgorithm.description;
         });
     }
 }
