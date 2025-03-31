@@ -55,7 +55,14 @@ function getShortestPath(graph, selectedNodes) {
     }
 
     const shortestPath = reconstructPath(targetNode);
-    shortestPath.forEach(nodeId => { actions.push({ elementId: nodeId, type: 'animate', color: 'green' }); });
+    shortestPath.forEach(nodeId => actions.push({ elementId: nodeId, type: 'animate', color: 'green' }));
+
+    if (shortestPath.length === 1) {
+        actions.push({ type: "print", message: "Não é possível chegar em " + targetNode.tag + " partindo de " + sourceNode.tag });
+    } else {
+        actions.push({ type: "print", message: "Menor caminho: "});
+        shortestPath.reverse().forEach(nodeId => actions.push({ type: "print", message: "\t- " + nodes.find(node => node.id === nodeId)?.tag }));
+    }
 
     return actions;
 
