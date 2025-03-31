@@ -7,13 +7,22 @@ function checkCycles(graph) {
     let visitedDirected = new Set();
     let actions = [];
     let stopAt = null;
+    let cycle = new Set();
+    let idToTag = new Map();
+
+    for (const node of graph.nodes) {
+        idToTag.set(node.id, node.tag);
+    }
 
     if (graph.isDirected && graph.nodes.some(() => detectCyclesDirected(graph))) {
+        actions.push({ type: 'print', message: `O primeiro ciclo encontrado é: ${Array.from(cycle).reverse().map(nodeId => idToTag.get(nodeId)).join(', ')}` });
         return actions;
     } else if (graph.nodes.some(() => detectCyclesUndirected(graph))) {
+        actions.push({ type: 'print', message: `O primeiro ciclo encontrado é: ${Array.from(cycle).reverse().map(nodeId => idToTag.get(nodeId)).join(', ')}` });
         return actions;
     }
 
+    actions.push({ type: 'print', message: 'Não há ciclo encontrado' });
     return actions;
 
 
@@ -36,6 +45,7 @@ function checkCycles(graph) {
             if (!visited.has(neighbor.id)) {
                 if (dfs(graph, neighbor, node)) {
                     if (stopAt) {
+                        cycle.add(neighbor.id, node.id);
                         actions.push({ elementId: graph.getEdge(node, neighbor).id, type: 'animate', color: 'green' });
                         actions.push({ elementId: node.id, type: 'animate', color: 'green' });
                         if (stopAt === node.id) stopAt = null;
@@ -44,6 +54,7 @@ function checkCycles(graph) {
                 }
             }
             else if (neighbor != parent) {
+                cycle.add(neighbor.id, node.id);
                 actions.push({ type: 'print', message: 'Achou ciclo no nó ' + neighbor.tag });
                 actions.push({ elementId: graph.getEdge(node, neighbor).id, type: 'animate', color: 'green' });
                 actions.push({ elementId: node.id, type: 'animate', color: 'green' });
@@ -77,6 +88,7 @@ function checkCycles(graph) {
             if (!visited.has(neighbor.id)) {
                 if (dfs_directed(graph, neighbor)) {
                     if (stopAt) {
+                        cycle.add(neighbor.id, node.id);
                         actions.push({ elementId: graph.getEdge(node, neighbor).id, type: 'animate', color: 'green' });
                         actions.push({ elementId: node.id, type: 'animate', color: 'green' });
                         if (stopAt === node.id) stopAt = null;
@@ -85,6 +97,7 @@ function checkCycles(graph) {
                 }
             }
             else if (visitedDirected.has(neighbor.id)) {
+                cycle.add(neighbor.id, node.id);
                 actions.push({ type: 'print', message: 'Achou ciclo no nó ' + neighbor.tag });
                 actions.push({ elementId: graph.getEdge(node, neighbor).id, type: 'animate', color: 'green' });
                 actions.push({ elementId: node.id, type: 'animate', color: 'green' });
