@@ -2,36 +2,35 @@ function dfs(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
         throw new Error('Não há nós selecionados.');
     }
+
     if (selectedNodes.length > 1) {
         throw new Error('Selecione apenas um nó para iniciar a busca.');
     }
 
-    const startNode = graph.nodes.find(node => node.id === selectedNodes[0].id);
+    let startNode = graph.nodes.find(node => node.id === selectedNodes[0].id);
+    let visitedNodeIds = new Set();
+    let actions = [];
 
-    const visitedNodeIds = new Set();
-    const stack = [startNode];
-    const actions = [];
-
-    while (stack.length) {
-        const currentNode = stack.pop();
-
+    function recursiveSearch(currentNode) {
         if (visitedNodeIds.has(currentNode.id)) {
-            continue;
+            return;
         }
 
         visitedNodeIds.add(currentNode.id);
         actions.push({ elementId: currentNode.id, type: 'animate' });
         actions.push({ type: 'print', message: 'visitou o nó ' + currentNode.tag });
 
-        for (const neighbor of graph.getNeighbors(currentNode)) {
+        for (let neighbor of graph.getNeighbors(currentNode)) {
+            let edge = graph.getEdge(currentNode, neighbor);
+
             if (!visitedNodeIds.has(neighbor.id)) {
-                stack.push(neighbor);
-                actions.push({ elementId: graph.getEdge(currentNode, neighbor).id, type: 'animate' });
-                actions.push({ elementId: neighbor.id, type: 'animate', color: '#DBA404' });
+                actions.push({ elementId: edge.id, type: 'animate' });
+                recursiveSearch(neighbor);
             }
         }
     }
 
+    recursiveSearch(startNode);
     return actions;
 }
 
