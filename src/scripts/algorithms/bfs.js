@@ -2,27 +2,37 @@ function bfs(graph, selectedNodes) {
     if (selectedNodes.length === 0) {
         throw new Error('Não há nós selecionados');
     }
+
     if (selectedNodes.length > 1) {
         throw new Error('Selecione apenas um nó para iniciar a busca');
     }
 
     let visitedNodeIds = new Set();
-    let queue = [selectedNodes[0]];
+    let queue = [{ node: selectedNodes[0], parent: null }];
     let actions = [];
 
     while (queue.length > 0) {
-        const currentNode = queue.shift();
+        let { node: currentNode, parent } = queue.shift();
+
+        if (visitedNodeIds.has(currentNode.id)) {
+            continue;
+        }
 
         visitedNodeIds.add(currentNode.id);
+
+        if (parent) {
+            let edge = graph.getEdge(parent, currentNode);
+            actions.push({ elementId: edge.id, type: 'animate' });
+        }
+
         actions.push({ elementId: currentNode.id, type: 'animate', color: 'red' });
         actions.push({ message: 'Visitando o nó ' + currentNode.tag, type: 'print' });
 
         let neighbors = graph.getNeighbors(currentNode);
+
         for (let neighbor of neighbors) {
             if (!visitedNodeIds.has(neighbor.id)) {
-                queue.push(neighbor);
-                actions.push({ elementId: graph.getEdge(currentNode, neighbor).id, type: 'animate' });
-                actions.push({ elementId: neighbor.id, type: 'animate', color: '#DBA404' });
+                queue.push({ node: neighbor, parent: currentNode });
             }
         }
     }
